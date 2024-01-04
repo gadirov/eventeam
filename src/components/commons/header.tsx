@@ -28,6 +28,7 @@ const Header = () => {
         bgColor="#fff"
         w="100vw"
         position="fixed"
+        zIndex={"2"}
       >
         <Link to="/"><Image src="./assests/logo.png" alt='Dan Abramov' w="180px" h="40px" cursor="pointer"/></Link>
         <UnorderedList
