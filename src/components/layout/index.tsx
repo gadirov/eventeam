@@ -1,6 +1,18 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import Header from "../commons/header.tsx";
+import Footer from "../commons/footer.tsx";
+import { Outlet } from "react-router-dom";
 
-export const Layout = () => {
-  return <Box>this is view page</Box>;
+
+
+const Layout = () => {
+  return (
+    <>
+      <Header/>
+        <Outlet/>
+      <Footer/>
+    </>
+  );
 };
+
+export default Layout;
