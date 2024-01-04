@@ -1,6 +1,9 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Image } from "@chakra-ui/react";
 
-export const Contact = () => {
-  return <Box>this is view page</Box>;
+ const Contact = () => {
+  return (
+    <Image src="./assests/about.jpeg" alt='Dan Abramov' pt="80px"/>
+  );
 };
+export default Contact;
