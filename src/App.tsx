@@ -1,45 +1,26 @@
 import React from "react";
-import {
-  Box,
-  HStack,
-  Heading,
-  ListItem,
-  UnorderedList,
-} from "@chakra-ui/react";
-import { useDetails } from "./hooks/useDetails.ts";
 
+import { useDetails } from "./hooks/useDetails.ts";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./components/layout/index.tsx";
+import Home from "./components/layout/home/index.tsx";
+import About from "./components/layout/about.tsx";
+import Contact from "./components/layout/contact.tsx";
 function App() {
   const { data } = useDetails();
   console.log("-----", data);
+
   return (
-    <Box w="100vw" minH="100vh">
-      <HStack
-        display="flex"
-        justifyContent="space-between"
-        p="10px 64px"
-        bgColor="lightgray"
-      >
-        <Heading>Eventeam</Heading>
-        <UnorderedList
-          listStyleType="none"
-          display="flex"
-          gap="20px"
-          fontWeight="bold"
-        >
-          <ListItem>AZ</ListItem>
-          <ListItem>EN</ListItem>
-          <ListItem>RU</ListItem>
-        </UnorderedList>
-      </HStack>
-      <Heading
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="90vh"
-      >
-        Eventeam
-      </Heading>
-    </Box>
+    <BrowserRouter>
+      <Routes>
+        <Route path= "/" element={<Layout/>}>
+            <Route index element={<Home/>}/>
+            <Route path="about" element={<About/>}/>
+            <Route path="contact" element={<Contact/>}/>
+            {/* <Route path="events" element={</>}/> */}
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
