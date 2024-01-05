@@ -1,0 +1,44 @@
+[
+    {
+        "id":1,
+        "title":"Harry Potter və sirlər otağı film və quiz",
+        "date": "2024-01-05",
+        "imgUrl":"https://managerapi.eventeam.az/images/2023/DECEMBER/30/aZfLxjeoE5ZT4Fz1xC71WwU9lHw8mU_scaled_1000489585.jpg"
+
+    },
+    {
+        "id":2,
+        "title":"Manga Konsert",
+        "date": "2024-01-05",
+        "imgUrl":"https://managerapi.eventeam.az/images/2023/DECEMBER/24/WCaOTo7bDSDOOP2wW2RPEwEiz7ssEE_scaled_1000481226.jpg"
+
+    },
+    {
+        "id":3,
+        "title":"Təhminə və Zaur filmi (10% endirim)",
+        "date": "2024-01-05",
+        "imgUrl":"https://managerapi.eventeam.az/images/2024/JANUARY/2/UMJ6ip8jOprCLJm6pK2CkOgUqsC416_scaled_1000494656.jpg"
+
+    },
+    {
+        "id":4,
+        "title":"Fest-Mest Music Nights",
+        "date": "2024-01-05",
+        "imgUrl":"https://managerapi.eventeam.az/images/2024/JANUARY/2/UMJ6ip8jOprCLJm6pK2CkOgUqsC416_scaled_1000494656.jpg"
+
+    },
+    {
+        "id":5,
+        "title":"Yoga dersi",
+        "date": "2024-01-05",
+        "imgUrl":"https://managerapi.eventeam.az/images/2024/JANUARY/2/UMJ6ip8jOprCLJm6pK2CkOgUqsC416_scaled_1000494656.jpg"
+
+    },
+    {
+        "id":6,
+        "title":"Josef Abbas Live Music",
+        "date": "2024-01-05",
+        "imgUrl":"https://managerapi.eventeam.az/images/2023/DECEMBER/30/aZfLxjeoE5ZT4Fz1xC71WwU9lHw8mU_scaled_1000489585.jpg"
+
+    }
+]
