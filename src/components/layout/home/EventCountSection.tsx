@@ -36,26 +36,26 @@ export default function EventCountSection() {
   }, []);
 
   return (
-    <Box  display="flex" justifyContent="center" alignItems={"center"} gap="200px" mb="150px" h= "500px" background={`linear-gradient(rgba(45, 55, 80, 0.8) 100%, rgba(45, 55, 60, 0.9) 0), url(./assests/about.jpeg)`}>
+    <Box  w="100vw" display="flex" justifyContent="center" alignItems={"center"} gap="200px" mb="150px" h= "500px" background="conic-gradient(from 243.17deg at 52.66% 45.72%, rgba(7, 20, 80, .25) 0deg, hsla(0, 0%, 100%, 0) 66.85deg, rgba(18, 33, 102, .3) 266.25deg, rgba(7, 20, 80, .25) 1turn)">
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-            <Icon as={BiCalendarHeart} boxSize={6} color="#66f5ff"  w="80px" h="80px" mb="20px" />
-            <Heading fontSize="80px" fontStyle="italic" color="white" fontWeight="500">{count1}</Heading>
-            <Text fontSize="40px" color="white">Events</Text>
+            <Icon as={BiCalendarHeart} boxSize={6} color="#7848f4"  w="80px" h="80px" mb="20px" />
+            <Heading fontSize="80px" fontStyle="italic" color="#7848f4" fontWeight="500">{count1}</Heading>
+            <Text fontSize="40px" color="#7848f4">Events</Text>
         </Box>
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-            <Icon as={FaUser} boxSize={6} color="#66f5ff"  w="70px" h="70px" mb="20px" />
-            <Heading fontSize="80px" fontStyle="italic" color="white" fontWeight="500">{count2}</Heading>
-            <Text fontSize="40px" color="white">Online Events</Text>
+            <Icon as={FaUser} boxSize={6} color="#7848f4"  w="70px" h="70px" mb="20px" />
+            <Heading fontSize="80px" fontStyle="italic" color="#7848f4" fontWeight="500">{count2}</Heading>
+            <Text fontSize="40px" color="#7848f4">Online Events</Text>
         </Box>
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-            <Icon as={IoMdHeart} boxSize={6} color="#66f5ff" w="80px" h="80px" mb="20px" />
-            <Heading fontSize="80px" fontStyle="italic" color="white" fontWeight="500">{count3}</Heading>
-            <Text fontSize="40px" color="white">In Person Events</Text>
+            <Icon as={IoMdHeart} boxSize={6} color="#7848f4" w="80px" h="80px" mb="20px" />
+            <Heading fontSize="80px" fontStyle="italic" color="#7848f4" fontWeight="500">{count3}</Heading>
+            <Text fontSize="40px" color="#7848f4">In Person Events</Text>
         </Box>
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-            <Icon as={MdPeople} boxSize={6} color="#66f5ff" w="80px" h="80px" mb="20px" />
-            <Heading fontSize="80px" fontStyle="italic" color="white" fontWeight="500">{count4}</Heading>
-            <Text fontSize="40px" color="white">Users</Text>
+            <Icon as={MdPeople} boxSize={6} color="#7848f4" w="80px" h="80px" mb="20px" />
+            <Heading fontSize="80px" fontStyle="italic" color="#7848f4" fontWeight="500">{count4}</Heading>
+            <Text fontSize="40px" color="#7848f4">Users</Text>
         </Box>
     </Box>
   )

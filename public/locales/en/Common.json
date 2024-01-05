@@ -7,5 +7,10 @@
     "Privacy Policy": "Privacy Policy",
     "Terms&Conditions": "Terms&Conditions",
     "CopyRight": "2024 © All Rights Reserved",
-    "Sign in": "Sign in"
+    "Sign in": "Sign in",
+    "signin": {
+        "welcome": "Welcome",
+        "welcomeText": "To keep connected with us please login with your personal info",
+        "signup": "Sign up"
+    }
 }
