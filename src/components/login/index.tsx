@@ -5,8 +5,8 @@ import LeftSide from './leftSide.tsx';
  function LayoutLogin() {
   return (
     <Box display="flex" w="100%" maxH="100vh">
-    <Outlet />
-    <LeftSide />
+      <LeftSide />
+      <Outlet />
     </Box>
   )
 }
