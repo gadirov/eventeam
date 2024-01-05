@@ -16,7 +16,7 @@ const EventsSection = () => {
   return (
     <Box p={"150px"}>
       <Heading textAlign={"center"} mb={"30px"}>
-        Premium Events
+        Premium <span color="#fff">Events</span>
       </Heading>
       <SimpleGrid columns={[1, 2, 3]} spacingX="40px" spacingY="20px">
         {data.map(({ id, title, date, imgUrl }) => (
