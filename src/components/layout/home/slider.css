@@ -1,0 +1,38 @@
+.firstpageslider{
+    display: flex !important;
+    align-items: center;
+    background: conic-gradient(from 243.17deg at 52.66% 45.72%, rgba(7, 20, 80, .25) 0deg, hsla(0, 0%, 100%, 0) 66.85deg, rgba(18, 33, 102, .3) 266.25deg, rgba(7, 20, 80, .25) 1turn);
+}
+.firstSliderLeftContent{
+    flex: 0 0 auto;
+    width: 50%;;
+}
+.firstSliderLeftContent h2{
+    color: #111833;
+    font-family: Barlow,sans-serif;
+    font-size: 60px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 80px;
+    padding-top: 7px;
+}
+.firstSliderLeftContent p{
+    color: #111833;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-right: 50px;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+.firstSliderRightContent img{
+    width: 100%;
+}
+
+
+
+
+
+

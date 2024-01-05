@@ -59,7 +59,7 @@ const Header = () => {
           <option value="en">EN</option>
           <option value="ru">RU</option>
         </Select>
-            <Button cursor="pointer" bg="#fff" fontSize="20px" p=" 20px 14px"  fontWeight="400" borderRadius="100px" border="1px solid gray"  _hover={{ color: "#66f5ff", transition: "color 0.5s" , textDecoration:"underline" }}>Sign in</Button>
+            <Link to="/sign-in"><Button cursor="pointer" bg="#fff" fontSize="20px" p=" 20px 14px"  fontWeight="400" borderRadius="100px" border="1px solid gray"  _hover={{ color: "#66f5ff", transition: "color 0.5s" , textDecoration:"underline" }}>Sign in</Button></Link>
         </Box>
       </Box>
   )
