@@ -24,14 +24,14 @@
         "id":4,
         "title":"Fest-Mest Music Nights",
         "date": "2024-01-05",
-        "imgUrl":"https://managerapi.eventeam.az/images/2024/JANUARY/2/UMJ6ip8jOprCLJm6pK2CkOgUqsC416_scaled_1000494656.jpg"
+        "imgUrl":"https://managerapi.eventeam.az/images/2023/DECEMBER/29/5IOrPcaNdpb41spOcgNDkE9cQOil1q_scaled_1000488531.jpg"
 
     },
     {
         "id":5,
-        "title":"Yoga dersi",
+        "title":"Joseph Abbas Live Music",
         "date": "2024-01-05",
-        "imgUrl":"https://managerapi.eventeam.az/images/2024/JANUARY/2/UMJ6ip8jOprCLJm6pK2CkOgUqsC416_scaled_1000494656.jpg"
+        "imgUrl":"https://managerapi.eventeam.az/images/2024/JANUARY/2/l8NAGgj3JEK7oNB1jIwjOKDLzI3321_scaled_1000494556.jpg"
 
     },
     {
@@ -39,6 +39,27 @@
         "title":"Josef Abbas Live Music",
         "date": "2024-01-05",
         "imgUrl":"https://managerapi.eventeam.az/images/2023/DECEMBER/30/aZfLxjeoE5ZT4Fz1xC71WwU9lHw8mU_scaled_1000489585.jpg"
+
+    },
+    {
+        "id":7,
+        "title":"Hindistan Günləri",
+        "date": "2024-01-05",
+        "imgUrl":"https://managerapi.eventeam.az/images/2023/DECEMBER/29/8hONUkAYBZuRqS3DHQrFRoKqeFoDYR_scaled_1000488529.jpg"
+
+    },
+    {
+        "id":8,
+        "title":"Harry Potter And The Dealthly Hallows Filmi",
+        "date": "2024-01-05",
+        "imgUrl":"https://managerapi.eventeam.az/images/2023/DECEMBER/30/mDg1sRoNN1SCVW4C2Bqz4Hpt49mYRJ_scaled_1000489783.jpg"
+
+    },
+    {
+        "id":9,
+        "title":"'Moda Eskiz/Illüstrasiya' Açıq Dərs",
+        "date": "2024-01-06",
+        "imgUrl":"https://managerapi.eventeam.az/images/2023/DECEMBER/25/xTpHeTgZ4w34DpjXrBdSpFTPub71EP_scaled_1000483362.jpg"
 
     }
 ]

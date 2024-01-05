@@ -6,6 +6,8 @@ import Layout from "./components/layout/index.tsx";
 import Home from "./components/layout/home/index.tsx";
 import About from "./components/layout/about.tsx";
 import Contact from "./components/layout/contact.tsx";
+import LayoutLogin from "./components/login/index.tsx";
+import SignIn from "./components/login/signIn/index.tsx";
 function App() {
   const { data } = useDetails();
   console.log("-----", data);
@@ -18,6 +20,9 @@ function App() {
             <Route path="about" element={<About/>}/>
             <Route path="contact" element={<Contact/>}/>
             {/* <Route path="events" element={</>}/> */}
+        </Route>
+        <Route path="/sign-in" element={<LayoutLogin />}>
+          <Route index  element={<SignIn />}/> 
         </Route>
       </Routes>
     </BrowserRouter>
