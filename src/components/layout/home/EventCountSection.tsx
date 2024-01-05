@@ -36,7 +36,7 @@ export default function EventCountSection() {
   }, []);
 
   return (
-    <Box  display="flex" justifyContent="center" alignItems={"center"} gap="200px" mb="150px" h= "500px" background="conic-gradient(from 243.17deg at 52.66% 45.72%, rgba(7, 20, 80, .25) 0deg, hsla(0, 0%, 100%, 0) 66.85deg, rgba(18, 33, 102, .3) 266.25deg, rgba(7, 20, 80, .25) 1turn)">
+    <Box  w="100vw" display="flex" justifyContent="center" alignItems={"center"} gap="200px" mb="150px" h= "500px" background="conic-gradient(from 243.17deg at 52.66% 45.72%, rgba(7, 20, 80, .25) 0deg, hsla(0, 0%, 100%, 0) 66.85deg, rgba(18, 33, 102, .3) 266.25deg, rgba(7, 20, 80, .25) 1turn)">
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
             <Icon as={BiCalendarHeart} boxSize={6} color="#7848f4"  w="80px" h="80px" mb="20px" />
             <Heading fontSize="80px" fontStyle="italic" color="#7848f4" fontWeight="500">{count1}</Heading>

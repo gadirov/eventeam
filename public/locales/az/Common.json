@@ -7,6 +7,11 @@
     "Privacy Policy": "Məxfilik Siyasəti",
     "Terms&Conditions": "Qaydalar və Şərtlər",
     "CopyRight": "2024 © Bütün Hüquqlar Qorunur",
-    "Sign in": "Daxil ol"
+    "Sign in": "Daxil ol",
+    "signin": {
+        "welcome": "Xoş gəlmisiniz!",
+        "welcomeText": "Bizimlə əlaqə saxlamaq üçün şəxsi məlumatlarınızla daxil olun",
+        "signup": "Qeydiyyat"
+    }
 }
 

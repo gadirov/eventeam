@@ -13,14 +13,14 @@ const SliderMainPage: React.FC = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2200
+    autoplaySpeed: 2000
   };
 
   return (
-    <Box pt="80px"  >
+    <Box pt="80px"  background="conic-gradient(from 243.17deg at 52.66% 45.72%, rgba(7, 20, 80, .25) 0deg, hsla(0, 0%, 100%, 0) 66.85deg, rgba(18, 33, 102, .3) 266.25deg, rgba(7, 20, 80, .25) 1turn)">
       <Slider  {...settings}>
         <Box display="flex !important" alignItems="center"  >
-          <Box pl="50px" flex="0 0 auto" width="50%" >
+          <Box pl="220px" flex="0 0 auto" width="50%" >
             <Heading
               color="#111833"
               fontFamily="Barlow,sans-serif"
@@ -48,7 +48,7 @@ const SliderMainPage: React.FC = () => {
           </Box>
         </Box>
         <Box display="flex !important" alignItems="center"  >
-          <Box pl="50px" flex="0 0 auto" width="50%" >
+          <Box pl="220px" flex="0 0 auto" width="50%" >
             <Heading
               color="#111833"
               fontFamily="Barlow,sans-serif"

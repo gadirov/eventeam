@@ -16,9 +16,9 @@ const EventsSection = () => {
   return (
     <Box p={"150px"}>
       <Heading textAlign={"center"} mb={"30px"}>
-        Premium <span color="#fff">Events</span>
+        Premium <span style={{color:"#8f64ff"}}>Events</span>
       </Heading>
-      <SimpleGrid columns={[1, 2, 3]} spacingX="40px" spacingY="20px">
+      <SimpleGrid columns={[1, 2, 3]} spacing="60px">
         {data.map(({ id, title, date, imgUrl }) => (
           <Card key={id} height="100%">
             <CardBody>

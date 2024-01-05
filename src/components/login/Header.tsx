@@ -22,26 +22,26 @@ export default function Header() {
         fontSize="20px"
       >
         <ListItem
-          _hover={{ color: "#66f5ff", transition: "color 0.5s"}}
+          _hover={{ color: "#7848f4", transition: "color 0.5s"}}
           cursor="pointer"
           onClick={() => changeLanguage("az")}
-          color={selectedLanguage === "az" ? "#66f5ff" : "inherit"}
+          color={selectedLanguage === "az" ? "#7848f4" : "inherit"}
         >
           AZ
         </ListItem>
         <ListItem
-          _hover={{ color: "#66f5ff", transition: "color 0.5s"}}
+          _hover={{ color: "#7848f4", transition: "color 0.5s"}}
           cursor="pointer"
           onClick={() => changeLanguage("en")}
-          color={selectedLanguage === "en" ? "#66f5ff" : "inherit"}
+          color={selectedLanguage === "en" ? "#7848f4" : "inherit"}
         >
           EN
         </ListItem>
         <ListItem
-          _hover={{ color: "#66f5ff", transition: "color 0.5s"}}
+          _hover={{ color: "#7848f4", transition: "color 0.5s"}}
           cursor="pointer"
           onClick={() => changeLanguage("ru")}
-          color={selectedLanguage === "ru" ? "#66f5ff" : "inherit"}
+          color={selectedLanguage === "ru" ? "#7848f4" : "inherit"}
         >
           RU
         </ListItem>
