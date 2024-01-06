@@ -1,6 +1,11 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
+import { useParams } from "react-router-dom";
 
-export const DetailView = () => {
-  return <Box>this is view page</Box>;
+ const DetailView = () => {
+  const params = useParams();
+  console.log(params);
+  return <Heading pt="100px">{params.detailviewid}</Heading>;
 };
+
+export default DetailView;
