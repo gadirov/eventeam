@@ -1,12 +1,12 @@
 import React from "react";
-import { Box, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
 const About = () => {
   const { t } = useTranslation();
   return(
     <>
-      <Image src="./assests/about.jpeg" pt="80px"/><Text position="relative" top="-250px" left="80px" fontStyle="italic" color="#66f5ff" fontSize="100px">{t("About")}</Text>
+      <Box bg="conic-gradient(from 243.17deg at 52.66% 45.72%, rgba(7, 20, 80, .7) 0deg, hsla(0, 0%, 100%, 0) 66.85deg, rgba(18, 33, 102, .7) 266.25deg, rgba(7, 20, 80, .7) 1turn)" w="100vw" h="600px" pt="80px"><Text position="relative" top="250px" left="80px" fontStyle="italic" color="#071450" fontSize="100px">{t("About")}</Text></Box>
       <Box width="80vw" display="flex" flexDirection="column" margin="50px auto" color="#515154" textAlign="justify">
         <Heading fontSize="35px" color="#071450" fontWeight="700">Our Story</Heading>
         <Text lineHeight="35px" pt="24px">Welcome to Eventeam LLC App, the foremost platform for organizing and managing exceptional events. Committed to providing unparalleled services, we prioritize enhancing connectivity, facilitating the formation of new friendships, and creating thrilling opportunities.</Text>
