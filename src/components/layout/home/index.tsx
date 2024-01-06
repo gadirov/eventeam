@@ -4,6 +4,7 @@ import EventsSection from './EventsSection.tsx'
 import EventCountSection from "./EventCountSection.tsx";
 import SliderMainPage from "./SliderMainPage.tsx";
 import FeaturedEvents from "./FeatureEvents.tsx";
+import UsersReviews from "./UsersReviews.tsx";
  const Home = () => {
   return (
     <Box>
@@ -11,6 +12,7 @@ import FeaturedEvents from "./FeatureEvents.tsx";
       <EventsSection/>
       <FeaturedEvents/>
       <EventCountSection />
+      <UsersReviews/>
     </Box>
   );
 };
