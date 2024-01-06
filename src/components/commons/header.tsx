@@ -42,6 +42,7 @@ const Header = () => {
           <ListItem _hover={{ color: "#66f5ff", transition: "color 0.5s" , textDecoration:"underline" }} cursor="pointer"><Link to="/about">{t("About")}</Link></ListItem>
           <ListItem _hover={{ color: "#66f5ff", transition: "color 0.5s" , textDecoration:"underline" }} cursor="pointer"><Link to="/contact">{t("Contact")}</Link></ListItem>
           <ListItem _hover={{ color: "#66f5ff", transition: "color 0.5s" , textDecoration:"underline" }} cursor="pointer"><Link to="/events">{t("Events")}</Link></ListItem>
+          <ListItem _hover={{ color: "#66f5ff", transition: "color 0.5s" , textDecoration:"underline" }} cursor="pointer"><Link to="/searchevent">SearchEvent</Link></ListItem>
         </UnorderedList>
         <Box display="flex" alignItems="center" gap="20px">
         <Select
@@ -55,8 +56,8 @@ const Header = () => {
         border="1px solid gray"
         onChange={(e) => changeLanguage(e.target.value)}
         >
-          <option value="az">AZ</option>
           <option value="en">EN</option>
+          <option value="az">AZ</option>
           <option value="ru">RU</option>
         </Select>
             <Link to="/sign-in"><Button cursor="pointer" color="#fff" bg="#8F64FF" fontSize="20px" p=" 20px 14px"  fontWeight="400" borderRadius="50px" border="1px solid gray"  _hover={{ transition: "color 0.5s" , textDecoration:"underline" }}>Sign in</Button></Link>
