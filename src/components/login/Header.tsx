@@ -3,7 +3,7 @@ import { i18nInstance } from '..//..//i18n.ts';
 import React, { useState } from 'react';
 
 export default function Header() {
-  const [selectedLanguage, setSelectedLanguage] = useState("az");
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
 
   const changeLanguage = (lang: string) => {
     document.documentElement.setAttribute("lang", lang);

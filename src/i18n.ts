@@ -4,7 +4,7 @@ import HttpApi from 'i18next-http-backend';
 import languageDetector from 'i18next-browser-languagedetector'
 
 export const i18nInstance = i18n.createInstance({
-    lng: 'az',                                        // default lang
+    lng: 'en',                                        // default lang
     ns:[],                                            // name spacing
     keySeparator: '.',                                //  "item": {"label1": "Label1", "label1": "Label1"} - object seklinde olduqda - item.label1
     nsSeparator: ":",                                 // t{"Home:surname"}
