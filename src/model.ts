@@ -18,3 +18,10 @@ export interface IDependencies {
   axiosService: IAxiosService;
   //  pushNotificationService?: IPushNotificationService;
 }
+
+export interface IEventData {
+    id: number;
+    title: string;
+    date: string; 
+    imgUrl: string;
+}
