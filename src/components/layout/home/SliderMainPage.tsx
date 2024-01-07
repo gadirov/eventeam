@@ -75,7 +75,6 @@ const SliderMainPage: React.FC = () => {
 
           </Box>
         </Box>
-
       </Slider>
     </Box>
 
