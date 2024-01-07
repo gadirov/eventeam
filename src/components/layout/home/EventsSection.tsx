@@ -1,18 +1,11 @@
 import {
   Box,
-  Card,
-  CardBody,
-  Divider,
   Heading,
-  Image,
-  Stack,
-  Text,
-  SimpleGrid,
+  SimpleGrid
 } from "@chakra-ui/react";
 import React from "react";
-import data from "./eventdata.json";
-import { Link } from "react-router-dom";
 import CardItem from "../../Card/CartdItem.tsx";
+import data from "./eventdata.json";
 
 const EventsSection = () => {
   return (
