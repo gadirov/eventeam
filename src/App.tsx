@@ -25,7 +25,6 @@ function App() {
             <Route path="about" element={<About/>}/>
             <Route path="contact" element={<Contact/>}/>
             <Route path="events" element={<Event />}/>
-            <Route path="events" element={<Event />}/>
             <Route path="searchevent" element={<SearchEvent />}/>
             <Route path=":detailviewid" element={<DetailView />}/>
         </Route>
