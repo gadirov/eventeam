@@ -8,6 +8,8 @@ import About from "./components/layout/about.tsx";
 import Contact from "./components/layout/contact.tsx";
 import LayoutLogin from "./components/login/index.tsx";
 import SignIn from "./components/login/signIn/index.tsx";
+import SignUp from "./components/login/signUp/index.tsx";
+import ForgetPassword from "./components/login/forgetPassword.tsx/index.tsx";
 import Event from "./components/layout/event.tsx";
 import SearchEvent from "./components/layout/searchEvent.tsx";
 import  DetailView from "./components/detail/index.tsx";
@@ -29,6 +31,8 @@ function App() {
         </Route>
         <Route path="/sign-in" element={<LayoutLogin />}>
           <Route index  element={<SignIn />}/> 
+          <Route path="signup"  element={<SignUp />}/> 
+          <Route path="forgetpassword"  element={<ForgetPassword />}/> 
         </Route>
       </Routes>
     </BrowserRouter>

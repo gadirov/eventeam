@@ -53,8 +53,10 @@ const Header = () => {
         p="8px"
         borderRadius="100px" 
         cursor="pointer"
-        border="1px solid gray"
+        border="1px solid #8F64FF"
+        fontWeight="600"
         onChange={(e) => changeLanguage(e.target.value)}
+        color="#8F64FF"
         >
           <option value="en">EN</option>
           <option value="az">AZ</option>

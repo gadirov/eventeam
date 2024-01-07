@@ -13,7 +13,7 @@ export default function Header() {
 
   return (
     <HStack w="100%" justify="space-between" padding="28px 32px">
-      <Image alt="Eventteam Logo" src="./assests/logo.png" w="180px" h="40px" />
+      <Image alt="Eventteam Logo" src="../assests/logo.png" w="180px" h="40px" />
       <UnorderedList
         listStyleType="none"
         display="flex"

@@ -22,9 +22,9 @@ export default function InputPassword() {
                 rules={{
                 required: "This field is required",
                 pattern: {
-                  value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]+$/,
+                  value: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]+$/,
                   message:
-                    "Password must include at least one lowercase letter, one uppercase letter, and one digit",
+                    "Password must include at least  one uppercase letter and one digit",
                 },
                 minLength:{
                   value: 8,
@@ -44,7 +44,7 @@ export default function InputPassword() {
             />
             <InputRightElement>
               <IconButton
-              mt="10px"
+                m="10px 10px 0 0"
                 color="#707070"
                 variant="gray"
                 cursor="pointer"

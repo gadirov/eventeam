@@ -6,6 +6,7 @@ import InputPassword from "./InputPassword.tsx";
 import InputText from "./InputText.tsx";
 import SocialIcons from "./SocialIcons.tsx";
 import { FormProvider, useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 // import { DevTool } from "@hookform/devtools";
 
 const SignIn = () => {
@@ -33,9 +34,10 @@ const SignIn = () => {
           <FormControl as="form" onSubmit={methods.handleSubmit(onSubmit)}>
             <InputText />
             <InputPassword/>
-            <Box display="flex" justifyContent="flex-end" mt="5px"><Text cursor="pointer" color="#707070" fontWeight="600" lineHeight="16px">Forgot your password?</Text></Box>
+            <Box display="flex" justifyContent="flex-end" mt="5px"><Text cursor="pointer" color="#707070" fontWeight="600" lineHeight="16px"><Link to="forgetpassword">Forgot your password?</Link></Text></Box>
             <Button mt="30px" w="100%" cursor="pointer" _hover={{color:"white"}} p="25px 0"  type="submit" borderRadius="6px" border="1px solid #bababc" fontSize="18px" fontWeight="600" color="#fff" bg="#7848F4">Sign in</Button>
           </FormControl>
+          <Text textAlign="center" color="#707070" fontSize="18px">or</Text>
           <SocialIcons />
         </Box>
         <Footer />
