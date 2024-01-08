@@ -1,13 +1,18 @@
 import { Box, FormControl, FormLabel, Image, Input, Text } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
+import { Controller, useFormContext } from "react-hook-form";
 
+interface FormValues {
+    file: string;
+  }
 export default function InputFile() {
     const  fileref = useRef<HTMLInputElement>(null);
     const [file, setFile] = useState();
+    const methods = useFormContext<FormValues>();
     const uploaderHandler = () => {
         fileref.current?.click()
     }
-    const changeHandler = (e:any) => {
+    const changeHandler = (e:any) => {   // change any type
         setFile(e.target.files[0].name)
     }
   return (
@@ -40,7 +45,12 @@ export default function InputFile() {
                 <Text>Upload photo</Text>
             </Box>
             {file && <Text textAlign="center" color="#7848F4">{file}</Text>}
+            <Controller
+            name="file"
+            control={methods.control}
+            render={({ field }) => (
             <Input
+            {...field}
             onChange={changeHandler}
             ref={fileref}
             display="none"
@@ -48,6 +58,8 @@ export default function InputFile() {
             w="50px" 
             h="50px" 
             />
+        )}
+      />
         </FormControl>
   );
 }

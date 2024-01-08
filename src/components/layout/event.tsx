@@ -2,7 +2,6 @@ import {
   Box,
   Heading,
   Circle,
-  Flex,
   Text,
   FormControl,
   FormLabel,
