@@ -24,7 +24,7 @@ const SignUp = () => {
     }
   });
   const onSubmit = (data: any) => {
-    console.log(data.file);
+    console.log(data);
   };
   return (
     <FormProvider {...methods}>
