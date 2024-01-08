@@ -98,18 +98,17 @@ const Header = () => {
       </UnorderedList>
       <Box display="flex" alignItems="center" gap="20px">
         <Select
-
-        width="100px"
-        gap="8px"
-        alignItems="center"
-        bg="transparent"
-        p="8px"
-        borderRadius="100px" 
-        cursor="pointer"
-        border="1px solid #8F64FF"
-        fontWeight="600"
-        onChange={(e) => changeLanguage(e.target.value)}
-        color="#8F64FF"
+          width="100px"
+          gap="8px"
+          alignItems="center"
+          bg="transparent"
+          p="8px"
+          borderRadius="100px"
+          cursor="pointer"
+          border="1px solid #8F64FF"
+          fontWeight="600"
+          onChange={(e) => changeLanguage(e.target.value)}
+          color="#8F64FF"
         >
           <option value="en">EN</option>
           <option value="az">AZ</option>
@@ -130,7 +129,16 @@ const Header = () => {
             Sign in
           </Button>
         </Link>
-    
+        <Link to={"/account"}>
+          <Image
+            borderRadius="full"
+            boxSize="150px"
+            src="https://bit.ly/dan-abramov"
+            alt="Dan Abramov"
+            w={"45px"}
+            height={"45px"}
+          />
+        </Link>
       </Box>
     </Box>
   );
