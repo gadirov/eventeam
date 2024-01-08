@@ -1,6 +1,4 @@
 import React from "react";
-
-import { useDetails } from "./hooks/useDetails.ts";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/index.tsx";
 import Home from "./components/layout/home/index.tsx";
@@ -14,8 +12,6 @@ import Event from "./components/layout/event.tsx";
 import SearchEvent from "./components/layout/searchEvent.tsx";
 import  DetailView from "./components/detail/index.tsx";
 function App() {
-  const { data } = useDetails();
-  console.log("-----", data);
 
   return (
     <BrowserRouter>

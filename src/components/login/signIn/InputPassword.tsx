@@ -20,15 +20,15 @@ export default function InputPassword() {
 
   return (
     <FormControl isInvalid={!!methods.formState.errors.password}>
-      <FormLabel mt="30px" color="#707070" fontSize="18px">
+      <FormLabel mt="15px" color="#707070" fontSize="18px">
         Password
       </FormLabel>
       <InputGroup>
         <Controller
           name="password"
           control={methods.control}
-          // rules={{
-          // required: "This field is required",
+          rules={{
+          required: "This field is required",
           // pattern: {
           //   value: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]+$/,
           //   message:
@@ -38,7 +38,7 @@ export default function InputPassword() {
           //   value: 8,
           //   message: "Password must be at least 8 characters long",
           // }
-          // }}
+          }}
           render={({ field }) => (
             <Input
               {...field}

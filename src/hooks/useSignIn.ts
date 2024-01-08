@@ -6,6 +6,7 @@ import { useToast } from "@chakra-ui/react";
 export const useSignIn = () => {
   const navigate = useNavigate();
   const toast = useToast();
+
   const submit = async (data) => {
     try {
       const res = await post("user/login/signIn", data);
@@ -13,7 +14,7 @@ export const useSignIn = () => {
       Cookies.set("userId", res.body.userId);
       toast({
         position: "top",
-        title: "success",
+        title: "Successly login",
         status: "success",
         isClosable: true,
       });
@@ -21,7 +22,7 @@ export const useSignIn = () => {
     } catch (error) {
       toast({
         position: "top",
-        title: "error",
+        title: "Incorrect username or password",
         status: "error",
         isClosable: true,
       });

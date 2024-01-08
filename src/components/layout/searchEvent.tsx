@@ -31,8 +31,8 @@ export default function SearchEvent() {
     
   }
   return (
-    <Box pt="200px">
-      <Container maxW="1170px">
+    <Box p="200px 0 ">
+      <Container maxW="80vw">
         <Input
           py={"20px"}
           size={"lg"}
