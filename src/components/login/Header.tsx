@@ -2,6 +2,7 @@ import { HStack, Image, ListItem, UnorderedList } from '@chakra-ui/react';
 import { i18nInstance } from '..//..//i18n.ts';
 import React, { useState } from 'react';
 
+
 export default function Header() {
   const [selectedLanguage, setSelectedLanguage] = useState("en");
 

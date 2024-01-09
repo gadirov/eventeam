@@ -10,7 +10,7 @@ export const useSignIn = () => {
   const submit = async (data) => {
     try {
       const res = await post("user/login/signIn", data);
-      Cookies.set("accsess", res.body.token);
+      Cookies.set("access", res.body.token);
       Cookies.set("userId", res.body.userId);
       toast({
         position: "top",

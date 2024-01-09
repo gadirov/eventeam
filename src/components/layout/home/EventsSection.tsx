@@ -15,7 +15,7 @@ const EventsSection = () => {
       </Heading>
       <SimpleGrid columns={[1, 2, 3]} spacing="60px">
         {data.map((event) => (
-          <CardItem {...event}/>
+          <CardItem {...event} key={event.id}/>
         ))}
       </SimpleGrid>
     </Box>
