@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { i18nInstance } from "../../i18n.ts";
 import { useTranslation } from "react-i18next";
+import Cookies from "js-cookie";
 import {
   Box,
   Button,
@@ -13,11 +14,18 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const { t } = useTranslation();
+  const [token,setToken] = useState<Boolean>(false);
   const changeLanguage = (lang: string) => {
     document.documentElement.setAttribute("lang", lang);
     i18nInstance.changeLanguage(lang);
   }; //i18 parts
 
+  useEffect(() => {
+    const accessToken = Cookies.get('access');
+    if(accessToken){
+      setToken(!token)
+    }
+  },[])
   return (
     <Box
       display="flex"
@@ -115,7 +123,7 @@ const Header = () => {
           <option value="ru">RU</option>
         </Select>
         <Link to="/sign-in">
-          <Button
+          {!token && <Button
             cursor="pointer"
             color="#fff"
             bg="#8F64FF"
@@ -127,17 +135,17 @@ const Header = () => {
             _hover={{ transition: "color 0.5s", textDecoration: "underline" }}
           >
             Sign in
-          </Button>
+          </Button>}
         </Link>
         <Link to={"/account"}>
-          <Image
+          {token && <Image
             borderRadius="full"
             boxSize="150px"
             src="https://bit.ly/dan-abramov"
-            alt="Dan Abramov"
+            alt="Image"
             w={"45px"}
             height={"45px"}
-          />
+          />}
         </Link>
       </Box>
     </Box>

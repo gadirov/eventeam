@@ -37,7 +37,7 @@ const SignUp = () => {
       >
         <Header />
         <Box w="53%" display="flex" flexDirection="column" gap="10px">
-          <Heading textAlign="center" m="-20px 0 5px 0" fontSize="48px" color="#7848F4" fontStyle="italic">Sign up</Heading>
+          <Heading textAlign="center" m="-50px 0 30px 0" fontSize="48px" color="#7848F4" fontStyle="italic">Sign up</Heading>
           <FormControl as="form" onSubmit={methods.handleSubmit(onSubmit)}>
             <InputFullname />
             <InputText />
