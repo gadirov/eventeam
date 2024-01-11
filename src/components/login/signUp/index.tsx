@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, FormControl, Heading, VStack } from "@chakra-ui/react";
+import { Box, Button, Heading, VStack } from "@chakra-ui/react";
 import Header from "../Header.tsx";
 import Footer from "../Footer.tsx";
 import InputPassword from "../signIn/InputPassword.tsx";
@@ -14,14 +14,14 @@ import InputFile from "./InputFile.tsx";
 
 const SignUp = () => {
   const methods = useForm({
-    defaultValues:{
-      fullname:"",
-      login: "",
+    defaultValues: {
+      userName: "",
+      email: "",
       password: "",
-      date:"",
-      gender: "",
-      file:"aaa"
-    }
+      birthday: "",
+      gender: "UNKNOWN",
+      profilePhoto: "2022/JANUARY/1/avatarProfile.png",
+    },
   });
   const onSubmit = (data: any) => {
     console.log(data);
@@ -37,18 +37,41 @@ const SignUp = () => {
       >
         <Header />
         <Box w="50%" display="flex" flexDirection="column" gap="10px">
-          <Heading textAlign="center" m="-50px 0 30px 0" fontSize="48px" color="#7848F4" fontStyle="italic">Sign up</Heading>
-          <FormControl as="form" onSubmit={methods.handleSubmit(onSubmit)}>
+          <Heading
+            textAlign="center"
+            m="-50px 0 30px 0"
+            fontSize="48px"
+            color="#7848F4"
+            fontStyle="italic"
+          >
+            Sign up
+          </Heading>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
             <InputFullname />
             <InputText />
-            <InputPassword/>
-            <Box >           
+            <InputPassword />
+            <Box>
               <InputDate />
               <InputRadio />
             </Box>
             <InputFile />
-            <Button mt="30px" w="100%" cursor="pointer" _hover={{color:"white"}} p="25px 0"  type="submit" borderRadius="6px" border="1px solid #bababc" fontSize="18px" fontWeight="600" color="#fff" bg="#7848F4">Sign up</Button>
-          </FormControl>
+            <Button
+              mt="30px"
+              w="100%"
+              cursor="pointer"
+              _hover={{ color: "white" }}
+              p="25px 0"
+              type="submit"
+              borderRadius="6px"
+              border="1px solid #bababc"
+              fontSize="18px"
+              fontWeight="600"
+              color="#fff"
+              bg="#7848F4"
+            >
+              Sign up
+            </Button>
+          </form>
           {/* <Text textAlign="center" color="#707070" fontSize="18px">or</Text> */}
           {/* <SocialIcons /> */}
         </Box>
