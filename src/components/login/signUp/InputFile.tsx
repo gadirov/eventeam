@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Box, FormControl, FormLabel, Image, Input as ChakraInput, Text } from "@chakra-ui/react";
+import { Box, FormControl, FormLabel, Image, Input as ChakraInput, Text, Input } from "@chakra-ui/react";
 import { Controller, useFormContext } from "react-hook-form";
 
 interface FormValues {
@@ -57,13 +57,14 @@ export default function InputFile() {
         name="file"
         control={methods.control}
         render={({ field }) => (
-          <ChakraInput
+          <Input
+            {...field}
             onChange={changeHandler}
             ref={fileRef}
             display="none"
             type="file"
             accept="image/*"
-            as="input"
+            value={undefined}
           />
         )}
       />

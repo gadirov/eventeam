@@ -9,7 +9,7 @@ const swrOptions = {
 
 export function useDetails() {
   const { data, error, isLoading } = useSWR(
-    "/recommended-ms/recently-viewed",
+    "/events-ms/api/v1/events/premium",
     fetcher,
     swrOptions
   );

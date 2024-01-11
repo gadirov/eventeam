@@ -20,7 +20,7 @@ const SignUp = () => {
       password: "",
       date:"",
       gender: "",
-      file:""
+      file:"aaa"
     }
   });
   const onSubmit = (data: any) => {
