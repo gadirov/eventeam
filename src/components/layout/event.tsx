@@ -2,7 +2,6 @@ import {
   Box,
   Heading,
   Circle,
-  Flex,
   Text,
   FormControl,
   FormLabel,
@@ -83,16 +82,16 @@ function Event() {
           <FormControl>
             <FormLabel>Start Date</FormLabel>
             <HStack gap="10px">
-              <Input w="50%" placeholder="Choose date" />
-              <Input w="50%" placeholder="Choose Time" />
+              <Input type="date" w="50%" placeholder="Choose date" />
+              <Input type="time" w="50%" placeholder="Choose Time" />
             </HStack>
           </FormControl>
 
           <FormControl>
             <FormLabel>End Date</FormLabel>
             <HStack>
-              <Input w="50%" placeholder="Choose date" />
-              <Input w="50%" placeholder="Choose Time" />
+              <Input type="date" w="50%" placeholder="Choose date" />
+              <Input type="time" w="50%" placeholder="Choose Time" />
             </HStack>
           </FormControl>
 
@@ -167,8 +166,8 @@ function Event() {
         <FormControl w="90%" pt="60px">
           <FormLabel fontSize="20px">Expected number of attendees</FormLabel>
           <HStack gap="16px">
-            <Input variant="flushed" placeholder="Min" />
-            <Input variant="flushed" placeholder="Max" />
+            <Input type="number" variant="flushed" placeholder="Min" />
+            <Input type="number" variant="flushed" placeholder="Max" />
           </HStack>
         </FormControl>
       </VStack>
@@ -211,7 +210,7 @@ function Event() {
         <Box w="90%" mt="30px">
           <Button alignSelf="flex-start" borderRadius="40px" w="30%" p="25px">
             <HStack gap="10px">
-              <Button color="white" borderRadius="50%" w="15px" bg="blue">
+              <Button color="white" borderRadius="50%" w="15px" colorScheme="blue">
                 +
               </Button>
               <Text>Add category</Text>
@@ -236,15 +235,15 @@ function Event() {
         <FormControl pt="40px" w="90%">
           <FormLabel>Mobile Number</FormLabel>
           <InputGroup>
-            <InputLeftElement>+994</InputLeftElement>
-            <Input type="tel" variant="flushed" />
+          <InputLeftElement children="+994" />
+            <Input type="tel" variant="flushed" pattern="[0-9]*"/>
           </InputGroup>
 
           <FormLabel pt="40px">Facebook</FormLabel>
           <Input variant="flushed" placeholder="Facebook.com/" />
 
           <FormLabel pt="40px">Website</FormLabel>
-          <Input variant="flushed" placeholder="Input website url" />
+          <Input type="url" variant="flushed" placeholder="Input website url" />
         </FormControl>
       </VStack>
 
