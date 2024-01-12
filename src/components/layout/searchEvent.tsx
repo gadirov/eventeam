@@ -79,14 +79,13 @@ export default function SearchEvent() {
             <option value="option3">Option 3</option>
           </Select>
           <Select
-            placeholder="Free"
+            placeholder="Price"
             fontWeight={"bold"}
             w={"141px"}
             bg={"#F2F4F7"}
           >
-            <option value="option1">Option </option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
+            <option value="option1">Free</option>
+            <option value="option2">Paid</option>
           </Select>
           <Button onClick={handleClearFilter} bg={"blue"} color={"#fff"}>
             Clear Filter
