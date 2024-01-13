@@ -5,20 +5,41 @@ import Cookies from "js-cookie";
 import {
   Box,
   Button,
+  IconButton,
   Image,
   ListItem,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItemOption,
+  MenuList,
+  MenuOptionGroup,
   Select,
+  Text,
   UnorderedList,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [token,setToken] = useState<Boolean>(false);
+
+  //lang parts i18 parts
   const changeLanguage = (lang: string) => {
     document.documentElement.setAttribute("lang", lang);
     i18nInstance.changeLanguage(lang);
-  }; //i18 parts
+  };
+
+// log out parts
+  const logoutHandler = () => {
+    if (Cookies.get('access')) {
+      Cookies.remove('access');
+      navigate("/sign-in")
+    } else {
+      console.log('Access cookie not found');
+    }
+  };
 
   useEffect(() => {
     const accessToken = Cookies.get('access');
@@ -26,6 +47,7 @@ const Header = () => {
       setToken(!token)
     }
   },[])
+  
   return (
     <Box
       display="flex"
@@ -53,16 +75,6 @@ const Header = () => {
         fontWeight="500"
         fontSize="20px"
       >
-        <ListItem
-          _hover={{
-            color: "#66f5ff",
-            transition: "color 0.5s",
-            textDecoration: "underline",
-          }}
-          cursor="pointer"
-        >
-          <Link to="/">{t("Home")}</Link>
-        </ListItem>
         <ListItem
           _hover={{
             color: "#66f5ff",
@@ -137,16 +149,33 @@ const Header = () => {
             Sign in
           </Button>}
         </Link>
-        <Link to={"/account"}>
-          {token && <Image
-            borderRadius="full"
-            boxSize="150px"
-            src="https://bit.ly/dan-abramov"
-            alt="Image"
-            w={"45px"}
-            height={"45px"}
-          />}
-        </Link>
+        {token && <Menu>
+            <MenuButton
+              as={IconButton}
+              borderRadius="full"
+              aria-label='Options'
+              icon={<Image
+                borderRadius="full"
+                boxSize="150px"
+                src="https://bit.ly/dan-abramov"
+                alt="Image"
+                w={"45px"}
+                height={"45px"}
+              />}
+              variant='outline'
+            />
+           <MenuList minWidth='180px'>
+            <MenuOptionGroup  title='Profile' type='radio'>
+              <Link to={"/account"}>
+                <MenuItemOption   minH='24px'>        
+                  {token && <Box display="flex" alignItems="center" gap="5px"><Text>Your profile</Text></Box>}
+                </MenuItemOption>
+               </Link>
+               <MenuDivider />
+              <MenuItemOption color="red" onClick={logoutHandler}  minH='24px'>Log out</MenuItemOption>
+            </MenuOptionGroup>
+          </MenuList>
+          </Menu>}
       </Box>
     </Box>
   );

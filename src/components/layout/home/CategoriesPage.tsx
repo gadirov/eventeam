@@ -11,11 +11,11 @@ const Categories: React.FC = () => {
     const settings = {
         dots: true,
         infinite: true,
-        speed: 2000,
+        speed: 3000,
         slidesToShow: 1,
         slidesToScroll: 1,
-        // autoplay: true,
-        autoplaySpeed: 2000,
+        autoplay: true,
+        autoplaySpeed: 3000,
 
     };
 
@@ -37,14 +37,14 @@ const Categories: React.FC = () => {
                     <Box display="flex" m="20px 0px"  >
                         <SimpleGrid columns={[1, 2,]} justifyContent="center" spacing={4} height="400px" templateColumns='repeat(auto-fill, minmax(250px, 350px))'>
                             {categoriesdata.map((event) => (
-                                <CategoriesPageCardItem {...event} />
+                                <CategoriesPageCardItem {...event} key={event.id} />
                             ))}
                         </SimpleGrid>
                     </Box>
                     <Box display="flex" m="20px 0px"  >
                         <SimpleGrid justifyContent="center" spacing={4} height="400px" templateColumns='repeat(auto-fill, minmax(250px, 350px))'>
                             {categoriesdata.map((event) => (
-                                <CategoriesPageCardItem {...event} />
+                                <CategoriesPageCardItem {...event} key={event.id}/>
                             ))}
                         </SimpleGrid>
                     </Box>

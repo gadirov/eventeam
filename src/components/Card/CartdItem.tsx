@@ -33,9 +33,7 @@ import { Event } from '../../model'
                   <Box display="flex" justifyContent="center" alignItems="center" gap="6px" ><Image src="./assests/Group.png" w="18px" h="18px"/ ><Text fontWeight="600">End Date:</Text><Text fontSize="14px">{endDate}</Text></Box>
                   <Box display="flex" justifyContent="center" alignItems="center" gap="6px" marginRight="6px"><Image src="./assests/Group.png" w="18px" h="18px"/ ><Text fontWeight="600">End Time:</Text><Text fontSize="14px">{ endTime }</Text></Box>
                   </Box>
-                
-                <Text fontSize="14px" color= "#707070" lineHeight="20px">Discover Spain’s top universities, courses and scholarships at our Education Seminar. Meet experts network and plan your academic journey.</Text>
-              </Stack>
+                </Stack>
             </CardBody>
             <Divider/>
           </Card>

@@ -101,7 +101,7 @@ export default function SearchEvent() {
                     .toLowerCase()
                     .includes(searchField.toLowerCase());
                 })
-                ?.map((event) => <CardItem {...event} />)
+                ?.map((event) => <CardItem {...event} key={event.idEvent}/>)
             : "loading..."}{" "}
           {/* Burda data Apidan Gelende serti deyisecem */}
         </SimpleGrid>

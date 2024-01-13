@@ -13,9 +13,9 @@ import UpcomingPage from "./UpcomingPage.tsx";
       <SliderMainPage />
       <EventsSection/>
       <FeaturedEvents/>
+      <Categories/>
       <EventCountSection />
       <UsersReviews/>
-      <Categories/>
       <UpcomingPage/>
     </Box>
   );

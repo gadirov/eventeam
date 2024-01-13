@@ -31,3 +31,33 @@ export const useSignIn = () => {
   };
   return { submit };
 };
+
+
+export const useSignup = () => {
+  const navigate = useNavigate();
+  const toast = useToast();
+
+  const submit = async (data) => {
+    try {
+      const res = await post("user/login/register", data);
+      // Cookies.set("access", res.body.token);
+      // Cookies.set("userId", res.body.userId);
+      toast({
+        position: "top",
+        title: "Successly login",
+        status: "success",
+        isClosable: true,
+      });
+      navigate("/sign-in");
+    } catch (error) {
+      toast({
+        position: "top",
+        title: "Incorrect username or password",
+        status: "error",
+        isClosable: true,
+      });
+      console.log(error);
+    }
+  };
+  return { submit };
+};
