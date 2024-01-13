@@ -37,6 +37,7 @@ export default function SearchEvent() {
   const { data } = useDetails();
   useEffect(() => {
     setsearchData(data);
+    console.log(data)
   }, [data]);
 
   const handleChange = (e) => {
@@ -64,8 +65,8 @@ export default function SearchEvent() {
             w={"141px"}
             bg={"#F2F4F7"}
           >
-            {MonthList.map((value) => (
-              <option value={value}>{value}</option>
+            {MonthList.map((value, index) => (
+              <option value={value} key={index}>{value}</option>
             ))}
           </Select>
           <Select

@@ -8,18 +8,18 @@ import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
 interface FormValues {
-  userName: string;
+  login: string;
 }
 export default function InputFullname() {
   const methods = useFormContext<FormValues>();
 
   return (
-    <FormControl isInvalid={!!methods.formState.errors.userName} mb="20px">
+    <FormControl isInvalid={!!methods.formState.errors.login} mb="20px">
       <FormLabel color="#707070" fontSize="18px">
         Fullname
       </FormLabel>
       <Controller
-        name="userName"
+        name="login"
         control={methods.control}
         rules={{
           required: "This field is required",
@@ -39,7 +39,7 @@ export default function InputFullname() {
         )}
       />
       <FormErrorMessage>
-        {methods.formState.errors?.userName?.message}
+        {methods.formState.errors?.login?.message}
       </FormErrorMessage>
     </FormControl>
   );

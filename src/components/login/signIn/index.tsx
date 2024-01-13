@@ -11,7 +11,7 @@ import Header from "../Header.tsx";
 import Footer from "../Footer.tsx";
 import InputPassword from "./InputPassword.tsx";
 import InputText from "./InputText.tsx";
-import SocialIcons from "./SocialIcons.tsx";
+// import SocialIcons from "./SocialIcons.tsx";
 import { FormProvider, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useSignIn } from "../../../hooks/useSignIn.ts";

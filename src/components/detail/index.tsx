@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Button,
@@ -31,18 +31,33 @@ import {
   faUserPlus,
   faWallet,
 } from "@fortawesome/free-solid-svg-icons";
+import { fetcher } from "../../config/axiosConfig.ts";
+import useSWR from "swr";
+
+const swrOptions = {
+  revalidateOnFocus: false,
+  revalidateOnReconnect: false,
+  shouldRetryOnError: false,
+};
 
 const DetailView = () => {
   const params = useParams();
-  console.log(params);
-  // return <Heading pt="100px">{params.detailviewid}</Heading>;
+  const { data, error, isLoading } = useSWR(
+    `/events-ms/api/v1/events/${params.detailviewid}`,
+    fetcher,
+    swrOptions
+  );
+  useEffect(() => {
+    console.log(data);
+  }, [data, error, isLoading]);
+
   return (
     <Box backgroundColor="#090632" pt="100px">
       <Box w="60%" margin="auto">
         <Image
           height="90vh"
           w="100%"
-          src="./assests/Detail-Img/Tehmine-Zaur.jpeg"
+          src="../assests/Detail-Img/Tehmine-Zaur.jpeg"
           alt=""
         />
       </Box>
