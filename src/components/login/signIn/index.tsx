@@ -38,7 +38,7 @@ const SignIn = () => {
         p="10px 0"
       >
         <Header />
-        <Box w="50%" display="flex" flexDirection="column" gap="30px">
+        <Box w="44%" display="flex" flexDirection="column" gap="30px">
           <Heading
             textAlign="center"
             m="-50px 0 10px 0"
@@ -78,10 +78,10 @@ const SignIn = () => {
               Sign in
             </Button>
           </FormControl>
-          <Text textAlign="center" color="#707070" fontSize="18px">
+          {/* <Text textAlign="center" color="#707070" fontSize="18px">
             or
           </Text>
-          <SocialIcons />
+          <SocialIcons /> */}
         </Box>
         <Footer />
       </VStack>

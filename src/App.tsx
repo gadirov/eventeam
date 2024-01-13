@@ -11,6 +11,7 @@ import ForgetPassword from "./components/login/forgetPassword.tsx/index.tsx";
 import Event from "./components/layout/event.tsx";
 import SearchEvent from "./components/layout/searchEvent.tsx";
 import  DetailView from "./components/detail/index.tsx";
+import Account from "./components/layout/account.tsx";
 function App() {
 
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="contact" element={<Contact/>}/>
             <Route path="events" element={<Event />}/>
             <Route path="searchevent" element={<SearchEvent />}/>
+            <Route path="account" element={<Account/>}/>
             <Route path=":detailviewid" element={<DetailView />}/>
         </Route>
         <Route path="/sign-in" element={<LayoutLogin />}>

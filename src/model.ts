@@ -25,3 +25,22 @@ export interface IEventData {
     date: string; 
     imgUrl: string;
 }
+
+
+
+//Premium Event Requests and Search Event
+export interface ApiResponse {
+  code: number;
+  message: string;
+  body: Event[];
+}
+
+export interface Event {
+  idEvent: string,
+  coverPhoto: string,
+  eventName: string,
+  startDate: string,
+  startTime: string,
+  endDate: string,
+  endTime: string
+}
