@@ -10,22 +10,25 @@ import InputFullname from "./InputFullname.tsx";
 import InputDate from "./InputDate.tsx";
 import InputRadio from "./inputGender.tsx";
 import InputFile from "./InputFile.tsx";
+import { useSignup } from "../../../hooks/useSignIn.ts";
 // import { DevTool } from "@hookform/devtools";
 
 const SignUp = () => {
   const methods = useForm({
     defaultValues: {
       userName: "",
-      email: "",
+      login: "",
       password: "",
       birthday: "",
       gender: "UNKNOWN",
       profilePhoto: "2022/JANUARY/1/avatarProfile.png",
     },
   });
+  const { submit } = useSignup();
   const onSubmit = (data: any) => {
-    console.log(data);
+    submit(data);
   };
+
   return (
     <FormProvider {...methods}>
       <VStack

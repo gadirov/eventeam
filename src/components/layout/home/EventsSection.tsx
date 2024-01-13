@@ -16,8 +16,6 @@ const EventsSection = () => {
   useEffect(() => {
     setDatas(data);
   }, [data]);
-  console.log(datas)
-
   return (
     <Box p={"120px"}>
       <Heading textAlign={"center"} mb={"30px"}>

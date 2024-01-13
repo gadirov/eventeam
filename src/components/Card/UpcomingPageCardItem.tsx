@@ -6,7 +6,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 export default function UpcomingPageCardItem({ id, price, imgUrl, title, date, eventName, location }) {
     return (
-        <Box key={id} w="670px" height="250px" display="flex" alignItems="center" borderRadius="2px" p="20px" gap="10px" borderBottom="5px solid #8F64FF" >
+        <Box key={id} w="670px" height="250px" display="flex" alignItems="center" borderRadius="2px" p="20px" gap="10px" borderBottom="5px solid #8F64FF">
             <Box w="70%" display="flex" flexDirection="column" gap="30px" >
                 <Box display="flex" alignItems="center" gap="20px">
                     <Box p="6px 10px" backgroundColor="green" borderRadius="15px" color="white">{price}</Box>
