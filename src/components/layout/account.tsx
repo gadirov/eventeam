@@ -5,6 +5,7 @@ import {
   Container,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
   Image,
@@ -13,11 +14,50 @@ import {
   Text,
   Textarea,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useUserDetails } from "../../hooks/useUserDetails.ts";
+import Cookies from "js-cookie";
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 
+
+
+const schema = Yup.object().shape({
+  userName: Yup.string().required('userName is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  birthday: Yup.string().required(),
+  gender: Yup.string().required(),
+});
+
+
+interface IContactFormAccount{
+  userName: string;
+  email: string;
+  birthday:string;
+  gender: string;
+
+}
 const Account = () => {
-  const {data} = useUserDetails("08630c7d-b88a-4013-b32f-b44e4dd66d5f ")
+   const [editMode,setEditMode] = React.useState<boolean>(false)
+  const { handleSubmit, control, formState: { errors } } = useForm<IContactFormAccount>({
+    resolver: yupResolver(schema),
+  });
+
+ 
+  const id = Cookies.get("userId");
+  const {data} = useUserDetails(id)
+  useEffect(() => {
+    console.log(data)
+  },[data])
+
+  const onSubmit = (data) => {
+    console.log(data); 
+  };
+  
+  const handleEditProfile = () => {
+    setEditMode(!editMode)
+  }
   return (
     <Box py={"200px"}>
       <Container
@@ -32,9 +72,6 @@ const Account = () => {
             in one place
           </Text>
         </Flex>
-        <Select fontWeight={"bold"} py={"26px"} w={"191px"}>
-          <option value="Fuad Məmmədov">Fuad Məmmədov</option>
-        </Select>
       </Container>
       <Box my={"50px"}>
         <Container
@@ -44,9 +81,7 @@ const Account = () => {
           bg={'#F9FAFB'}
           borderRadius={"10px"}
           p={"60px"}
-          
         >
-       
          <Flex w={"566px"} justify={"flex-start"} gap={"32px"} align="center" mb={"40px"}>
             <Image
               borderRadius="full"
@@ -59,30 +94,63 @@ const Account = () => {
             <Button color={"#EAECF0"} bg={"#7F56D9"}>Upload New Picture</Button>
             <Button bg={"#EAECF0"}>Remove</Button>
           </Flex>
-          <FormControl mb={"40px"}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+            <FormControl mb={"40px"} isInvalid={!!errors?.userName}>
             <FormLabel>
                  USERNAME
             </FormLabel>
-            <Input placeholder='Basic usage' disabled value={"heisnberg"} />
+            <Controller
+          name="userName"
+          control={control}
+          defaultValue=""
+          render={({ field }) => <Input {...field}  disabled value={data?.body?.userView?.userName} />}
+          />
+             <FormErrorMessage>{errors?.userName?.message}</FormErrorMessage>
           </FormControl>
-          <FormControl mb={"40px"}>
+          <FormControl mb={"40px"} isInvalid={!!errors.email}>
             <FormLabel>
                  EMAIL
             </FormLabel>
-            <Input placeholder='Basic usage' disabled value={"heisnberg"} />
+            <Controller
+          name="email"
+          control={control}
+          defaultValue=""
+          render={({ field }) =>   <Input {...field} placeholder='Basic usage' disabled value={data?.body?.userView?.email} />}
+          />
+           <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
           </FormControl>
-       
-         
-      
-      
+          <FormControl mb={"40px"} isInvalid={!!errors.birthday}>
+            <FormLabel>
+                 Birhtday
+            </FormLabel>
+            <Controller
+          name="birthday"
+          control={control}
+          defaultValue=""
+          render={({ field }) =>  <Input {...field} placeholder='Basic usage' disabled value={data?.body?.userView?.birthday} />}
+          />
+            <FormErrorMessage>{errors?.birthday?.message}</FormErrorMessage>
+          </FormControl>
+          <FormControl mb={"40px"} isInvalid={!!errors.gender}>
+            <FormLabel>
+                 gender
+            </FormLabel>
+            <Controller
+          name="gender"
+          control={control}
+          defaultValue=""
+          render={({ field }) => <Input {...field} placeholder='Basic usage' disabled value={data?.body?.userView?.gender} />
+        }
+          />
+          </FormControl>
+          <FormErrorMessage>{errors?.gender?.message}</FormErrorMessage>
+            </form>
             <Flex justify={"center"} mt={"40px"} gap={"20px"}>
-            <Button w={"349px"}>View Profile</Button>
+            <Button  w={"349px"}>Edit Profile</Button>
             <Button w={"349px"} bg={"#7F56D9"} color={"#fff"}>Save Profile</Button>
             </Flex>
         </Container>
       </Box>
-
-    
     </Box>
   );
 };

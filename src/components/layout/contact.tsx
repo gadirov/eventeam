@@ -112,7 +112,7 @@ const Contact = () => {
           />
            <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
         </FormControl>
-        <FormControl isInvalid={!!errors.name}>
+        <FormControl isInvalid={!!errors.phone}>
           <Controller
           name="phone"
           control={control}
@@ -121,7 +121,7 @@ const Contact = () => {
           />
            <FormErrorMessage>{errors?.phone?.message}</FormErrorMessage>
         </FormControl> 
-        <FormControl isInvalid={!!errors.name}>
+        <FormControl isInvalid={!!errors.subject}>
           <Controller
           name="subject"
           control={control}
@@ -130,7 +130,7 @@ const Contact = () => {
           />
            <FormErrorMessage>{errors.subject?.message}</FormErrorMessage>
         </FormControl>
-        <FormControl isInvalid={!!errors.name}>
+        <FormControl isInvalid={!!errors.message}>
           <Controller
           name="message"
           control={control}
