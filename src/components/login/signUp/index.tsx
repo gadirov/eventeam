@@ -3,21 +3,21 @@ import { Box, Button, Heading, VStack } from "@chakra-ui/react";
 import Header from "../Header.tsx";
 import Footer from "../Footer.tsx";
 import InputPassword from "../signIn/InputPassword.tsx";
-import InputText from "../signIn/InputText.tsx";
 // import SocialIcons from "../signIn/SocialIcons.tsx";
 import { FormProvider, useForm } from "react-hook-form";
 import InputFullname from "./InputFullname.tsx";
 import InputDate from "./InputDate.tsx";
 import InputRadio from "./inputGender.tsx";
 import InputFile from "./InputFile.tsx";
-import { useSignup } from "../../../hooks/useSignIn.ts";
+import { useSignup } from "../../../hooks/useSignup.ts";
+import SignupEmail from "./signupEmail.tsx";
 // import { DevTool } from "@hookform/devtools";
 
 const SignUp = () => {
   const methods = useForm({
     defaultValues: {
-      userName: "",
       login: "",
+      email: "",
       password: "",
       birthday: "",
       gender: "UNKNOWN",
@@ -51,7 +51,7 @@ const SignUp = () => {
           </Heading>
           <form onSubmit={methods.handleSubmit(onSubmit)}>
             <InputFullname />
-            <InputText />
+            <SignupEmail />
             <InputPassword />
             <Box>
               <InputDate />

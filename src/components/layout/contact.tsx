@@ -6,7 +6,6 @@ import { faEnvelope, faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-
 const schema = Yup.object().shape({
   name: Yup.string().required('Name is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -14,7 +13,6 @@ const schema = Yup.object().shape({
   subject: Yup.string().required(),
   message: Yup.string().required('Message is required'),
 });
-
 interface IContactFormData {
   name: string;
   email: string;
@@ -22,15 +20,12 @@ interface IContactFormData {
   subject:string,
   message:string
 }
-
-
 const Contact = () => {
     const { handleSubmit, control, formState: { errors } } = useForm<IContactFormData>({
     resolver: yupResolver(schema),
   });
-
   const onSubmit = (data) => {
-    console.log(data); 
+    console.log(data);
   };
   const { t } = useTranslation();
  return (
@@ -52,7 +47,6 @@ const Contact = () => {
           {t("Contact")}
         </Text>
       </Box>
-  
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box bg={"#6082B6"} px={"40px"}>
       <Flex >
@@ -112,7 +106,7 @@ const Contact = () => {
           />
            <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
         </FormControl>
-        <FormControl isInvalid={!!errors.name}>
+        <FormControl isInvalid={!!errors.phone}>
           <Controller
           name="phone"
           control={control}
@@ -120,8 +114,8 @@ const Contact = () => {
           render={({ field }) => <Input {...field}  bg={"#fff"} placeholder="Your Phone" />}
           />
            <FormErrorMessage>{errors?.phone?.message}</FormErrorMessage>
-        </FormControl> 
-        <FormControl isInvalid={!!errors.name}>
+        </FormControl>
+        <FormControl isInvalid={!!errors.subject}>
           <Controller
           name="subject"
           control={control}
@@ -130,7 +124,7 @@ const Contact = () => {
           />
            <FormErrorMessage>{errors.subject?.message}</FormErrorMessage>
         </FormControl>
-        <FormControl isInvalid={!!errors.name}>
+        <FormControl isInvalid={!!errors.message}>
           <Controller
           name="message"
           control={control}
@@ -139,7 +133,6 @@ const Contact = () => {
           />
            <FormErrorMessage>{errors.message?.message}</FormErrorMessage>
         </FormControl>
-
         <Button  type="submit" colorScheme="teal" mt={4}>
             Submit
         </Button>

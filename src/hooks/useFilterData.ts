@@ -7,12 +7,13 @@ const swrOptions = {
   shouldRetryOnError: false,
 };
 
-export function useDetails() {
+export function useFilterData() {
   const { data, error, isLoading } = useSWR(
-    "/events-ms/api/v1/events/premium",
+    "/events-ms/api/v1/events/filter?",
     fetcher,
     swrOptions
   );
+
   return {
     data,
     error,

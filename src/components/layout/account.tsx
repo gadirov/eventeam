@@ -1,21 +1,48 @@
 import {
   Box,
   Button,
-  Checkbox,
   Container,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
   Image,
   Input,
-  Select,
-  Text,
-  Textarea,
+  Text
 } from "@chakra-ui/react";
+import { yupResolver } from '@hookform/resolvers/yup';
+import Cookies from "js-cookie";
 import React from "react";
-
+import { Controller, useForm } from 'react-hook-form';
+import * as Yup from 'yup';
+import { useUserDetails } from "../../hooks/useUserDetails.ts";
+const schema = Yup.object().shape({
+  userName: Yup.string().required('userName is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  birthday: Yup.string().required(),
+  gender: Yup.string().required(),
+});
+interface IContactFormAccount{
+  userName: string;
+  email: string;
+  birthday:string;
+  gender: string;
+}
 const Account = () => {
+   const [editMode,setEditMode] = React.useState<boolean>(false)
+  const { handleSubmit, control, formState: { errors } } = useForm<IContactFormAccount>({
+    resolver: yupResolver(schema),
+  });
+  const id = Cookies.get("userId");
+  const {data} = useUserDetails(id)
+  const onSubmit = (data) => {
+    console.log(data);
+    setEditMode(!editMode)
+  };
+  const handleEditProfile = () => {
+    setEditMode(!editMode)
+  }
   return (
     <Box py={"200px"}>
       <Container
@@ -30,9 +57,6 @@ const Account = () => {
             in one place
           </Text>
         </Flex>
-        <Select fontWeight={"bold"} py={"26px"} w={"191px"}>
-          <option value="Fuad Məmmədov">Fuad Məmmədov</option>
-        </Select>
       </Container>
       <Box my={"50px"}>
         <Container
@@ -42,9 +66,7 @@ const Account = () => {
           bg={'#F9FAFB'}
           borderRadius={"10px"}
           p={"60px"}
-          
         >
-       
          <Flex w={"566px"} justify={"flex-start"} gap={"32px"} align="center" mb={"40px"}>
             <Image
               borderRadius="full"
@@ -57,45 +79,64 @@ const Account = () => {
             <Button color={"#EAECF0"} bg={"#7F56D9"}>Upload New Picture</Button>
             <Button bg={"#EAECF0"}>Remove</Button>
           </Flex>
-          <FormControl mb={"40px"}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+            <FormControl mb={"40px"} isInvalid={!!errors?.userName}>
             <FormLabel>
-                Orginizer Name
+                 USERNAME
             </FormLabel>
-            <Input placeholder='Basic usage' />
+            <Controller
+          name="userName"
+          control={control}
+          defaultValue=""
+          render={({ field }) => <Input {...field}  disabled={!editMode}  value={data?.body?.userView?.userName} />}
+          />
+             <FormErrorMessage>{errors?.userName?.message}</FormErrorMessage>
           </FormControl>
-          <FormControl mb={"40px"}>
+          <FormControl mb={"40px"} isInvalid={!!errors.email}>
             <FormLabel>
-                About the Orginizer
+                 EMAIL
             </FormLabel>
-            <Textarea  />
-          </FormControl >
-          <FormControl display={"flex"} gap={"5px"} mb={"40px"}>
-            <Checkbox size='lg' />
-            <Text>Use This Description On My Event Pages</Text>
+            <Controller
+          name="email"
+          control={control}
+          defaultValue=""
+          render={({ field }) =>   <Input {...field}  disabled={!editMode} value={!editMode ? data?.body?.userView?.email : ""} />}
+          />
+           <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
           </FormControl>
-          <FormControl mb={"40px"}>
+          <FormControl mb={"40px"} isInvalid={!!errors.birthday}>
             <FormLabel>
-                Your Website
+                 Birhtday
             </FormLabel>
-            <Input defaultValue={"htttp:/fuadevents.com"}  type="text"/>
+            <Controller
+          name="birthday"
+          control={control}
+          defaultValue=""
+          render={({ field }) =>  <Input {...field} disabled={!editMode} value={data?.body?.userView?.birthday} />}
+          />
+            <FormErrorMessage>{errors?.birthday?.message}</FormErrorMessage>
           </FormControl>
-          <FormControl>
+          <FormControl mb={"40px"} isInvalid={!!errors.gender}>
             <FormLabel>
-                 Organizer Page URL
+                 gender
             </FormLabel>
-            <Input defaultValue={"htttp:/fuadevents.com"}  type="text"/>
+            <Controller
+          name="gender"
+          control={control}
+          defaultValue=""
+          render={({ field }) =>  <Input {...field}  value={data?.body?.userView?.gender} />
+        }
+          />
           </FormControl>
-      
+          <FormErrorMessage>{errors?.gender?.message}</FormErrorMessage>
+            </form>
             <Flex justify={"center"} mt={"40px"} gap={"20px"}>
-            <Button w={"349px"}>View Profile</Button>
-            <Button w={"349px"} bg={"#7F56D9"} color={"#fff"}>Save Profile</Button>
+            {!editMode && <Button onClick={handleEditProfile} w={"349px"}>Edit Profile</Button>}
+            {editMode && <Button onSubmit={handleSubmit(onSubmit)} w={"349px"} bg={"#7F56D9"} color={"#fff"}>Save Profile</Button>}
             </Flex>
         </Container>
       </Box>
-
-    
     </Box>
   );
 };
-
 export default Account;
