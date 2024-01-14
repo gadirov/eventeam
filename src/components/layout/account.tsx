@@ -14,8 +14,10 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import React from "react";
+import { useUserDetails } from "../../hooks/useUserDetails.ts";
 
 const Account = () => {
+  const {data} = useUserDetails("08630c7d-b88a-4013-b32f-b44e4dd66d5f ")
   return (
     <Box py={"200px"}>
       <Container
@@ -59,32 +61,19 @@ const Account = () => {
           </Flex>
           <FormControl mb={"40px"}>
             <FormLabel>
-                Orginizer Name
+                 USERNAME
             </FormLabel>
-            <Input placeholder='Basic usage' />
+            <Input placeholder='Basic usage' disabled value={"heisnberg"} />
           </FormControl>
           <FormControl mb={"40px"}>
             <FormLabel>
-                About the Orginizer
+                 EMAIL
             </FormLabel>
-            <Textarea  />
-          </FormControl >
-          <FormControl display={"flex"} gap={"5px"} mb={"40px"}>
-            <Checkbox size='lg' />
-            <Text>Use This Description On My Event Pages</Text>
+            <Input placeholder='Basic usage' disabled value={"heisnberg"} />
           </FormControl>
-          <FormControl mb={"40px"}>
-            <FormLabel>
-                Your Website
-            </FormLabel>
-            <Input defaultValue={"htttp:/fuadevents.com"}  type="text"/>
-          </FormControl>
-          <FormControl>
-            <FormLabel>
-                 Organizer Page URL
-            </FormLabel>
-            <Input defaultValue={"htttp:/fuadevents.com"}  type="text"/>
-          </FormControl>
+       
+         
+      
       
             <Flex justify={"center"} mt={"40px"} gap={"20px"}>
             <Button w={"349px"}>View Profile</Button>
