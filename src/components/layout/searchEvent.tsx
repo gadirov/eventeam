@@ -57,14 +57,12 @@ export default function SearchEvent() {
   const { data,isLoading } = useDetails();
 
   useEffect(() => {
+    setsearchData(data);
+    console.log(data)
     if(!isLoading)
     {
       setsearchData(data.body);
     }
-   
-   
-    
-    
   }, [data]);
 
   const handleChange = (e) => {
@@ -106,8 +104,12 @@ export default function SearchEvent() {
             name={"ATTENDANCE"}
             onChange={(event) => handleFilterChange(event)}
           >
+            {MonthList.map((value, index) => (
+              <option value={value} key={index}>{value}</option>
+            ))}
             <option value="OFFLINE">Ofline</option>
             <option value="ONLINE">Online</option>
+
           </Select>
           <Select
             placeholder="DATE"

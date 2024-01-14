@@ -38,10 +38,11 @@ export const useSignup = () => {
   const toast = useToast();
 
   const submit = async (data) => {
+    //convert image base64
+    const file = btoa(data.profilePhoto);
+    data.profilePhoto = `data:image/png;base64,${file}`;     
     try {
       const res = await post("user/login/register", data);
-      // Cookies.set("access", res.body.token);
-      // Cookies.set("userId", res.body.userId);
       toast({
         position: "top",
         title: "Successly login",

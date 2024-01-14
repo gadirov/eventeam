@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -31,32 +31,66 @@ import {
   faUserPlus,
   faWallet,
 } from "@fortawesome/free-solid-svg-icons";
+import { fetcher } from "../../config/axiosConfig.ts";
+import useSWR from "swr";
 
+const swrOptions = {
+  revalidateOnFocus: false,
+  revalidateOnReconnect: false,
+  shouldRetryOnError: false,
+};
+
+interface DetailData {
+  eventName: string;
+}
 const DetailView = () => {
   const params = useParams();
-  console.log(params);
-  // return <Heading pt="100px">{params.detailviewid}</Heading>;
+  const [detailData, setDetailData] = useState<any>(undefined)
+
+  const { data, error, isLoading } = useSWR(
+    `/events-ms/api/v1/events/${params.detailviewid}`,
+    fetcher,
+    swrOptions
+  );
+  useEffect(() => {
+    setDetailData(data)
+    console.log(data)
+  }, [data, error, isLoading]);
+
+    //minutes part 
+    // Assuming detailData is of type EventData
+    const startTimeString = detailData?.body?.startTime || "";
+    const endTimeString = detailData?.body?.endTime || "";
+    const [startHour, startMinute] = startTimeString.split(":").map(Number);
+    const [endHour, endMinute] = endTimeString.split(":").map(Number);
+    // Calculate the time difference in minutes
+    const timeDifferenceInMinutes = (endHour * 60 + endMinute) - (startHour * 60 + startMinute);
+
+    //category part
+    const category = detailData?.body?.listOfCategories[0]?.keyword.split(".")[1].toUpperCase()
+
+
   return (
-    <Box backgroundColor="#090632" pt="100px">
-      <Box w="60%" margin="auto">
+    <Box pt="100px">
+      <Box w="100%" margin="auto">
         <Image
           height="90vh"
           w="100%"
-          src="./assests/Detail-Img/Tehmine-Zaur.jpeg"
+          src="./assests/FeaturedEvents-Images/EventImg.png"
           alt=""
         />
       </Box>
-      <Box w="95%" margin="auto" borderRadius="20px" backgroundColor="white">
-        <Box w="95%" margin="auto">
+      <Box w="100%" borderRadius="20px" backgroundColor="white">
+        <Box w="100%" margin="auto">
           <Box p="30px 0px" display="flex" flexDirection="column" gap="20px">
-            <Box display="flex" alignItems="center" gap="10px">
+            <Box display="flex" alignItems="center" gap="10px" margin="0 50px">
               <Box
                 p="6px 17px"
                 backgroundColor="#FF7422"
                 borderRadius="15px"
                 color="white"
               >
-                Paid
+                {detailData?.body?.ticketType}
               </Box>
               <Box
                 p="6px 20px"
@@ -67,10 +101,10 @@ const DetailView = () => {
                 <FontAwesomeIcon icon={faUser} /> In person{" "}
               </Box>
             </Box>
-            <Box>
-              <Heading>"Tahmina va Zaur" filmi (10% endirim)</Heading>
+            <Box margin="0 50px">
+              <Heading>{detailData?.body?.eventName}</Heading>
             </Box>
-            <Box display="flex" gap="10px">
+            <Box display="flex" gap="10px" margin="0 50px">
               <Menu>
                 <MenuButton
                   as={Button}
@@ -110,15 +144,15 @@ const DetailView = () => {
             </Box>
           </Box>
           <Divider border="1px solid #d4d4d4  " />
-          <Box p="30px 0px" display="flex" gap="150px">
+          <Box p="30px 0px" display="flex" gap="150px" margin="0 50px">
             <Box display="flex" flexDirection="column" gap="20px">
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faCalendar} />
-                <Text fontSize="20px">13 Jan, 2024 17:00</Text>
+                <Text fontSize="20px">{detailData?.body?.startDate}, {detailData?.body?.startTime} </Text>
               </Box>
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faClock} />
-                <Text fontSize="20px">120 minute</Text>
+                <Text fontSize="20px">{timeDifferenceInMinutes} minutes</Text>
               </Box>
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faLocationDot} />
@@ -133,31 +167,31 @@ const DetailView = () => {
                     {" "}
                     Min:{" "}
                   </Text>
-                  <Text fontSize="20px">1 Attended </Text>
+                  <Text fontSize="20px"> {detailData?.body?.minAttendees} Attended </Text>
                   <Text color="gray" fontSize="20px">
                     {" "}
                     / Max:
                   </Text>
-                  <Text fontSize="20px">500 Attended</Text>
+                  <Text fontSize="20px"> {detailData?.body?.maxAttendees} Attended</Text>
                 </Box>
               </Box>
             </Box>
             <Box display="flex" flexDirection="column" gap="20px">
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faListCheck} />
-                <Text fontSize="20px">Entertaiment</Text>
+                <Text fontSize="20px">{category}</Text>
               </Box>
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faLink} />
                 <Link>
                   <Text color="blue" fontSize="20px">
-                    See more
+                    {detailData?.body?.websiteUrl}
                   </Text>
                 </Link>
               </Box>
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faWallet} />
-                <Text fontSize="20px">6.0 ₼</Text>
+                <Text fontSize="20px">{detailData?.body?.ticketCost}.0 ₼</Text>
               </Box>
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faCircleUser} />
@@ -169,44 +203,49 @@ const DetailView = () => {
             <Box display="flex" flexDirection="column" gap="20px">
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faEarthAmericas} />
-                <Text fontSize="20px">Public event</Text>
+                <Text fontSize="20px">{detailData?.body?.eventType} event</Text>
               </Box>
             </Box>
           </Box>
 
-          <Box>
+          <Box margin="0 50px">
             <Heading m="20px 0px">Description</Heading>
             <Text fontSize="20px">
-              Azarbaycan kinematoqrafiyasinin an möhtasam asarlarindan olan
-              "Tahmin va Zaur" filmini yenidan kinoteatrda izlamaya na
-              deyirsiniz? Filmsevar izlayicilarimize özal olaraq 10% ENDiRiMI
-              *5.40 AZN*-a!
+            {detailData?.body?.description} 
             </Text>
             <br />
             <Text fontSize="20px">
-              13 yanvar tarixinda BakI Kinoteatrinda nümayis olunacaq filmi
-              izlamaya TaLaSin
+               BakI Kinoteatrinda nümayiş olunacaq filmi
+              izləməyə tələsin.
             </Text>
             <br />
             <Text fontSize="20px">
-              Siz da bu filmi dostlarinizla birlikda izlamak va hala üstalik
-              endirim alda etmak istayirsinizsa, geyd edilan nömraya yazmaginiz
-              kifayatdir.
+              Siz də bu filmi dostlarinizla birlikdə izləmək və hələ də üstəlik
+              endirim əldə ətmək istəyirsinizsə, qeyd edilən nömrəyə yazmağiniz
+              kifayətdir.
             </Text>
           </Box>
 
-          <Box p="120px 0px" display="flex" gap="100px">
+          <Box
+            p="120px 0px"
+            display="flex"
+            gap="80px"
+            w="100vw"
+            justifyContent="center"
+          >
             <Box>
-              <Heading>Attended</Heading>
-              <Box p="30px 0px" display="flex" gap="100px">
+              <Heading textAlign="center" fontSize="40px">
+                Attended
+              </Heading>
+              <Box p="30px 0px" display="flex" gap="120px">
                 <Box>
                   <Text
                     textAlign="center"
                     color="#56d5f5"
-                    fontSize="30px"
+                    fontSize="40px"
                     fontWeight="500"
                   >
-                    12
+                    {detailData?.body?.usersList?.goingCount} 
                   </Text>
                   <Text color="gray" fontSize="25px">
                     GOING
@@ -216,10 +255,10 @@ const DetailView = () => {
                   <Text
                     textAlign="center"
                     color="#56d5f5"
-                    fontSize="30px"
+                    fontSize="40px"
                     fontWeight="500"
                   >
-                    3
+                    {detailData?.body?.usersList?.interestedCount} 
                   </Text>
                   <Text color="gray" fontSize="25px">
                     INTERESTED
@@ -229,7 +268,7 @@ const DetailView = () => {
                   <Text
                     textAlign="center"
                     color="#56d5f5"
-                    fontSize="30px"
+                    fontSize="40px"
                     fontWeight="500"
                   >
                     0
@@ -239,12 +278,24 @@ const DetailView = () => {
                   </Text>
                 </Box>
               </Box>
-              <Box>
+            </Box>
+          </Box>
+          <Box
+            p="0 100px"
+            mt="-50px"
+            display="flex"
+            gap="80px"
+            w="100vw"
+            justifyContent="space-around"
+          >
+            <Box>
+              <Heading>Friends</Heading>
+              <Box p="30px 0px">
                 <Button
                   colorScheme="teal"
                   size="lg"
                   gap="10px"
-                  p="30px 110px"
+                  p="32px 60px 32px 20px"
                   backgroundColor="#ededed"
                   borderRadius="10px"
                 >
@@ -263,27 +314,22 @@ const DetailView = () => {
                   colorScheme="teal"
                   size="lg"
                   gap="10px"
-                  p="32px 180px 32px 10px"
+                  p="32px 80px 32px 10px"
                   backgroundColor="#ededed"
                   borderRadius="10px"
                 >
                   <Box backgroundColor="white" p="15px" borderRadius="15px">
                     <FontAwesomeIcon icon={faPhone} color="#74C0FC" />
                   </Box>
-                  <Text color="black">+994502150630</Text>
+                  <Text color="black">{detailData?.body?.mobileNumber} </Text>
                 </Button>
               </Box>
             </Box>
             <Box>
               <Heading>Hosted</Heading>
               <Box p="30px 0px" display="flex" gap="20px">
-                <Image
-                  borderRadius="50px"
-                  w="15%"
-                  src="./assests/Detail-Img/Eventeam-Img.jpeg"
-                  alt=""
-                />
-                <Box>
+                {/* <Image borderRadius="50px" w="15%" src="./assests/Detail-Img/Eventeam-Img.jpeg" alt='' /> */}
+                <Box padding="0">
                   <Text fontSize="20px">eventeam</Text>
                   <Text fontSize="20px" color="gray">
                     eventeam.app@gmail.com
