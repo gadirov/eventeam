@@ -17,6 +17,7 @@ import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { useUserDetails } from "../../hooks/useUserDetails.ts";
+import axios from "axios";
 const schema = Yup.object().shape({
   userName: Yup.string().required("userName is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -35,7 +36,15 @@ const Account = () => {
   const id = Cookies.get("userId");
   const { data } = useUserDetails(id);
   const onSubmit = (data) => {
-    console.log(data);
+    axios.put('http://173.212.221.237/user/user/change-personal-details', data)
+    .then(response => {
+    
+      console.log('Update successful', response.data);
+    })
+    .catch(error => {
+      
+      console.error('Error updating data', error);
+    });
     setEditMode(!editMode);
   };
   const {
