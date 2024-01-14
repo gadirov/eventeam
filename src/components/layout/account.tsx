@@ -53,6 +53,7 @@ const Account = () => {
 
   const onSubmit = (data) => {
     console.log(data); 
+    setEditMode(!editMode)
   };
   
   const handleEditProfile = () => {
@@ -101,9 +102,10 @@ const Account = () => {
             </FormLabel>
             <Controller
           name="userName"
+          
           control={control}
           defaultValue=""
-          render={({ field }) => <Input {...field}  disabled value={data?.body?.userView?.userName} />}
+          render={({ field }) => <Input {...field} disabled={!editMode}  value={data?.body?.userView?.userName} />}
           />
              <FormErrorMessage>{errors?.userName?.message}</FormErrorMessage>
           </FormControl>
@@ -115,7 +117,7 @@ const Account = () => {
           name="email"
           control={control}
           defaultValue=""
-          render={({ field }) =>   <Input {...field} placeholder='Basic usage' disabled value={data?.body?.userView?.email} />}
+          render={({ field }) =>   <Input {...field}  disabled={!editMode} value={data?.body?.userView?.email} />}
           />
            <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
           </FormControl>
@@ -127,7 +129,7 @@ const Account = () => {
           name="birthday"
           control={control}
           defaultValue=""
-          render={({ field }) =>  <Input {...field} placeholder='Basic usage' disabled value={data?.body?.userView?.birthday} />}
+          render={({ field }) =>  <Input {...field} disabled={!editMode} value={data?.body?.userView?.birthday} />}
           />
             <FormErrorMessage>{errors?.birthday?.message}</FormErrorMessage>
           </FormControl>
@@ -139,15 +141,15 @@ const Account = () => {
           name="gender"
           control={control}
           defaultValue=""
-          render={({ field }) => <Input {...field} placeholder='Basic usage' disabled value={data?.body?.userView?.gender} />
+          render={({ field }) => <Input {...field} disabled={!editMode} value={data?.body?.userView?.gender} />
         }
           />
           </FormControl>
           <FormErrorMessage>{errors?.gender?.message}</FormErrorMessage>
             </form>
             <Flex justify={"center"} mt={"40px"} gap={"20px"}>
-            <Button  w={"349px"}>Edit Profile</Button>
-            <Button w={"349px"} bg={"#7F56D9"} color={"#fff"}>Save Profile</Button>
+            {!editMode && <Button onClick={handleEditProfile} w={"349px"}>Edit Profile</Button>}
+            {editMode && <Button onSubmit={handleSubmit(onSubmit)} w={"349px"} bg={"#7F56D9"} color={"#fff"}>Save Profile</Button>}
             </Flex>
         </Container>
       </Box>
