@@ -9,7 +9,7 @@ import InputFullname from "./InputFullname.tsx";
 import InputDate from "./InputDate.tsx";
 import InputRadio from "./inputGender.tsx";
 import InputFile from "./InputFile.tsx";
-import { useSignup } from "../../../hooks/useSignIn.ts";
+import { useSignup } from "../../../hooks/useSignup.ts";
 import SignupEmail from "./signupEmail.tsx";
 // import { DevTool } from "@hookform/devtools";
 

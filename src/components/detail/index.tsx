@@ -40,12 +40,12 @@ const swrOptions = {
   shouldRetryOnError: false,
 };
 
-interface DetailData {
-  eventName: string;
-}
+// interface DetailData {
+//   eventName: string;
+// }
 const DetailView = () => {
   const params = useParams();
-  const [detailData, setDetailData] = useState<any>(undefined)
+  const [detailData, setDetailData] = useState<any>(undefined);
 
   const { data, error, isLoading } = useSWR(
     `/events-ms/api/v1/events/${params.detailviewid}`,
@@ -53,22 +53,23 @@ const DetailView = () => {
     swrOptions
   );
   useEffect(() => {
-    setDetailData(data)
-    console.log(data)
+    setDetailData(data);
   }, [data, error, isLoading]);
 
-    //minutes part 
-    // Assuming detailData is of type EventData
-    const startTimeString = detailData?.body?.startTime || "";
-    const endTimeString = detailData?.body?.endTime || "";
-    const [startHour, startMinute] = startTimeString.split(":").map(Number);
-    const [endHour, endMinute] = endTimeString.split(":").map(Number);
-    // Calculate the time difference in minutes
-    const timeDifferenceInMinutes = (endHour * 60 + endMinute) - (startHour * 60 + startMinute);
+  //minutes part
+  // Assuming detailData is of type EventData
+  const startTimeString = detailData?.body?.startTime || "";
+  const endTimeString = detailData?.body?.endTime || "";
+  const [startHour, startMinute] = startTimeString.split(":").map(Number);
+  const [endHour, endMinute] = endTimeString.split(":").map(Number);
+  // Calculate the time difference in minutes
+  const timeDifferenceInMinutes =
+    endHour * 60 + endMinute - (startHour * 60 + startMinute);
 
-    //category part
-    const category = detailData?.body?.listOfCategories[0]?.keyword.split(".")[1].toUpperCase()
-
+  //category part
+  const category = detailData?.body?.listOfCategories[0]?.keyword
+    .split(".")[1]
+    .toUpperCase();
 
   return (
     <Box pt="100px">
@@ -148,7 +149,9 @@ const DetailView = () => {
             <Box display="flex" flexDirection="column" gap="20px">
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faCalendar} />
-                <Text fontSize="20px">{detailData?.body?.startDate}, {detailData?.body?.startTime} </Text>
+                <Text fontSize="20px">
+                  {detailData?.body?.startDate}, {detailData?.body?.startTime}{" "}
+                </Text>
               </Box>
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faClock} />
@@ -167,12 +170,18 @@ const DetailView = () => {
                     {" "}
                     Min:{" "}
                   </Text>
-                  <Text fontSize="20px"> {detailData?.body?.minAttendees} Attended </Text>
+                  <Text fontSize="20px">
+                    {" "}
+                    {detailData?.body?.minAttendees} Attended{" "}
+                  </Text>
                   <Text color="gray" fontSize="20px">
                     {" "}
                     / Max:
                   </Text>
-                  <Text fontSize="20px"> {detailData?.body?.maxAttendees} Attended</Text>
+                  <Text fontSize="20px">
+                    {" "}
+                    {detailData?.body?.maxAttendees} Attended
+                  </Text>
                 </Box>
               </Box>
             </Box>
@@ -210,13 +219,10 @@ const DetailView = () => {
 
           <Box margin="0 50px">
             <Heading m="20px 0px">Description</Heading>
-            <Text fontSize="20px">
-            {detailData?.body?.description} 
-            </Text>
+            <Text fontSize="20px">{detailData?.body?.description}</Text>
             <br />
             <Text fontSize="20px">
-               BakI Kinoteatrinda nümayiş olunacaq filmi
-              izləməyə tələsin.
+              BakI Kinoteatrinda nümayiş olunacaq filmi izləməyə tələsin.
             </Text>
             <br />
             <Text fontSize="20px">
@@ -245,7 +251,7 @@ const DetailView = () => {
                     fontSize="40px"
                     fontWeight="500"
                   >
-                    {detailData?.body?.usersList?.goingCount} 
+                    {detailData?.body?.usersList?.goingCount}
                   </Text>
                   <Text color="gray" fontSize="25px">
                     GOING
@@ -258,7 +264,7 @@ const DetailView = () => {
                     fontSize="40px"
                     fontWeight="500"
                   >
-                    {detailData?.body?.usersList?.interestedCount} 
+                    {detailData?.body?.usersList?.interestedCount}
                   </Text>
                   <Text color="gray" fontSize="25px">
                     INTERESTED

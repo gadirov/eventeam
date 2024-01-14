@@ -7,9 +7,9 @@ const swrOptions = {
   shouldRetryOnError: false,
 };
 
-export function useDetails() {
+export function useUpcoming(selectValue) {
   const { data, error, isLoading } = useSWR(
-    "/events-ms/api/v1/events/premium",
+    `/recommended-ms/${selectValue}`,
     fetcher,
     swrOptions
   );

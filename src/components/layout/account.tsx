@@ -13,11 +13,16 @@ import {
   Text,
   Textarea,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useUserDetails } from "../../hooks/useUserDetails.ts";
+import Cookies from "js-cookie";
 
 const Account = () => {
-  const {data} = useUserDetails("08630c7d-b88a-4013-b32f-b44e4dd66d5f ")
+  const id = Cookies.get("userId");
+  const { data } = useUserDetails(id);
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
   return (
     <Box py={"200px"}>
       <Container
@@ -32,22 +37,23 @@ const Account = () => {
             in one place
           </Text>
         </Flex>
-        <Select fontWeight={"bold"} py={"26px"} w={"191px"}>
-          <option value="Fuad Məmmədov">Fuad Məmmədov</option>
-        </Select>
       </Container>
       <Box my={"50px"}>
         <Container
           maxW="1000px"
           display={"flex"}
           flexDirection={"column"}
-          bg={'#F9FAFB'}
+          bg={"#F9FAFB"}
           borderRadius={"10px"}
           p={"60px"}
-          
         >
-       
-         <Flex w={"566px"} justify={"flex-start"} gap={"32px"} align="center" mb={"40px"}>
+          <Flex
+            w={"566px"}
+            justify={"flex-start"}
+            gap={"32px"}
+            align="center"
+            mb={"40px"}
+          >
             <Image
               borderRadius="full"
               boxSize="150px"
@@ -56,33 +62,36 @@ const Account = () => {
               w={"160px"}
               height={"160px"}
             />
-            <Button color={"#EAECF0"} bg={"#7F56D9"}>Upload New Picture</Button>
+            <Button color={"#EAECF0"} bg={"#7F56D9"}>
+              Upload New Picture
+            </Button>
             <Button bg={"#EAECF0"}>Remove</Button>
           </Flex>
           <FormControl mb={"40px"}>
-            <FormLabel>
-                 USERNAME
-            </FormLabel>
-            <Input placeholder='Basic usage' disabled value={"heisnberg"} />
+            <FormLabel>USERNAME</FormLabel>
+            <Input
+              placeholder="Basic usage"
+              disabled
+              value={data?.body?.userView?.userName}
+            />
           </FormControl>
           <FormControl mb={"40px"}>
-            <FormLabel>
-                 EMAIL
-            </FormLabel>
-            <Input placeholder='Basic usage' disabled value={"heisnberg"} />
+            <FormLabel>EMAIL</FormLabel>
+            <Input
+              placeholder="Basic usage"
+              disabled
+              value={data?.body?.userView?.email}
+            />
           </FormControl>
-       
-         
-      
-      
-            <Flex justify={"center"} mt={"40px"} gap={"20px"}>
+
+          <Flex justify={"center"} mt={"40px"} gap={"20px"}>
             <Button w={"349px"}>View Profile</Button>
-            <Button w={"349px"} bg={"#7F56D9"} color={"#fff"}>Save Profile</Button>
-            </Flex>
+            <Button w={"349px"} bg={"#7F56D9"} color={"#fff"}>
+              Save Profile
+            </Button>
+          </Flex>
         </Container>
       </Box>
-
-    
     </Box>
   );
 };

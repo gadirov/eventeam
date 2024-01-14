@@ -9,31 +9,9 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import CardItem from "../Card/CartdItem.tsx";
-import { Months } from "../../const.ts";
 import { useDetails } from "../../hooks/useDetails.ts";
 import useSWR from "swr";
 import { fetcher } from "../../config/axiosConfig.ts";
-interface ApiResponse {
-  code: number;
-  message: string;
-  body: Event[];
-}
-
-interface Event {
-  idEvent: string;
-  coverPhoto: string;
-  eventName: string;  
-  startDate: string;
-  startTime: string;
-  endDate: string;
-  endTime: string;
-}
-
-interface IFilterStateType {
-  key:string,
-  filter:string
-}
-
 
 const swrOptions = {
   revalidateOnFocus: false,
@@ -43,48 +21,42 @@ const swrOptions = {
 
 export default function SearchEvent() {
   const [searchField, setSearchField] = React.useState<string>("");
-  const [searchData, setsearchData] = useState<any[]  >([]);
-  const [filterAttandance,setFilterAttandance] = React.useState<string>();
-  const [filterDate,setFilterDate] = React.useState<string>("")
-  const [filterTicketType,setFilterTicketType] = React.useState<string>()
-  const [nameOfInput,setNameOfInput] = React.useState<string>()
-  const { data:filteredData, isLoading:loadingFilter } = useSWR(
-    `/events-ms/api/v1/events/filter?${nameOfInput}=${filterAttandance}`,
+  const [searchData, setsearchData] = useState<any[]>([]);
+  const [filterValue, setFilterValue] = React.useState<string>();
+  const [nameOfInput, setNameOfInput] = React.useState<string>();
+
+  const { data: filteredData, isLoading: loadingFilter } = useSWR(
+    `/events-ms/api/v1/events/filter?${nameOfInput}=${filterValue}`,
     fetcher,
     swrOptions
   );
   //Request part
-  const { data,isLoading } = useDetails();
-
+  const { data, isLoading } = useDetails();
   useEffect(() => {
-    setsearchData(data);
-    console.log(data)
-    if(!isLoading)
-    {
+    if (!isLoading) {
       setsearchData(data.body);
     }
-  }, [data]);
+  }, [data, isLoading]);
 
-  const handleChange = (e) => {
-  setSearchField(e.target.value)
-  
+  // input value changing for search part
+  const handleChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
+    setSearchField(e.target.value);
   };
 
+  // Filter button click event handler
   const handleClearFilter = () => {
     setsearchData(data?.body);
     setSearchField("");
   };
 
-  const handleFilterChange = (event) => {
-    setFilterAttandance(event.target.value)
-    setNameOfInput(event.target.name)
-    if(!loadingFilter)
-    {
-      setsearchData(filteredData.body.eventsList)
-    } 
-  }
+  const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilterValue(event.target.value);
+    setNameOfInput(event.target.name);
+    if (!loadingFilter) {
+      setsearchData(filteredData?.body?.eventsList);
+    }
+  };
 
- 
   return (
     <Box p="200px 0 ">
       <Container maxW="80vw">
@@ -104,12 +76,8 @@ export default function SearchEvent() {
             name={"ATTENDANCE"}
             onChange={(event) => handleFilterChange(event)}
           >
-            {MonthList.map((value, index) => (
-              <option value={value} key={index}>{value}</option>
-            ))}
             <option value="OFFLINE">Ofline</option>
             <option value="ONLINE">Online</option>
-
           </Select>
           <Select
             placeholder="DATE"
@@ -140,6 +108,7 @@ export default function SearchEvent() {
           </Button>
         </Flex>
 
+        {/* Search part */}
         <SimpleGrid columns={[1, 2, 3]} spacing="60px">
           {searchData
             ? searchData
@@ -148,7 +117,7 @@ export default function SearchEvent() {
                     .toLowerCase()
                     .includes(searchField.toLowerCase());
                 })
-                ?.map((event) => <CardItem  {...event} key={event.idEvent}/>)
+                ?.map((event) => <CardItem {...event} key={event.idEvent} />)
             : "loading..."}{" "}
         </SimpleGrid>
       </Container>
