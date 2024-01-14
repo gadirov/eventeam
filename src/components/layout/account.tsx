@@ -79,7 +79,7 @@ const Account = () => {
             <Button color={"#EAECF0"} bg={"#7F56D9"}>Upload New Picture</Button>
             <Button bg={"#EAECF0"}>Remove</Button>
           </Flex>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            {editMode? <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl mb={"40px"} isInvalid={!!errors?.userName}>
             <FormLabel>
                  USERNAME
@@ -88,7 +88,7 @@ const Account = () => {
           name="userName"
           control={control}
           defaultValue=""
-          render={({ field }) => <Input {...field}  disabled={!editMode}  value={data?.body?.userView?.userName} />}
+          render={({ field }) => <Input {...field} />}
           />
              <FormErrorMessage>{errors?.userName?.message}</FormErrorMessage>
           </FormControl>
@@ -100,7 +100,7 @@ const Account = () => {
           name="email"
           control={control}
           defaultValue=""
-          render={({ field }) =>   <Input {...field}  disabled={!editMode} value={!editMode ? data?.body?.userView?.email : ""} />}
+          render={({ field }) =>   <Input {...field} />}
           />
            <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
           </FormControl>
@@ -112,7 +112,7 @@ const Account = () => {
           name="birthday"
           control={control}
           defaultValue=""
-          render={({ field }) =>  <Input {...field} disabled={!editMode} value={data?.body?.userView?.birthday} />}
+          render={({ field }) =>  <Input {...field}  />}
           />
             <FormErrorMessage>{errors?.birthday?.message}</FormErrorMessage>
           </FormControl>
@@ -124,15 +124,65 @@ const Account = () => {
           name="gender"
           control={control}
           defaultValue=""
-          render={({ field }) =>  <Input {...field}  value={data?.body?.userView?.gender} />
+          render={({ field }) =>  <Input {...field}  />
         }
           />
           </FormControl>
           <FormErrorMessage>{errors?.gender?.message}</FormErrorMessage>
-            </form>
+            </form> : <form onSubmit={handleSubmit(onSubmit)}>
+            <FormControl mb={"40px"} isInvalid={!!errors?.userName} >
+            <FormLabel>
+                 USERNAME
+            </FormLabel>
+            <Controller
+          name="userName"
+          control={control}
+          defaultValue=""
+          render={({ field }) => <Input {...field} value={data?.body?.userView?.userName} />}
+          />
+             <FormErrorMessage>{errors?.userName?.message}</FormErrorMessage>
+          </FormControl>
+          <FormControl mb={"40px"} isInvalid={!!errors.email}>
+            <FormLabel>
+                 EMAIL
+            </FormLabel>
+            <Controller
+          name="email"
+          control={control}
+          defaultValue=""
+          render={({ field }) =>   <Input {...field} value={data?.body?.userView?.email}  />}
+          />
+           <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
+          </FormControl>
+          <FormControl mb={"40px"} isInvalid={!!errors.birthday}>
+            <FormLabel>
+                 Birhtday
+            </FormLabel>
+            <Controller
+          name="birthday"
+          control={control}
+          defaultValue=""
+          render={({ field }) =>  <Input {...field}  value={data?.body?.userView?.birthday} />}
+          />
+            <FormErrorMessage>{errors?.birthday?.message}</FormErrorMessage>
+          </FormControl>
+          <FormControl mb={"40px"} isInvalid={!!errors.gender}>
+            <FormLabel>
+                 gender
+            </FormLabel>
+            <Controller
+          name="gender"
+          control={control}
+          defaultValue=""
+          render={({ field }) =>  <Input {...field} value={data?.body?.userView?.gender}  />
+        }
+          />
+          </FormControl>
+          <FormErrorMessage>{errors?.gender?.message}</FormErrorMessage>
+            </form>}
             <Flex justify={"center"} mt={"40px"} gap={"20px"}>
             {!editMode && <Button onClick={handleEditProfile} w={"349px"}>Edit Profile</Button>}
-            {editMode && <Button onSubmit={handleSubmit(onSubmit)} w={"349px"} bg={"#7F56D9"} color={"#fff"}>Save Profile</Button>}
+            {editMode && <Button type="submit" w={"349px"} bg={"#7F56D9"} color={"#fff"}>Save Profile</Button>}
             </Flex>
         </Container>
       </Box>
