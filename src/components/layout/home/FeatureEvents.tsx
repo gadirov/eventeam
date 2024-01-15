@@ -3,22 +3,21 @@ import React, { useEffect, useState } from "react";
 import { useDetails } from "../../../hooks/useDetails.ts";
 import { Event } from "../../../model.ts";
 import { Link } from "react-router-dom";
-
 export default function FeaturedEvents() {
   const [datas, setDatas] = useState<Event>();
   const { data } = useDetails();
   useEffect(() => {
-    setDatas(data?.body[0]);
+    setDatas(data?.body[2]);
   }, [data]);
   return (
-    <Box m="10px 0px 120px 0">
+    <Box m="10px 0px 120px 0" >
       <Divider />
-      <Box w="85%" margin="auto" padding="120px 0px">
+      <Box w="85%" margin="auto" padding="70px 0px">
         <Box
           display="flex"
           justifyContent="center"
           alignItems="center"
-          gap="160px"
+          gap="130px"
         >
           <Box
             display="flex"
@@ -36,9 +35,9 @@ export default function FeaturedEvents() {
                 <Text
                   color="#7848F4"
                   fontFamily="Euclid Circular B"
-                  fontSize="18px"
+                  fontSize="20px"
                   fontStyle="normal"
-                  fontWeight="500"
+                  fontWeight="600"
                   lineHeight="24px"
                 >
                   FEATURED EVENT
@@ -64,7 +63,7 @@ export default function FeaturedEvents() {
                 <Text
                   color="#707070"
                   fontFamily="Euclid Circular B"
-                  fontSize="16px"
+                  fontSize="17px"
                   fontStyle="normal"
                   fontWeight="500"
                   lineHeight="24px"
@@ -83,9 +82,9 @@ export default function FeaturedEvents() {
                   alignItems="center"
                   gap="10px"
                   borderRadius="5px"
-                  background="#8f64ff"
+                  background="#8F64FF"
                   color="#FEFEFF"
-                  _hover={{ background: "#8f64ff" }}
+                  _hover={{ background: "#8F64FF" }}
                   cursor="pointer"
                 >
                   Learn More
@@ -93,8 +92,8 @@ export default function FeaturedEvents() {
               </Link>
             </Box>
           </Box>
-          <Box  width="35vw" height="40vh" border="1px solid black">
-            <Image  width="100%"   src={`http://173.212.221.237/images/${datas?.coverPhoto}`}/>
+          <Box    boxShadow={"0px 15px 20px gray;"}>
+            <Image  width={"750px"}  height="60vh" objectPosition={"center"}    src={`http://173.212.221.237/images/${datas?.coverPhoto}`}/>
           </Box>
         </Box>
       </Box>
@@ -102,3 +101,12 @@ export default function FeaturedEvents() {
     </Box>
   );
 }
+
+
+
+
+
+
+
+
+

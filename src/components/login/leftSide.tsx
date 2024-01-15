@@ -4,20 +4,17 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-
 export default function LeftSide() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const [sign, setSign] = useState<string>("");
   const toast = useToast();
-
   // signin or sign up button part
   const signinArr = location.pathname.split("/");
   useEffect(() => {
     setSign(signinArr[signinArr.length - 1]);
   }, [signinArr]);
-
   //back arrow part
   const backHandler = () => {
     if (location.pathname === "/sign-in") {
@@ -35,7 +32,6 @@ export default function LeftSide() {
       navigate(-1);
     }
   };
-
   return (
     <Box
       background="linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url(../assests/signin.png)"
@@ -74,3 +70,14 @@ export default function LeftSide() {
     </Box>
   );
 }
+
+
+
+
+
+
+
+
+
+
+

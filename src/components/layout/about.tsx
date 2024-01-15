@@ -1,13 +1,13 @@
 import React from "react";
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid, Text, Image } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
-
 const About = () => {
   const { t } = useTranslation();
   return (
     <>
       <Box
-        bg="conic-gradient(from 243.17deg at 52.66% 45.72%, rgba(7, 20, 80, .7) 0deg, hsla(0, 0%, 100%, 0) 66.85deg, rgba(18, 33, 102, .7) 266.25deg, rgba(7, 20, 80, .7) 1turn)"
+        bgImage="../assests/AboutPage-Image/abstract-bluish-paint-background-wallpaper.jpg" backgroundSize="100%"
+        // bg="conic-gradient(from 243.17deg at 52.66% 45.72%, rgba(7, 20, 80, .7) 0deg, hsla(0, 0%, 100%, 0) 66.85deg, rgba(18, 33, 102, .7) 266.25deg, rgba(7, 20, 80, .7) 1turn)"
         w="100vw"
         h="600px"
         pt="80px"
@@ -76,8 +76,24 @@ const About = () => {
           The Eventeam Team
         </Text>
       </Box>
+      <Box width={"100%"} margin={"auto"} >
+        <Heading></Heading>
+        {/* <SimpleGrid columns={[1, 2, 3, 4]} justifyContent="center" spacing={4} height="400px" templateColumns='repeat(auto-fill, minmax(250px, 350px))'>
+          <Box width="300px">
+            <Image w={"100%"} src="./assests/AboutPage-Image/imageSignin.jpg" />
+          </Box>
+          <Box width="300px">
+            <Image w={"100%"} src="./assests/AboutPage-Image/imageSignin.jpg" />
+          </Box>
+          <Box width="300px">
+            <Image w={"100%"} src="./assests/AboutPage-Image/imageSignin.jpg" />
+          </Box>
+          <Box width="300px">
+            <Image w={"100%"} src="./assests/AboutPage-Image/imageSignin.jpg" />
+          </Box>
+        </SimpleGrid> */}
+      </Box>
     </>
   );
 };
-
 export default About;
