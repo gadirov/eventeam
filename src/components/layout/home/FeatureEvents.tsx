@@ -93,8 +93,8 @@ export default function FeaturedEvents() {
               </Link>
             </Box>
           </Box>
-          <Box>
-            <Image src="./assests/FeaturedEvents-Images/EventImg.png" />
+          <Box  width="35vw" height="40vh" border="1px solid black">
+            <Image  width="100%"   src={`http://173.212.221.237/images/${datas?.coverPhoto}`}/>
           </Box>
         </Box>
       </Box>

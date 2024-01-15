@@ -133,7 +133,7 @@ const Contact = () => {
           />
            <FormErrorMessage>{errors.message?.message}</FormErrorMessage>
         </FormControl>
-        <Button  type="submit" colorScheme="teal" mt={4}> 
+        <Button  type="submit" colorScheme="teal" mt={4}>
             Submit
         </Button>
         </Flex>

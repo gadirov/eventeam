@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Box,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Image,
   Input,
@@ -20,8 +21,8 @@ export default function InputFile() {
   const methods = useFormContext<FormValues>();
 
   return (
-    <FormControl mt="5px">
-      <FormLabel htmlFor="file" color="#707070" fontSize="18px">
+    <FormControl mt="20px" isInvalid={!!methods.formState.errors.profilePhoto} >
+      <FormLabel htmlFor="file" color="#707070" fontSize="18px" width="100%">
         <Box
           display="flex"
           alignItems="center"
@@ -57,6 +58,9 @@ export default function InputFile() {
       <Controller
         name="profilePhoto"
         control={methods.control}
+        rules={{
+          required: "This field is required",
+        }}
         render={({ field }) => (
           <Input
             {...field}
@@ -72,6 +76,9 @@ export default function InputFile() {
           />
         )}
       />
+      <FormErrorMessage>
+        {methods.formState.errors?.profilePhoto?.message}
+      </FormErrorMessage>
     </FormControl>
   );
 }

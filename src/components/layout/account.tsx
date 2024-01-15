@@ -35,6 +35,7 @@ const Account = () => {
 
   const id = Cookies.get("userId");
   const { data } = useUserDetails(id);
+
   const onSubmit = (data) => {
     axios.put('http://173.212.221.237/user/user/change-personal-details', data)
     .then(response => {

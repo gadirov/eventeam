@@ -14,7 +14,7 @@ interface FormValues {
 }
 export default function InputRadio() {
   const methods = useFormContext<FormValues>();
-  const [value, setValue] = useState("N/A");
+  const [value, setValue] = useState("UNKNOWN");
 
   return (
     <FormControl isInvalid={!!methods.formState.errors.gender} mb="10px">

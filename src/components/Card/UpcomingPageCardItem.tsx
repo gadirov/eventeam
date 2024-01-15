@@ -14,6 +14,7 @@ export default function UpcomingPageCardItem({
   startTime,
   userName,
   location,
+  coverPhoto
 }) {
   return (
     <Box
@@ -67,12 +68,7 @@ export default function UpcomingPageCardItem({
           </Text>
         </Box>
       </Box>
-      <Box w="30%" borderRadius="20px">
-        <Image
-          maxWidth="100%"
-          src="./assests/UpcomingEvents-images/Public-Enemies.jpg"
-          alt=""
-        />
+      <Box w="40%" height="140px"  backgroundImage={`http://173.212.221.237/images/${coverPhoto}`} m="0" p="0" backgroundPosition={"center"} >
       </Box>
     </Box>
   );
