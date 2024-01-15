@@ -9,40 +9,66 @@ import {
   Heading,
   Image,
   Input,
-  Text
+  Text,
 } from "@chakra-ui/react";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from "@hookform/resolvers/yup";
 import Cookies from "js-cookie";
-import React from "react";
-import { Controller, useForm } from 'react-hook-form';
-import * as Yup from 'yup';
+import React, { useEffect } from "react";
+import { Controller, useForm } from "react-hook-form";
+import * as Yup from "yup";
 import { useUserDetails } from "../../hooks/useUserDetails.ts";
+import axios from "axios";
 const schema = Yup.object().shape({
-  userName: Yup.string().required('userName is required'),
-  email: Yup.string().email('Invalid email').required('Email is required'),
+  userName: Yup.string().required("userName is required"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
   birthday: Yup.string().required(),
   gender: Yup.string().required(),
 });
-interface IContactFormAccount{
+interface IContactFormAccount {
   userName: string;
   email: string;
-  birthday:string;
+  birthday: string;
   gender: string;
 }
 const Account = () => {
-   const [editMode,setEditMode] = React.useState<boolean>(false)
-  const { handleSubmit, control, formState: { errors } } = useForm<IContactFormAccount>({
-    resolver: yupResolver(schema),
-  });
+  const [editMode, setEditMode] = React.useState<boolean>(false);
+
   const id = Cookies.get("userId");
-  const {data} = useUserDetails(id)
+  const { data } = useUserDetails(id);
   const onSubmit = (data) => {
-    console.log(data);
-    setEditMode(!editMode)
+    axios.put('http://173.212.221.237/user/user/change-personal-details', data)
+    .then(response => {
+    
+      console.log('Update successful', response.data);
+    })
+    .catch(error => {
+      
+      console.error('Error updating data', error);
+    });
+    setEditMode(!editMode);
   };
+  const {
+    reset,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<IContactFormAccount>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      email: "",
+    },
+  });
+  useEffect(() => {
+    reset({
+      email: data?.body?.userView?.email,
+      userName: data?.body?.userView?.userName,
+      birthday: data?.body?.userView?.birthday,
+      gender: data?.body?.userView?.gender,
+    });
+  }, [data]);
   const handleEditProfile = () => {
-    setEditMode(!editMode)
-  }
+    setEditMode(!editMode);
+  };
   return (
     <Box py={"200px"}>
       <Container
@@ -63,11 +89,17 @@ const Account = () => {
           maxW="1000px"
           display={"flex"}
           flexDirection={"column"}
-          bg={'#F9FAFB'}
+          bg={"#F9FAFB"}
           borderRadius={"10px"}
           p={"60px"}
         >
-         <Flex w={"566px"} justify={"flex-start"} gap={"32px"} align="center" mb={"40px"}>
+          <Flex
+            w={"566px"}
+            justify={"flex-start"}
+            gap={"32px"}
+            align="center"
+            mb={"40px"}
+          >
             <Image
               borderRadius="full"
               boxSize="150px"
@@ -76,64 +108,70 @@ const Account = () => {
               w={"160px"}
               height={"160px"}
             />
-            <Button color={"#EAECF0"} bg={"#7F56D9"}>Upload New Picture</Button>
+            <Button color={"#EAECF0"} bg={"#7F56D9"}>
+              Upload New Picture
+            </Button>
             <Button bg={"#EAECF0"}>Remove</Button>
           </Flex>
-            <form onSubmit={handleSubmit(onSubmit)}>
+
+          <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl mb={"40px"} isInvalid={!!errors?.userName}>
-            <FormLabel>
-                 USERNAME
-            </FormLabel>
-            <Controller
-          name="userName"
-          control={control}
-          defaultValue=""
-          render={({ field }) => <Input {...field}  disabled={!editMode}  value={data?.body?.userView?.userName} />}
-          />
-             <FormErrorMessage>{errors?.userName?.message}</FormErrorMessage>
-          </FormControl>
-          <FormControl mb={"40px"} isInvalid={!!errors.email}>
-            <FormLabel>
-                 EMAIL
-            </FormLabel>
-            <Controller
-          name="email"
-          control={control}
-          defaultValue=""
-          render={({ field }) =>   <Input {...field}  disabled={!editMode} value={!editMode ? data?.body?.userView?.email : ""} />}
-          />
-           <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
-          </FormControl>
-          <FormControl mb={"40px"} isInvalid={!!errors.birthday}>
-            <FormLabel>
-                 Birhtday
-            </FormLabel>
-            <Controller
-          name="birthday"
-          control={control}
-          defaultValue=""
-          render={({ field }) =>  <Input {...field} disabled={!editMode} value={data?.body?.userView?.birthday} />}
-          />
-            <FormErrorMessage>{errors?.birthday?.message}</FormErrorMessage>
-          </FormControl>
-          <FormControl mb={"40px"} isInvalid={!!errors.gender}>
-            <FormLabel>
-                 gender
-            </FormLabel>
-            <Controller
-          name="gender"
-          control={control}
-          defaultValue=""
-          render={({ field }) =>  <Input {...field}  value={data?.body?.userView?.gender} />
-        }
-          />
-          </FormControl>
-          <FormErrorMessage>{errors?.gender?.message}</FormErrorMessage>
-            </form>
+              <FormLabel>USERNAME</FormLabel>
+              <Controller
+                name="userName"
+                control={control}
+                render={({ field }) => (
+                  <Input isDisabled={!editMode} {...field} />
+                )}
+              />
+              <FormErrorMessage>{errors?.userName?.message}</FormErrorMessage>
+            </FormControl>
+            <FormControl mb={"40px"} isInvalid={!!errors.email}>
+              <FormLabel>EMAIL</FormLabel>
+              <Controller
+                name="email"
+                control={control}
+                render={({ field }) => (
+                  <Input isDisabled={!editMode} {...field} />
+                )}
+              />
+              <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
+            </FormControl>
+            <FormControl mb={"40px"} isInvalid={!!errors.birthday}>
+              <FormLabel>Birhtday</FormLabel>
+              <Controller
+                name="birthday"
+                control={control}
+                render={({ field }) => (
+                  <Input isDisabled={!editMode} {...field} />
+                )}
+              />
+              <FormErrorMessage>{errors?.birthday?.message}</FormErrorMessage>
+            </FormControl>
+            <FormControl mb={"40px"} isInvalid={!!errors.gender}>
+              <FormLabel>gender</FormLabel>
+              <Controller
+                name="gender"
+                control={control}
+                render={({ field }) => (
+                  <Input isDisabled={!editMode} {...field} />
+                )}
+              />
+            </FormControl>
+            <FormErrorMessage>{errors?.gender?.message}</FormErrorMessage>
             <Flex justify={"center"} mt={"40px"} gap={"20px"}>
-            {!editMode && <Button onClick={handleEditProfile} w={"349px"}>Edit Profile</Button>}
-            {editMode && <Button onSubmit={handleSubmit(onSubmit)} w={"349px"} bg={"#7F56D9"} color={"#fff"}>Save Profile</Button>}
+              {!editMode && (
+                <Button onClick={handleEditProfile} w={"349px"}>
+                  Edit Profile
+                </Button>
+              )}
+              {editMode && (
+                <Button type="submit" w={"349px"} bg={"#7F56D9"} color={"#fff"}>
+                  Save Profile
+                </Button>
+              )}
             </Flex>
+          </form>
         </Container>
       </Box>
     </Box>
