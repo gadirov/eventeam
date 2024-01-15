@@ -19,12 +19,13 @@ import {
   UnorderedList,
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
+import { useUserDetails } from "../../hooks/useUserDetails.ts";
 
 const Header = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [token,setToken] = useState<Boolean>(false);
-
+  const {data} = useUserDetails(Cookies.get("userId"))
   //lang parts i18 parts
   const changeLanguage = (lang: string) => {
     document.documentElement.setAttribute("lang", lang);
@@ -157,7 +158,7 @@ const Header = () => {
               icon={<Image
                 borderRadius="full"
                 boxSize="150px"
-                src="https://bit.ly/dan-abramov"
+                src={`http://173.212.221.237/images/${data?.body.userView.profilePhoto}`}
                 alt="Image"
                 w={"45px"}
                 height={"45px"}
