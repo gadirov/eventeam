@@ -23,13 +23,16 @@ const schema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
   birthday: Yup.string().required(),
   gender: Yup.string().required(),
+  profilePhoto: Yup.string().required(),
 });
 interface IContactFormAccount {
   userName: string;
   email: string;
   birthday: string;
   gender: string;
+  profilePhoto: string;
 }
+
 const Account = () => {
   const [editMode, setEditMode] = React.useState<boolean>(false);
 
@@ -37,27 +40,24 @@ const Account = () => {
   const { data } = useUserDetails(id);
 
   const onSubmit = (data) => {
-    axios.put('http://173.212.221.237/user/user/change-personal-details', data)
-    .then(response => {
-    
-      console.log('Update successful', response.data);
-    })
-    .catch(error => {
-      
-      console.error('Error updating data', error);
-    });
+    axios
+      .put("http://173.212.221.237/user/user/change-personal-details", data)
+      .then((response) => {
+        console.log("Update successful", response.data);
+      })
+      .catch((error) => {
+        console.error("Error updating data", error);
+      });
     setEditMode(!editMode);
   };
   const {
+    watch,
     reset,
     handleSubmit,
     control,
     formState: { errors },
   } = useForm<IContactFormAccount>({
     resolver: yupResolver(schema),
-    defaultValues: {
-      email: "",
-    },
   });
   useEffect(() => {
     reset({
@@ -65,6 +65,7 @@ const Account = () => {
       userName: data?.body?.userView?.userName,
       birthday: data?.body?.userView?.birthday,
       gender: data?.body?.userView?.gender,
+      profilePhoto: data?.body?.userView?.profilePhoto,
     });
   }, [data]);
   const handleEditProfile = () => {
@@ -94,9 +95,12 @@ const Account = () => {
           borderRadius={"10px"}
           p={"60px"}
         >
+      
+
+          <form onSubmit={handleSubmit(onSubmit)}>
           <Flex
             w={"566px"}
-            justify={"flex-start"}
+            justify={"space-between"}
             gap={"32px"}
             align="center"
             mb={"40px"}
@@ -104,18 +108,69 @@ const Account = () => {
             <Image
               borderRadius="full"
               boxSize="150px"
-              src="https://bit.ly/dan-abramov"
+              src={'http://173.212.221.237/images/'+watch('profilePhoto')}
               alt="Dan Abramov"
-              w={"160px"}
-              height={"160px"}
+              w={"200px"}
+              height={"200px"}
+              objectFit={"contain"}
+              me={"20px"}
+              
             />
-            <Button color={"#EAECF0"} bg={"#7F56D9"}>
-              Upload New Picture
-            </Button>
-            <Button bg={"#EAECF0"}>Remove</Button>
-          </Flex>
+           
+           <FormControl mt="20px" isInvalid={!!errors.profilePhoto}>
+              <FormLabel
+                htmlFor="file"
+                color="#707070"
+                fontSize="18px"
+                width="100%"
+              >
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  w="100%"
+                  cursor="pointer"
+                  textAlign="center"
+                  _hover={{ color: "white" }}
+                  p="12px 0"
+                  borderRadius="6px"
+                  border="1px solid #bababc"
+                  fontWeight="600"
+                  color="#fff"
+                  bg="#7848F4"
+                  gap="5px"
+                >
+                  <Image
+                    src="../assests/login/photo.png"
+                    alt="Upload"
+                    w="20px"
+                    h="20px"
+                    cursor="pointer"
+                  />
+                  <Text>Upload photo</Text>
+                </Box>
+              </FormLabel>
 
-          <form onSubmit={handleSubmit(onSubmit)}>
+              <Controller
+                name="profilePhoto"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    value={undefined}
+                    id="file"
+                    display="none"
+                    type="file"
+                    accept="image/*"
+                  />
+                )}
+              />
+              <FormErrorMessage>
+                {errors?.profilePhoto?.message}
+              </FormErrorMessage>
+            </FormControl>
+          </Flex>
+         
             <FormControl mb={"40px"} isInvalid={!!errors?.userName}>
               <FormLabel>USERNAME</FormLabel>
               <Controller
