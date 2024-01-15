@@ -1,5 +1,4 @@
-
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   FormControl,
@@ -8,6 +7,7 @@ import {
   Input,
   Text,
 } from "@chakra-ui/react";
+import { base64 } from "../../../hooks/useSignup.ts";
 
 import { Controller, useFormContext } from "react-hook-form";
 
@@ -16,6 +16,7 @@ interface FormValues {
 }
 
 export default function InputFile() {
+  const [file, setFile] = useState<string>("");
   const methods = useFormContext<FormValues>();
 
   return (
@@ -48,9 +49,9 @@ export default function InputFile() {
         </Box>
       </FormLabel>
 
-      {methods.watch("profilePhoto") && (
+      {file && (
         <Text textAlign="center" color="#7848F4">
-          {methods.watch("profilePhoto")[0]?.name}
+          {file}
         </Text>
       )}
       <Controller
@@ -59,7 +60,10 @@ export default function InputFile() {
         render={({ field }) => (
           <Input
             {...field}
-            onChange={(e) => field.onChange(e.target.files)}
+            onChange={(e) => {
+              base64(e, methods.setValue);
+              setFile(e.target.files?.[0]?.name as string);
+            }}
             value={undefined}
             id="file"
             display="none"
