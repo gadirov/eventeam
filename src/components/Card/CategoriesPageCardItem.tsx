@@ -27,7 +27,7 @@ export default function CategoriesPageCardItem({ count, categoryName }) {
           fontWeight="500"
           lineHeight="40px"
         >
-          {count}
+          {count} Events
         </Heading>
       </CardHeader>
       <CardBody p="6px 30px 30px 30px">

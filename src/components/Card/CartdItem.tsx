@@ -18,12 +18,12 @@ const CardItem: React.FC<Event> = ({
     <Card key={idEvent}>
       <CardBody>
         <Image
-          src={"../assests/about.png"}
+          src={`http://173.212.221.237/images/${coverPhoto}`}
           alt="Green double couch with wooden legs"
           borderRadius="lg"
           w={"100%"}
           h={"300px"}
-          objectFit={"cover"}
+          // objectFit={"contain"}
           transition="transform 0.3s ease-in-out"
           _hover={{ transform: "scale(1.1)" }}
         />

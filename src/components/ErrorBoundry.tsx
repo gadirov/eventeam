@@ -1,38 +1,30 @@
-// ErrorBoundary.tsx
-
-import React, { ReactNode } from "react";
-
-interface ErrorBoundaryProps {
-  children: ReactNode;
-}
-
+import { Alert, AlertDescription, AlertIcon, AlertTitle } from '@chakra-ui/react';
+import React from 'react';
 interface ErrorBoundaryState {
   hasError: boolean;
 }
-
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  constructor(props: ErrorBoundaryProps) {
+class ErrorBoundary extends React.Component<React.PropsWithChildren, ErrorBoundaryState> {
+  constructor(props) {
     super(props);
     this.state = { hasError: false };
   }
-
   static getDerivedStateFromError() {
     return { hasError: true };
   }
-
-  componentDidCatch(error: Error) {
-    console.log(error);
-  }
-
   render() {
-    const { children } = this.props;
     const { hasError } = this.state;
-
+    const { children } = this.props;
     if (hasError) {
-      return <h1>Something went wrong.</h1>;
+      return (
+        <Alert status="error">
+          <AlertIcon />
+          <AlertTitle>Xəta baş verdi!</AlertTitle>
+          <AlertDescription>Zəhmət olmasa, yenidən cəhd edin.</AlertDescription>
+        </Alert>
+      );
+    } else {
+      return <>{children}</>;
     }
-    return children;
   }
 }
-
 export default ErrorBoundary;

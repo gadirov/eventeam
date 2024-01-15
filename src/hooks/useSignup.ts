@@ -20,7 +20,7 @@ export const useSignup = () => {
       await post("user/login/register", data);
       toast({
         position: "top",
-        title: "Successly login",
+        title: "Successly sign up!",
         status: "success",
         isClosable: true,
       });
@@ -28,7 +28,7 @@ export const useSignup = () => {
     } catch (error) {
       toast({
         position: "top",
-        title: "Incorrect username or password",
+        title: "Something went wrong!",
         status: "error",
         isClosable: true,
       });

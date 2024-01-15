@@ -75,9 +75,9 @@ const DetailView = () => {
     <Box pt="100px">
       <Box w="100%" margin="auto">
         <Image
-          height="90vh"
+          height="60vh"
           w="100%"
-          src="./assests/FeaturedEvents-Images/EventImg.png"
+          src={`http://173.212.221.237/images/${detailData?.body?.coverPhoto}`}
           alt=""
         />
       </Box>
