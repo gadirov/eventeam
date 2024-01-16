@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
   Select,
-  SimpleGrid,
-  SkeletonCircle,
-  SkeletonText,
+  SimpleGrid
 } from "@chakra-ui/react";
-import UpcomingPageCardItem from "../../Card/UpcomingPageCardItem.tsx";
+import React, { useEffect, useState } from "react";
 import { useUpcoming } from "../../../hooks/useUpcoming.ts";
+import UpcomingPageCardItemSkeleton from "../../Card/CardItemSkeleton.tsx";
+import UpcomingPageCardItem from "../../Card/UpcomingPageCardItem.tsx";
 
 export default function UpcomingPage() {
   const [selectValue, setSelectValue] = useState<string>("upcoming");
@@ -65,9 +64,12 @@ export default function UpcomingPage() {
         </Select>
       </Box>
       {isLoading ? (
-        <Box padding="6" boxShadow="lg" bg="white">
-          <SkeletonCircle size="10" />
-          <SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="2" />
+        <Box w="100vw" display="flex">
+          <SimpleGrid columns={[1, 2]} spacing="60px" margin="0 auto">
+            {Array.from({ length: next }).map((_, index) => (
+              <UpcomingPageCardItemSkeleton key={index} />
+            ))}
+          </SimpleGrid>
         </Box>
       ) : (
         <Box w="100vw" display="flex">

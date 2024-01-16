@@ -9,10 +9,6 @@ const CardItem: React.FC<Event> = ({
   idEvent,
   coverPhoto,
   eventName,
-  startDate,
-  startTime,
-  endDate,
-  endTime,
 }) => {
   return (
     <Card key={idEvent}>
@@ -34,13 +30,16 @@ const CardItem: React.FC<Event> = ({
               pb={"10px"}
               color="#070707"
               fontWeight="700"
-              fontSize="18px"
+              fontFamily="Euclid Circular B"
+              fontSize="21px"
+              lineHeight="30px"
+              _hover={{textDecoration: "underline", transition: "textDecoration 5s"}}
             >
               {" "}
               {eventName}
             </Heading>
           </Link>
-          <Box display="flex" justifyContent="space-between">
+          <Box display="flex" justifyContent="space-between" >
             <Box
               display="flex"
               p="4px 10px"
@@ -59,53 +58,9 @@ const CardItem: React.FC<Event> = ({
               justifyContent="center"
               alignItems="center"
               gap="6px"
-              marginLeft="50px"
-            >
-              <Image src="./assests/Group.png" w="18px" h="18px" />
-              <Text fontWeight="600">Start Date:</Text>
-              <Text fontSize="14px">{startDate}</Text>
-            </Box>
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              gap="6px"
-            >
-              <Image src="./assests/Group.png" w="18px" h="18px" />
-              <Text fontWeight="600">Start Time:</Text>
-              <Text fontSize="14px">{startTime}</Text>
-            </Box>
-          </Box>
-          <Box display="flex" justifyContent="space-between">
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              gap="6px"
             >
               <Image src="./assests/icon_location.png" w="18px" h="18px" />
               <Text fontSize="14px">Azerbaijan</Text>
-            </Box>
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              gap="6px"
-            >
-              <Image src="./assests/Group.png" w="18px" h="18px" />
-              <Text fontWeight="600">End Date:</Text>
-              <Text fontSize="14px">{endDate}</Text>
-            </Box>
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              gap="6px"
-              marginRight="6px"
-            >
-              <Image src="./assests/Group.png" w="18px" h="18px" />
-              <Text fontWeight="600">End Time:</Text>
-              <Text fontSize="14px">{endTime}</Text>
             </Box>
           </Box>
         </Stack>

@@ -9,15 +9,17 @@ import {
 } from "@chakra-ui/react";
 import Header from "../Header.tsx";
 import Footer from "../Footer.tsx";
-import InputPassword from "./InputPassword.tsx";
-import InputText from "./InputText.tsx";
+import Password from "./Password.tsx";
+import Email from "./Email.tsx";
 // import SocialIcons from "./SocialIcons.tsx";
 import { FormProvider, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useSignIn } from "../../../hooks/useSignIn.ts";
+import { useTranslation } from "react-i18next";
 // import { DevTool } from "@hookform/devtools";
 
 const SignIn = () => {
+  const { t } = useTranslation();
   const methods = useForm({
     defaultValues: {
       login: "",
@@ -49,8 +51,8 @@ const SignIn = () => {
             Sign in
           </Heading>
           <FormControl as="form" onSubmit={methods.handleSubmit(onSubmit)}>
-            <InputText />
-            <InputPassword />
+            <Email />
+            <Password />
             <Box display="flex" justifyContent="flex-end" mt="5px">
               <Text
                 cursor="pointer"
@@ -78,10 +80,9 @@ const SignIn = () => {
               Sign in
             </Button>
           </FormControl>
-          {/* <Text textAlign="center" color="#707070" fontSize="18px">
-            or
+          <Text textAlign="center" color="#707070" fontSize="18px">
+          Don't have an account? <Link to="signup"><span style={{ color: "#7848f4", fontWeight:"600" }}>{t("signin.signup")}</span></Link>
           </Text>
-          <SocialIcons /> */}
         </Box>
         <Footer />
       </VStack>

@@ -12,7 +12,7 @@ import { Controller, useFormContext } from "react-hook-form";
 interface FormValues {
   gender: string;
 }
-export default function InputRadio() {
+export default function Gender() {
   const methods = useFormContext<FormValues>();
   const [value, setValue] = useState("UNKNOWN");
 

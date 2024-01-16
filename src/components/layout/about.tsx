@@ -1,5 +1,5 @@
+import { Box, Heading, Text } from "@chakra-ui/react";
 import React from "react";
-import { Box, Heading, SimpleGrid, Text, Image } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 const About = () => {
   const { t } = useTranslation();

@@ -16,7 +16,7 @@ interface FormValues {
   profilePhoto: FileList;
 }
 
-export default function InputFile() {
+export default function File() {
   const [file, setFile] = useState<string>("");
   const methods = useFormContext<FormValues>();
 
