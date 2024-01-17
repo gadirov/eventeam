@@ -22,11 +22,11 @@ import {
           name="email"
           control={methods.control}
           rules={{
-            required: "This field is required",
-            // pattern: {
-            //   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-            //   message: "Invalid email address",
-            // },
+            required: "Email is required!",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: "Invalid email address",
+            },
           }}
           render={({ field }) => (
             <Input
