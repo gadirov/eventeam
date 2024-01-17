@@ -14,6 +14,15 @@ import {
 } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  LinkedinIcon,
+  LinkedinShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from "react-share";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendar,
@@ -75,9 +84,9 @@ const DetailView = () => {
     <Box pt="100px">
       <Box w="100%" margin="auto">
         <Image
-          height="90vh"
+          height="60vh"
           w="100%"
-          src="./assests/FeaturedEvents-Images/EventImg.png"
+          src={`http://173.212.221.237/images/${detailData?.body?.coverPhoto}`}
           alt=""
         />
       </Box>
@@ -297,49 +306,79 @@ const DetailView = () => {
             <Box>
               <Heading>Friends</Heading>
               <Box p="30px 0px">
-                <Button
-                  colorScheme="teal"
-                  size="lg"
-                  gap="10px"
-                  p="32px 60px 32px 20px"
-                  backgroundColor="#ededed"
-                  borderRadius="10px"
-                >
-                  <FontAwesomeIcon
-                    icon={faUserPlus}
-                    style={{ color: "#74C0FC" }}
-                  />
-                  <Text color="black">Invite friends</Text>
-                </Button>
+                <Menu>
+                  <MenuButton
+                    size="lg"
+                    gap="10px"
+                    p="32px 60px 32px 20px"
+                    backgroundColor="#ededed"
+                    borderRadius="10px"
+                    as={Button}
+                    leftIcon={
+                      <FontAwesomeIcon
+                        icon={faUserPlus}
+                        style={{ color: "#74C0FC" }}
+                      />
+                    }
+                  >
+                    Invite friends
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem minH="48px">
+                      <FacebookShareButton
+                        url={"https://www.eventeam.az/"}
+                        hashtag="#abb_tech"
+                      >
+                        <FacebookIcon size={35} round />
+                      </FacebookShareButton>
+                      <Text margin="12px">Facebook</Text>
+                    </MenuItem>
+                    <MenuItem minH="40px">
+                      <WhatsappShareButton url={"https://www.eventeam.az/"}>
+                        <WhatsappIcon size={35} round />
+                      </WhatsappShareButton>
+                      <Text margin="12px">Whatsapp</Text>
+                    </MenuItem>
+                    <MenuItem minH="40px">
+                      <LinkedinShareButton url={"https://www.eventeam.az/"}>
+                        <LinkedinIcon size={35} round />
+                      </LinkedinShareButton>
+                      <Text margin="12px">Linkedin</Text>
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
               </Box>
             </Box>
             <Box>
               <Heading>Contact</Heading>
               <Box p="30px 0px">
-                <Button
-                  colorScheme="teal"
-                  size="lg"
-                  gap="10px"
-                  p="32px 80px 32px 10px"
-                  backgroundColor="#ededed"
-                  borderRadius="10px"
-                >
-                  <Box backgroundColor="white" p="15px" borderRadius="15px">
-                    <FontAwesomeIcon icon={faPhone} color="#74C0FC" />
-                  </Box>
-                  <Text color="black">{detailData?.body?.mobileNumber} </Text>
-                </Button>
+                <Link href={`tel:${detailData?.body?.mobileNumber}`}>
+                  <Button
+                    colorScheme="teal"
+                    size="lg"
+                    gap="10px"
+                    p="32px 80px 32px 10px"
+                    backgroundColor="#ededed"
+                    borderRadius="10px"
+                  >
+                    <Box backgroundColor="white" p="15px" borderRadius="15px">
+                      <FontAwesomeIcon icon={faPhone} color="#74C0FC" />
+                    </Box>
+                    <Text color="black">{detailData?.body?.mobileNumber} </Text>
+                  </Button>
+                </Link>
               </Box>
             </Box>
             <Box>
               <Heading>Hosted</Heading>
               <Box p="30px 0px" display="flex" gap="20px">
-                {/* <Image borderRadius="50px" w="15%" src="./assests/Detail-Img/Eventeam-Img.jpeg" alt='' /> */}
                 <Box padding="0">
                   <Text fontSize="20px">eventeam</Text>
-                  <Text fontSize="20px" color="gray">
-                    eventeam.app@gmail.com
-                  </Text>
+                  <Link href={`mailto:${"eventeam@gmail.com"}`}>
+                    <Text fontSize="20px" color="gray">
+                      eventeam.app@gmail.com
+                    </Text>
+                  </Link>
                 </Box>
               </Box>
             </Box>

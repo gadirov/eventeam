@@ -9,40 +9,68 @@ import {
   Heading,
   Image,
   Input,
-  Text
+  Text,
 } from "@chakra-ui/react";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from "@hookform/resolvers/yup";
 import Cookies from "js-cookie";
-import React from "react";
-import { Controller, useForm } from 'react-hook-form';
-import * as Yup from 'yup';
+import React, { useEffect } from "react";
+import { Controller, useForm } from "react-hook-form";
+import * as Yup from "yup";
 import { useUserDetails } from "../../hooks/useUserDetails.ts";
+import axios from "axios";
 const schema = Yup.object().shape({
-  userName: Yup.string().required('userName is required'),
-  email: Yup.string().email('Invalid email').required('Email is required'),
+  userName: Yup.string().required("userName is required"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
   birthday: Yup.string().required(),
   gender: Yup.string().required(),
+  profilePhoto: Yup.string().required(),
 });
-interface IContactFormAccount{
+interface IContactFormAccount {
   userName: string;
   email: string;
-  birthday:string;
+  birthday: string;
   gender: string;
+  profilePhoto: string;
 }
+
 const Account = () => {
-   const [editMode,setEditMode] = React.useState<boolean>(false)
-  const { handleSubmit, control, formState: { errors } } = useForm<IContactFormAccount>({
+  const [editMode, setEditMode] = React.useState<boolean>(false);
+
+  const id = Cookies.get("userId");
+  const { data } = useUserDetails(id);
+
+  const onSubmit = (data) => {
+    axios
+      .put("http://173.212.221.237/user/user/change-personal-details", data)
+      .then((response) => {
+        console.log("Update successful", response.data);
+      })
+      .catch((error) => {
+        console.error("Error updating data", error);
+      });
+    setEditMode(!editMode);
+  };
+  const {
+    watch,
+    reset,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<IContactFormAccount>({
     resolver: yupResolver(schema),
   });
-  const id = Cookies.get("userId");
-  const {data} = useUserDetails(id)
-  const onSubmit = (data) => {
-    console.log(data);
-    setEditMode(!editMode)
-  };
+  useEffect(() => {
+    reset({
+      email: data?.body?.userView?.email,
+      userName: data?.body?.userView?.userName,
+      birthday: data?.body?.userView?.birthday,
+      gender: data?.body?.userView?.gender,
+      profilePhoto: data?.body?.userView?.profilePhoto,
+    });
+  }, [data]);
   const handleEditProfile = () => {
-    setEditMode(!editMode)
-  }
+    setEditMode(!editMode);
+  };
   return (
     <Box py={"200px"}>
       <Container
@@ -63,77 +91,139 @@ const Account = () => {
           maxW="1000px"
           display={"flex"}
           flexDirection={"column"}
-          bg={'#F9FAFB'}
+          bg={"#F9FAFB"}
           borderRadius={"10px"}
           p={"60px"}
         >
-         <Flex w={"566px"} justify={"flex-start"} gap={"32px"} align="center" mb={"40px"}>
-            <Image
-              borderRadius="full"
-              boxSize="150px"
-              src="https://bit.ly/dan-abramov"
-              alt="Dan Abramov"
-              w={"160px"}
-              height={"160px"}
-            />
-            <Button color={"#EAECF0"} bg={"#7F56D9"}>Upload New Picture</Button>
-            <Button bg={"#EAECF0"}>Remove</Button>
-          </Flex>
-            <form onSubmit={handleSubmit(onSubmit)}>
-            <FormControl mb={"40px"} isInvalid={!!errors?.userName}>
-            <FormLabel>
-                 USERNAME
-            </FormLabel>
-            <Controller
-          name="userName"
-          control={control}
-          defaultValue=""
-          render={({ field }) => <Input {...field}  disabled={!editMode}  value={data?.body?.userView?.userName} />}
-          />
-             <FormErrorMessage>{errors?.userName?.message}</FormErrorMessage>
-          </FormControl>
-          <FormControl mb={"40px"} isInvalid={!!errors.email}>
-            <FormLabel>
-                 EMAIL
-            </FormLabel>
-            <Controller
-          name="email"
-          control={control}
-          defaultValue=""
-          render={({ field }) =>   <Input {...field}  disabled={!editMode} value={!editMode ? data?.body?.userView?.email : ""} />}
-          />
-           <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
-          </FormControl>
-          <FormControl mb={"40px"} isInvalid={!!errors.birthday}>
-            <FormLabel>
-                 Birhtday
-            </FormLabel>
-            <Controller
-          name="birthday"
-          control={control}
-          defaultValue=""
-          render={({ field }) =>  <Input {...field} disabled={!editMode} value={data?.body?.userView?.birthday} />}
-          />
-            <FormErrorMessage>{errors?.birthday?.message}</FormErrorMessage>
-          </FormControl>
-          <FormControl mb={"40px"} isInvalid={!!errors.gender}>
-            <FormLabel>
-                 gender
-            </FormLabel>
-            <Controller
-          name="gender"
-          control={control}
-          defaultValue=""
-          render={({ field }) =>  <Input {...field}  value={data?.body?.userView?.gender} />
-        }
-          />
-          </FormControl>
-          <FormErrorMessage>{errors?.gender?.message}</FormErrorMessage>
-            </form>
-            <Flex justify={"center"} mt={"40px"} gap={"20px"}>
-            {!editMode && <Button onClick={handleEditProfile} w={"349px"}>Edit Profile</Button>}
-            {editMode && <Button onSubmit={handleSubmit(onSubmit)} w={"349px"} bg={"#7F56D9"} color={"#fff"}>Save Profile</Button>}
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Flex
+              w={"700px"}
+              justify={"space-between"}
+              gap={"80px"}
+              align="center"
+              mb={"40px"}
+            >
+              <Box>
+                <Image
+                  boxSize="120px"
+                  src={"http://173.212.221.237/images/" + watch("profilePhoto")}
+                  alt="Dan Abramov"
+                  margin="30px"
+                  borderRadius="full"
+                />
+              </Box>
+
+              <FormControl mt="20px" isInvalid={!!errors.profilePhoto}>
+                <FormLabel
+                  htmlFor="file"
+                  color="#707070"
+                  fontSize="18px"
+                  width="50%"
+                >
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    w="100%"
+                    cursor="pointer"
+                    textAlign="center"
+                    _hover={{ color: "white" }}
+                    p="12px 0"
+                    borderRadius="6px"
+                    border="1px solid #bababc"
+                    fontWeight="600"
+                    color="#fff"
+                    bg="#7848F4"
+                    gap="5px"
+                  >
+                    <Image
+                      src="../assests/login/photo.png"
+                      alt="Upload"
+                      w="20px"
+                      h="20px"
+                      cursor="pointer"
+                    />
+                    <Text>Upload photo</Text>
+                  </Box>
+                </FormLabel>
+
+                <Controller
+                  name="profilePhoto"
+                  control={control}
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      value={undefined}
+                      id="file"
+                      display="none"
+                      type="file"
+                      accept="image/*"
+                    />
+                  )}
+                />
+                <FormErrorMessage>
+                  {errors?.profilePhoto?.message}
+                </FormErrorMessage>
+              </FormControl>
             </Flex>
+
+            <FormControl mb={"40px"} isInvalid={!!errors?.userName}>
+              <FormLabel>USERNAME</FormLabel>
+              <Controller
+                name="userName"
+                control={control}
+                render={({ field }) => (
+                  <Input isDisabled={!editMode} {...field} />
+                )}
+              />
+              <FormErrorMessage>{errors?.userName?.message}</FormErrorMessage>
+            </FormControl>
+            <FormControl mb={"40px"} isInvalid={!!errors.email}>
+              <FormLabel>EMAIL</FormLabel>
+              <Controller
+                name="email"
+                control={control}
+                render={({ field }) => (
+                  <Input isDisabled={!editMode} {...field} />
+                )}
+              />
+              <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
+            </FormControl>
+            <FormControl mb={"40px"} isInvalid={!!errors.birthday}>
+              <FormLabel>Birhtday</FormLabel>
+              <Controller
+                name="birthday"
+                control={control}
+                render={({ field }) => (
+                  <Input isDisabled={!editMode} {...field} />
+                )}
+              />
+              <FormErrorMessage>{errors?.birthday?.message}</FormErrorMessage>
+            </FormControl>
+            <FormControl mb={"40px"} isInvalid={!!errors.gender}>
+              <FormLabel>gender</FormLabel>
+              <Controller
+                name="gender"
+                control={control}
+                render={({ field }) => (
+                  <Input isDisabled={!editMode} {...field} />
+                )}
+              />
+            </FormControl>
+            <FormErrorMessage>{errors?.gender?.message}</FormErrorMessage>
+            <Flex justify={"center"} mt={"40px"} gap={"20px"}>
+              {!editMode && (
+                <Button onClick={handleEditProfile} w={"349px"}>
+                  Edit Profile
+                </Button>
+              )}
+              {editMode && (
+                <Button type="submit" w={"349px"} bg={"#7F56D9"} color={"#fff"}>
+                  Save Profile
+                </Button>
+              )}
+            </Flex>
+          </form>
         </Container>
       </Box>
     </Box>

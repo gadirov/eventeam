@@ -1,6 +1,6 @@
-import React from "react";
-import { Box, Text, Image } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
@@ -8,12 +8,10 @@ import { Link } from "react-router-dom";
 export default function UpcomingPageCardItem({
   idEvent,
   ticketType,
-  imgUrl,
   eventName,
   startDate,
   startTime,
-  userName,
-  location,
+  coverPhoto
 }) {
   return (
     <Box
@@ -67,12 +65,7 @@ export default function UpcomingPageCardItem({
           </Text>
         </Box>
       </Box>
-      <Box w="30%" borderRadius="20px">
-        <Image
-          maxWidth="100%"
-          src="./assests/UpcomingEvents-images/Public-Enemies.jpg"
-          alt=""
-        />
+      <Box w="40%" height="140px"  backgroundImage={`http://173.212.221.237/images/${coverPhoto}`} m="0" p="0" backgroundPosition={"center"} >
       </Box>
     </Box>
   );

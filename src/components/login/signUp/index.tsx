@@ -1,19 +1,19 @@
-import React from "react";
-import { Box, Button, Heading, VStack } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Box, Button, Heading, Spinner, VStack } from "@chakra-ui/react";
 import Header from "../Header.tsx";
 import Footer from "../Footer.tsx";
-import InputPassword from "../signIn/InputPassword.tsx";
-// import SocialIcons from "../signIn/SocialIcons.tsx";
+import Password from "../signIn/Password.tsx";
 import { FormProvider, useForm } from "react-hook-form";
-import InputFullname from "./InputFullname.tsx";
-import InputDate from "./InputDate.tsx";
-import InputRadio from "./inputGender.tsx";
-import InputFile from "./InputFile.tsx";
+import Fullname from "./Fullname.tsx";
+import Date from "./Date.tsx";
+import Gender from "./Gender.tsx";
+import File from "./File.tsx";
 import { useSignup } from "../../../hooks/useSignup.ts";
-import SignupEmail from "./signupEmail.tsx";
-// import { DevTool } from "@hookform/devtools";
+import Email from "./Email.tsx";
+
 
 const SignUp = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const methods = useForm({
     defaultValues: {
       login: "",
@@ -21,12 +21,16 @@ const SignUp = () => {
       password: "",
       birthday: "",
       gender: "UNKNOWN",
-      profilePhoto: "2022/JANUARY/1/avatarProfile.png",
+      profilePhoto: "",
     },
   });
   const { submit } = useSignup();
   const onSubmit = (data: any) => {
+
     submit(data);
+    if(data.profilePhoto !== ""){
+      setIsLoading(!isLoading);
+    }
   };
 
   return (
@@ -50,14 +54,14 @@ const SignUp = () => {
             Sign up
           </Heading>
           <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <InputFullname />
-            <SignupEmail />
-            <InputPassword />
+            <Fullname />
+            <Email />
+            <Password />
             <Box>
-              <InputDate />
-              <InputRadio />
+              <Date />
+              <Gender />
             </Box>
-            <InputFile />
+            <File />
             <Button
               mt="30px"
               w="100%"
@@ -72,7 +76,7 @@ const SignUp = () => {
               color="#fff"
               bg="#7848F4"
             >
-              Sign up
+              {isLoading ? <Spinner/> : "Sign up"}
             </Button>
           </form>
           {/* <Text textAlign="center" color="#707070" fontSize="18px">or</Text> */}
@@ -80,7 +84,6 @@ const SignUp = () => {
         </Box>
         <Footer />
       </VStack>
-      {/* <DevTool control={methods.control} /> */}
     </FormProvider>
   );
 };

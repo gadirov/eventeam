@@ -1,22 +1,14 @@
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import { Box, Button, Heading, Text, useToast } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Box, Heading, Text, useToast } from "@chakra-ui/react";
 import Cookies from "js-cookie";
-
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate } from "react-router-dom";
 export default function LeftSide() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
-  const [sign, setSign] = useState<string>("");
   const toast = useToast();
-
-  // signin or sign up button part
-  const signinArr = location.pathname.split("/");
-  useEffect(() => {
-    setSign(signinArr[signinArr.length - 1]);
-  }, [signinArr]);
 
   //back arrow part
   const backHandler = () => {
@@ -35,7 +27,6 @@ export default function LeftSide() {
       navigate(-1);
     }
   };
-
   return (
     <Box
       background="linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url(../assests/signin.png)"
@@ -60,17 +51,6 @@ export default function LeftSide() {
       />
       <Heading fontFamily="sans-serif">{t("signin.welcome")}</Heading>
       <Text fontFamily="sans-serif">{t("signin.welcomeText")}</Text>
-      <Button
-        p="30px 50px"
-        fontSize="20px"
-        color="#fff"
-        bg="rgba(118, 116, 140, 0.7)"
-        _hover={{ background: "rgba(118, 116, 140, 0.9)" }}
-      >
-        <Link to="signup">
-          {sign === "sign-in" ? t("signin.signup") : t("Sign in")}
-        </Link>
-      </Button>
     </Box>
   );
 }
