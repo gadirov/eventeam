@@ -1,7 +1,6 @@
-import { HStack, Image, ListItem, UnorderedList } from '@chakra-ui/react';
-import { i18nInstance } from '..//..//i18n.ts';
-import React, { useState } from 'react';
-
+import { HStack, Image, ListItem, UnorderedList } from "@chakra-ui/react";
+import { i18nInstance } from "..//..//i18n.ts";
+import React, { useState } from "react";
 
 export default function Header() {
   const [selectedLanguage, setSelectedLanguage] = useState("en");
@@ -14,7 +13,12 @@ export default function Header() {
 
   return (
     <HStack w="100%" justify="space-between" padding="28px 32px">
-      <Image alt="Eventteam Logo" src="../assests/logo.png" w="180px" h="40px" />
+      <Image
+        alt="Eventteam Logo"
+        src="../assests/logo.png"
+        w="180px"
+        h="40px"
+      />
       <UnorderedList
         listStyleType="none"
         display="flex"
@@ -23,7 +27,7 @@ export default function Header() {
         fontSize="20px"
       >
         <ListItem
-          _hover={{ color: "#7848f4", transition: "color 0.5s"}}
+          _hover={{ color: "#7848f4", transition: "color 0.5s" }}
           cursor="pointer"
           onClick={() => changeLanguage("az")}
           color={selectedLanguage === "az" ? "#7848f4" : "inherit"}
@@ -31,7 +35,7 @@ export default function Header() {
           AZ
         </ListItem>
         <ListItem
-          _hover={{ color: "#7848f4", transition: "color 0.5s"}}
+          _hover={{ color: "#7848f4", transition: "color 0.5s" }}
           cursor="pointer"
           onClick={() => changeLanguage("en")}
           color={selectedLanguage === "en" ? "#7848f4" : "inherit"}
@@ -39,7 +43,7 @@ export default function Header() {
           EN
         </ListItem>
         <ListItem
-          _hover={{ color: "#7848f4", transition: "color 0.5s"}}
+          _hover={{ color: "#7848f4", transition: "color 0.5s" }}
           cursor="pointer"
           onClick={() => changeLanguage("ru")}
           color={selectedLanguage === "ru" ? "#7848f4" : "inherit"}

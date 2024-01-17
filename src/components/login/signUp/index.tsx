@@ -1,32 +1,34 @@
-import React from "react";
-import { Box, Button, Heading, VStack } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Box, Button, Heading, Spinner, VStack } from "@chakra-ui/react";
 import Header from "../Header.tsx";
 import Footer from "../Footer.tsx";
 import InputPassword from "../signIn/InputPassword.tsx";
-import InputText from "../signIn/InputText.tsx";
 // import SocialIcons from "../signIn/SocialIcons.tsx";
 import { FormProvider, useForm } from "react-hook-form";
 import InputFullname from "./InputFullname.tsx";
 import InputDate from "./InputDate.tsx";
 import InputRadio from "./inputGender.tsx";
 import InputFile from "./InputFile.tsx";
-import { useSignup } from "../../../hooks/useSignIn.ts";
-// import { DevTool } from "@hookform/devtools";
+import { useSignup } from "../../../hooks/useSignup.ts";
+import SignupEmail from "./signupEmail.tsx";
+
 
 const SignUp = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const methods = useForm({
     defaultValues: {
-      userName: "",
       login: "",
+      email: "",
       password: "",
       birthday: "",
       gender: "UNKNOWN",
-      profilePhoto: "2022/JANUARY/1/avatarProfile.png",
+      profilePhoto: "",
     },
   });
   const { submit } = useSignup();
   const onSubmit = (data: any) => {
     submit(data);
+    setIsLoading(true);
   };
 
   return (
@@ -51,7 +53,7 @@ const SignUp = () => {
           </Heading>
           <form onSubmit={methods.handleSubmit(onSubmit)}>
             <InputFullname />
-            <InputText />
+            <SignupEmail />
             <InputPassword />
             <Box>
               <InputDate />
@@ -72,7 +74,7 @@ const SignUp = () => {
               color="#fff"
               bg="#7848F4"
             >
-              Sign up
+              {isLoading ? <Spinner/> : "Sign up"}
             </Button>
           </form>
           {/* <Text textAlign="center" color="#707070" fontSize="18px">or</Text> */}

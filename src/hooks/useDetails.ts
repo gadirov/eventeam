@@ -13,7 +13,6 @@ export function useDetails() {
     fetcher,
     swrOptions
   );
-
   return {
     data,
     error,
