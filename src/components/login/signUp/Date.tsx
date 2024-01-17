@@ -8,38 +8,34 @@ import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
 interface FormValues {
-  login: string;
+  birthday: string;
 }
-export default function InputFullname() {
+export default function Date() {
   const methods = useFormContext<FormValues>();
 
   return (
-    <FormControl isInvalid={!!methods.formState.errors.login} mb="20px">
-      <FormLabel color="#707070" fontSize="18px">
-        Fullname
+    <FormControl isInvalid={!!methods.formState.errors.birthday} mb="10px">
+      <FormLabel mt="15px" color="#707070" fontSize="18px">
+        Date
       </FormLabel>
       <Controller
-        name="login"
+        name="birthday"
         control={methods.control}
         rules={{
           required: "This field is required",
-          // pattern: {
-          //     value: /^[A-Z][a-z]*\s[A-Z][a-z]*$/,
-          //     message: "Please use uppercase for the first letter of both name and surname.",
-          //   },
         }}
         render={({ field }) => (
           <Input
             {...field}
-            type="text"
-            placeholder="Name Surname"
             border="1px solid #bababc"
-            p="22px 14px"
+            placeholder="Select Date and Time"
+            size="md"
+            type="date"
           />
         )}
       />
       <FormErrorMessage>
-        {methods.formState.errors?.login?.message}
+        {methods.formState.errors?.birthday?.message}
       </FormErrorMessage>
     </FormControl>
   );

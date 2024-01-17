@@ -14,7 +14,7 @@ import { Controller, useFormContext } from "react-hook-form";
 interface FormValues {
   password: string;
 }
-export default function InputPassword() {
+export default function Password() {
   const [showPassword, setShowPassword] = useState(false);
   const methods = useFormContext<FormValues>();
 
@@ -29,15 +29,15 @@ export default function InputPassword() {
           control={methods.control}
           rules={{
           required: "This field is required",
-          // pattern: {
-          //   value: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]+$/,
-          //   message:
-          //     "Password must include at least  one uppercase letter and one digit",
-          // },
-          // minLength:{
-          //   value: 8,
-          //   message: "Password must be at least 8 characters long",
-          // }
+          pattern: {
+            value: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]+$/,
+            message:
+              "Password must include at least  one uppercase letter and one digit",
+          },
+          minLength:{
+            value: 8,
+            message: "Password must be at least 8 characters long",
+          }
           }}
           render={({ field }) => (
             <Input

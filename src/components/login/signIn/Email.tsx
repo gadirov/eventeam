@@ -10,29 +10,29 @@ import { Controller, useFormContext } from "react-hook-form";
 interface FormValues {
   login: string;
 }
-export default function InputText() {
+export default function Email() {
   const methods = useFormContext<FormValues>();
 
   return (
     <FormControl isInvalid={!!methods.formState.errors.login}>
       <FormLabel color="#707070" fontSize="18px">
-        Email address
+        Username / Email address
       </FormLabel>
       <Controller
         name="login"
         control={methods.control}
         rules={{
           required: "This field is required",
-          // pattern: {
-          //   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-          //   message: "Invalid email address",
-          // },
+          pattern: {
+              value: /^[A-Z][a-z]*$/,
+              message: "Please use uppercase for the first letter of username",
+            },
         }}
         render={({ field }) => (
           <Input
             {...field}
             type="text"
-            placeholder="example@gmail.com"
+            placeholder="username / example@gmail.com"
             border="1px solid #bababc"
             p="22px 14px"
           />
