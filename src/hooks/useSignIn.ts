@@ -2,12 +2,15 @@ import { useNavigate } from "react-router-dom";
 import { post } from "../config/axiosConfig.ts";
 import Cookies from "js-cookie";
 import { useToast } from "@chakra-ui/react";
+import { useState } from "react";
 
 export const useSignIn = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const toast = useToast();
 
   const submit = async (data) => {
+    setLoading(!loading);
     try {
       const res = await post("user/login/signIn", data);
       Cookies.set("access", res.body.token);
@@ -27,7 +30,9 @@ export const useSignIn = () => {
         isClosable: true,
       });
       console.log(error);
+    } finally {
+      setLoading(!loading);
     }
   };
-  return { submit };
+  return { submit, loading };
 };
