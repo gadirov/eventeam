@@ -15,23 +15,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Cookies from "js-cookie";
 import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import * as Yup from "yup";
+
 import { useUserDetails } from "../../hooks/useUserDetails.ts";
 import axios from "axios";
-const schema = Yup.object().shape({
-  userName: Yup.string().required("userName is required"),
-  email: Yup.string().email("Invalid email").required("Email is required"),
-  birthday: Yup.string().required(),
-  gender: Yup.string().required(),
-  profilePhoto: Yup.string().required(),
-});
-interface IContactFormAccount {
-  userName: string;
-  email: string;
-  birthday: string;
-  gender: string;
-  profilePhoto: string;
-}
+import { IFormAccount } from "../../model.ts";
+import { accountSchema } from "../../schemas/accountSchema.ts";
+
 
 const Account = () => {
   const [editMode, setEditMode] = React.useState<boolean>(false);
@@ -56,8 +45,8 @@ const Account = () => {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<IContactFormAccount>({
-    resolver: yupResolver(schema),
+  } = useForm<IFormAccount>({
+    resolver: yupResolver(accountSchema),
   });
   useEffect(() => {
     reset({

@@ -12,12 +12,7 @@ import CardItem from "../Card/CartdItem.tsx";
 import { useDetails } from "../../hooks/useDetails.ts";
 import useSWR from "swr";
 import { fetcher } from "../../config/axiosConfig.ts";
-
-const swrOptions = {
-  revalidateOnFocus: false,
-  revalidateOnReconnect: false,
-  shouldRetryOnError: false,
-};
+import { swrOptions } from "../../const.ts";
 
 export default function SearchEvent() {
   const [searchField, setSearchField] = React.useState<string>("");

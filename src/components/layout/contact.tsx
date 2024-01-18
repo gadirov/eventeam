@@ -5,24 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
-const schema = Yup.object().shape({
-  name: Yup.string().required('Name is required'),
-  email: Yup.string().email('Invalid email').required('Email is required'),
-  phone: Yup.string().required(),
-  subject: Yup.string().required(),
-  message: Yup.string().required('Message is required'),
-});
-interface IContactFormData {
-  name: string;
-  email: string;
-  phone: string;
-  subject: string,
-  message: string
-}
+import { contactSchema } from "../../schemas/contactSchema.ts";
+import { IContactFormData } from "../../model";
+
+
 const Contact = () => {
   const { handleSubmit, control, formState: { errors } } = useForm<IContactFormData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(contactSchema),
   });
   const onSubmit = (data) => {
     console.log(data);

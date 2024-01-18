@@ -42,13 +42,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { fetcher } from "../../config/axiosConfig.ts";
 import useSWR from "swr";
-
-const swrOptions = {
-  revalidateOnFocus: false,
-  revalidateOnReconnect: false,
-  shouldRetryOnError: false,
-};
-
+import { swrOptions } from "../../const.ts";
 // interface DetailData {
 //   eventName: string;
 // }
