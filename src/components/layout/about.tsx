@@ -1,8 +1,20 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
 import React from "react";
+import { Box, Heading,  Text, Image } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
-const About = () => {
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+const About: React.FC = () => {
   const { t } = useTranslation();
+  const settings = {
+    // dots: true,
+    infinite: true,
+    speed: 2000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+  };
   return (
     <>
       <Box
@@ -76,22 +88,43 @@ const About = () => {
           The Eventeam Team
         </Text>
       </Box>
-      <Box width={"100%"} margin={"auto"} >
-        <Heading></Heading>
-        {/* <SimpleGrid columns={[1, 2, 3, 4]} justifyContent="center" spacing={4} height="400px" templateColumns='repeat(auto-fill, minmax(250px, 350px))'>
-          <Box width="300px">
-            <Image w={"100%"} src="./assests/AboutPage-Image/imageSignin.jpg" />
-          </Box>
-          <Box width="300px">
-            <Image w={"100%"} src="./assests/AboutPage-Image/imageSignin.jpg" />
-          </Box>
-          <Box width="300px">
-            <Image w={"100%"} src="./assests/AboutPage-Image/imageSignin.jpg" />
-          </Box>
-          <Box width="300px">
-            <Image w={"100%"} src="./assests/AboutPage-Image/imageSignin.jpg" />
-          </Box>
-        </SimpleGrid> */}
+      <Box width={"82%"} margin={"auto"} >
+        <Heading  textAlign={"center"} >Our Events</Heading>
+        <Box m={"40px 0px"}>
+          <Slider  {...settings}>
+            <Box   padding={"0px 30px"} display={"flex !important"} gap={"20px"}>
+              <Box width="550px" >
+                <Image height={"300px"} w={"100%"} objectFit={"fill"} src="./assests/UpcomingEvents-images/Aşk-Her-Yerde.jpeg" />
+              </Box>
+              <Box width="550px">
+                <Image height={"300px"} w={"100%"}  objectFit={"fill"}  src="./assests/UpcomingEvents-images/GoraFilm.jpg" />
+              </Box>
+              <Box width="550px">
+                <Image  height={"300px"} w={"100%"}  objectFit={"fill"} src="./assests/UpcomingEvents-images/Joseph-Abbas.jpg" />
+              </Box>
+              <Box width="550px" >
+                <Image height={"300px"} w={"100%"}  objectFit={"fill"} src="./assests/UpcomingEvents-images/Muayine.jpeg" />
+              </Box>
+            </Box>
+            <Box padding={"0px 30px"} display={"flex !important"} gap={"20px"}>
+              <Box width="550px" >
+                <Image height={"300px"} w={"100%"}  objectFit={"fill"}  src="./assests/UpcomingEvents-images/One-more-song-quiz.jpeg" />
+              </Box>
+              <Box width="550px" >
+                <Image height={"300px"} w={"100%"}  objectFit={"fill"}  src="./assests/UpcomingEvents-images/Public-Enemies.jpg" />
+              </Box>
+              <Box width="550px" >
+                <Image height={"300px"} w={"100%"}  objectFit={"fill"}  src="./assests/UpcomingEvents-images/Sunrise-filmi.jpg" />
+              </Box>
+              <Box width="550px" >
+                <Image height={"300px"} w={"100%"}  objectFit={"fill"}  src="./assests/UpcomingEvents-images/Voleyball-Event.jpg" />
+              </Box>
+            </Box>
+          </Slider>
+          <Box marginTop={"20px"} height={"10px"} width={"100%"} backgroundColor={"#071450"} borderRadius={"3px"}
+           boxShadow={"0px -5px 25px #071450"}
+          ></Box>
+        </Box>
       </Box>
     </>
   );

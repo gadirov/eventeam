@@ -52,7 +52,7 @@ const Contact = () => {
         <Box
          px={"40px"}
          >
-          <Flex  justifyContent="center" >
+          <Flex justifyContent="center" >
             <Box m={"100px 0px"} display={"flex"} flexDirection={"column"} >
               <Box w={"436px"} height={"147px"} >
                 <Box height={"153px"} display={"flex"} justifyContent={"flex-start"} p={"20px"} gap={"20px"}  alignItems={"center"}>
@@ -88,9 +88,9 @@ const Contact = () => {
                 </Box>
               </Box>
             </Box>
-            <Box m={"100px 0px"}  w={"745px"}>
-              <Heading textAlign={"center"} color={"#071450"}>Write A Message</Heading>
-              <Flex direction={"column"} w={"50%"} mx={"auto"} gap={"20px"} mt={"20px"}>
+            <Box m={"50px 0px"}  w={"645px"}>
+              <Flex direction={"column"} w={"70%"} mx={"auto"} gap={"28px"} mt={"20px"}>
+              <Heading  color={"#071450"}>Write A Message</Heading>
                 <FormControl isInvalid={!!errors.name}>
                   <Controller
                     name="name"
@@ -136,7 +136,7 @@ const Contact = () => {
                   />
                   <FormErrorMessage>{errors.message?.message}</FormErrorMessage>
                 </FormControl>
-                <Button type="submit" colorScheme="teal" mt={4}>
+                <Button type="submit" color="#fff" bg="#8F64FF" mt={4}>
                   Submit
                 </Button>
               </Flex>

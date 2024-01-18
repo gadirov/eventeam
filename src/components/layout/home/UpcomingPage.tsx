@@ -42,21 +42,21 @@ export default function UpcomingPage() {
       w="100vw"
     >
       <Box display="flex" justifyContent="center" mb="70px">
-        <Select
+      <Select
           onChange={changeHandlerSelect}
-          fontFamily="Euclid Circular B"
-          fontSize="30px"
+          fontFamily="revert-layer"
+          fontSize="25px"
           fontStyle="normal"
           fontWeight="500"
           color="#8F64FF"
-          bg="transparent"
-          p="8px"
-          borderRadius="15px"
+          bg="white"
+          p="5px"
+          borderRadius="20px"
           cursor="pointer"
-          border="1px solid #8F64FF"
-          w="11vw"
+          border="4px solid #8F64FF"
+          w="17vw"
         >
-          <option value="upcoming">Upcoming</option>
+          <option  value="upcoming">Upcoming</option>
           <option value="popular-events/v2">Popular events</option>
           <option value="friends-event-list">Friends event list</option>
           <option value="going">Going</option>
