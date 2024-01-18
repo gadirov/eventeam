@@ -1,11 +1,7 @@
 import useSWR from "swr";
 import { fetcher } from "../config/axiosConfig.ts";
+import { swrOptions } from "../const.ts";
 
-const swrOptions = {
-  revalidateOnFocus: false,
-  revalidateOnReconnect: false,
-  shouldRetryOnError: false,
-};
 
 export function useUpcoming(selectValue) {
   const { data, error, isLoading } = useSWR(

@@ -12,19 +12,15 @@ import CardItem from "../Card/CartdItem.tsx";
 import { useDetails } from "../../hooks/useDetails.ts";
 import useSWR from "swr";
 import { fetcher } from "../../config/axiosConfig.ts";
+import { useNavigate } from "react-router-dom";
+import { swrOptions } from "../../const.ts";
 
-const swrOptions = {
-  revalidateOnFocus: false,
-  revalidateOnReconnect: false,
-  shouldRetryOnError: false,
-};
 
 export default function SearchEvent() {
   const [searchField, setSearchField] = React.useState<string>("");
   const [searchData, setsearchData] = useState<any[]>([]);
   const [filterValue, setFilterValue] = React.useState<string>();
   const [nameOfInput, setNameOfInput] = React.useState<string>();
-
   const { data: filteredData, isLoading: loadingFilter } = useSWR(
     `/events-ms/api/v1/events/filter?${nameOfInput}=${filterValue}`,
     fetcher,
@@ -47,6 +43,7 @@ export default function SearchEvent() {
   const handleClearFilter = () => {
     setsearchData(data?.body);
     setSearchField("");
+    window.location.reload();
   };
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
