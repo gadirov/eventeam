@@ -23,10 +23,6 @@ export default function Email() {
         control={methods.control}
         rules={{
           required: "This field is required",
-          pattern: {
-              value: /^[A-Z][a-z]*$/,
-              message: "Please use uppercase for the first letter of username",
-            },
         }}
         render={({ field }) => (
           <Input

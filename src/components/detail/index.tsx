@@ -326,7 +326,7 @@ const DetailView = () => {
                   <MenuList>
                     <MenuItem minH="48px">
                       <FacebookShareButton
-                        url={"https://www.eventeam.az/"}
+                        url={"https://abb-bank.az/"}
                         hashtag="#abb_tech"
                       >
                         <FacebookIcon size={35} round />
@@ -334,13 +334,13 @@ const DetailView = () => {
                       <Text margin="12px">Facebook</Text>
                     </MenuItem>
                     <MenuItem minH="40px">
-                      <WhatsappShareButton url={"https://www.eventeam.az/"}>
+                      <WhatsappShareButton url={"https://abb-bank.az/"}>
                         <WhatsappIcon size={35} round />
                       </WhatsappShareButton>
                       <Text margin="12px">Whatsapp</Text>
                     </MenuItem>
                     <MenuItem minH="40px">
-                      <LinkedinShareButton url={"https://www.eventeam.az/"}>
+                      <LinkedinShareButton url={"https://abb-bank.az/"}>
                         <LinkedinIcon size={35} round />
                       </LinkedinShareButton>
                       <Text margin="12px">Linkedin</Text>

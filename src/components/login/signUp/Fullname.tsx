@@ -24,7 +24,7 @@ export default function Fullname() {
         rules={{
           required: "This field is required",
           pattern: {
-              value: /^[A-Z][a-z]*$/,
+              value: /^[a-z]*$/,
               message: "Please use uppercase for the first letter of username",
             },
         }}
