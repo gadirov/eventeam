@@ -44,3 +44,19 @@ export interface Event {
   endDate: string,
   endTime: string
 }
+
+export interface IFormAccount {
+  userName: string;
+  email: string;
+  birthday: string;
+  gender: string;
+  profilePhoto: string;
+}
+
+export interface IContactFormData {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string,
+  message: string
+}
