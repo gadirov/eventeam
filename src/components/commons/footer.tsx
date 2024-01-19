@@ -35,7 +35,7 @@ const LinkedinIcon = () => {
   const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <VStack minH="400px" bg="#090632" color="white" gap="20px" >
+    <VStack minH="350px" bg="#090632" color="white" gap="20px" >
         <Box display="flex"  gap="200px" m="50px 0 20px 0">
             <VStack alignItems="center">
                 <Text fontSize="30px" fontWeight="600" pb="3px" ml="-5px">{t("Quick Link")}</Text>

@@ -1,6 +1,6 @@
 import { Box, Heading, Button, VStack } from "@chakra-ui/react";
 import React from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import EventDetails from "./CreateEvent/eventDetails.tsx";
 import Description from "./CreateEvent/description.tsx";
 import Attended from "./CreateEvent/attended.tsx";
@@ -8,12 +8,9 @@ import Location from "./CreateEvent/location.tsx";
 import Category from "./CreateEvent/category.tsx";
 import Contact from "./CreateEvent/contact.tsx";
 import Ticket from "./CreateEvent/ticket.tsx";
+import { DevTool } from "@hookform/devtools";
 function Event() {
-  const {
-    control,
-    formState: { errors, isValid },
-    handleSubmit,
-  } = useForm({
+  const  methods = useForm({
     mode: "all",
     defaultValues: {
       eventName: "",
@@ -36,7 +33,8 @@ function Event() {
     console.log(data);
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <FormProvider {...methods}>
+            <form onSubmit={methods.handleSubmit(onSubmit)}>
       <VStack
         bg="#F9FAFB"
         alignItems="center"
@@ -48,13 +46,13 @@ function Event() {
         <Box w="50%" pt="20px">
           <Heading textAlign="left">Create an Event</Heading>
         </Box>
-      <EventDetails errors={errors} control={control} />
-      <Description errors={errors} control={control} />
-      <Attended errors={errors} control={control} />
-      <Location errors={errors} control={control} />
-      <Category errors={errors} control={control} />
-      <Contact errors={errors} control={control} />
-      <Ticket errors={errors} control={control} />
+      <EventDetails />
+      <Description />
+      <Attended />
+      {/* <Location /> */}
+      {/* <Category /> */}
+      {/* <Contact /> */}
+      {/* <Ticket /> */}
       
       <Button
         w="50%"
@@ -62,13 +60,15 @@ function Event() {
         variant="solid"
         color="white"
         mb="60px"
-        onClick={handleSubmit(onSubmit)}
-        isDisabled={!isValid}
+        isDisabled={!methods.formState.isValid}
       >
         Create
       </Button>
     </VStack>
+    <DevTool control={methods.control} />
     </form>
+    </FormProvider>
+
 
   )
 }

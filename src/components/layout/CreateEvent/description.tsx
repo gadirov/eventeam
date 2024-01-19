@@ -13,15 +13,13 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
-import { Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { MdDescription } from "react-icons/md";
 
-interface IDescriptionProps {
-  errors: any;
-  control: any;
-}
 
-const Description: React.FC<IDescriptionProps> = ({ errors, control }) => {
+const Description= () => {
+  const { control, formState } = useFormContext();
+  const {errors} = formState;
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
@@ -103,7 +101,7 @@ const Description: React.FC<IDescriptionProps> = ({ errors, control }) => {
               )}
             />
             <FormErrorMessage mt="0.5rem">
-              {errors?.btnPhoto?.message}
+              {errors?.btnPhoto?.message as string}
             </FormErrorMessage>
           </FormControl>
 
@@ -127,7 +125,7 @@ const Description: React.FC<IDescriptionProps> = ({ errors, control }) => {
             />
 
             <FormErrorMessage mt="0.5rem">
-              {errors?.about?.message}
+              {errors?.about?.message as string}
             </FormErrorMessage>
           </FormControl>
         </VStack>

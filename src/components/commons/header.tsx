@@ -67,7 +67,7 @@ const Header = () => {
     >
       <Link to="/">
         <Image
-          src="./assests/logo.png"
+          src="../assests/logo.png"
           alt="Dan Abramov"
           w="180px"
           h="40px"

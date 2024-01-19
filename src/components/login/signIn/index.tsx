@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -8,15 +7,16 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import Header from "../Header.tsx";
+import React from "react";
 import Footer from "../Footer.tsx";
-import Password from "./Password.tsx";
+import Header from "../Header.tsx";
 import Email from "./Email.tsx";
+import Password from "./Password.tsx";
 // import SocialIcons from "./SocialIcons.tsx";
 import { FormProvider, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useSignIn } from "../../../hooks/useSignIn.ts";
-import { useTranslation } from "react-i18next";
 
 // import { DevTool } from "@hookform/devtools";
 

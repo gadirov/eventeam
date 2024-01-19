@@ -15,32 +15,28 @@ import {
   Radio,
   Switch,
 } from "@chakra-ui/react";
-import React, { useRef, useState } from "react";
-import { Controller } from "react-hook-form";
+import React, { useEffect, useRef, useState } from "react";
+import { Controller, useFormContext } from "react-hook-form";
 import { MdEvent } from "react-icons/md";
+import { useEventImage } from "../../../hooks/useEventImage.ts";
 
-interface IEventDetailsProps {
-  errors: any;
-  control: any;
-}
 
-const EventDetails: React.FC<IEventDetailsProps> = ({ errors, control }) => {
+const EventDetails = () => {
+  const methods = useFormContext();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  // const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const { submit, image } = useEventImage()
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setSelectedImage(file);
-    }
-  };
+  useEffect(() => {
+    image && methods?.setValue("browse", image);
+  },[image])
+
 
   const handleBrowseClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
   };
-
   return (
     <>
       <VStack bg="white" p="60px" w="50%">
@@ -53,7 +49,6 @@ const EventDetails: React.FC<IEventDetailsProps> = ({ errors, control }) => {
             </Text>
           </Box>
         </HStack>
-
         <VStack
           alignItems="center"
           pt="30px"
@@ -62,19 +57,19 @@ const EventDetails: React.FC<IEventDetailsProps> = ({ errors, control }) => {
           w="90%"
           mt="30px"
         >
-          {!selectedImage && (
+          {/* {!selectedImage && (
             <>
               <Image src="../assests/Outline.png" alt="Event outline" />
               <Text as="b" fontSize="36px">
                 Drag and drop an image
               </Text>
             </>
-          )}
+          )} */}
           <Text pt="16px">
             Or{" "}
             <Controller
               name="browse"
-              control={control}
+              control={methods?.control}
               rules={{ required: "This field is required!" }}
               render={({ field }) => (
                 <>
@@ -84,7 +79,7 @@ const EventDetails: React.FC<IEventDetailsProps> = ({ errors, control }) => {
                     type="file"
                     accept="image/*"
                     style={{ display: "none" }}
-                    onChange={handleFileChange}
+                    onChange={(e) =>submit(e?.target?.files?.[0])}
                   />
                   <Link onClick={handleBrowseClick} color="purple">
                     browse{" "}
@@ -94,36 +89,34 @@ const EventDetails: React.FC<IEventDetailsProps> = ({ errors, control }) => {
             />{" "}
             to choose a file{" "}
           </Text>
-          {selectedImage && (
+          {/* {selectedImage && (
             <div>
               <Image
                 src={URL.createObjectURL(selectedImage)}
                 alt="Selected Image"
               />
             </div>
-          )}
-
+          )} */}
           <Text w="90%" as="b" pt="30px" textAlign="center" color="#667085">
             This is the first image attendees will see at the top of your
             listing. Use a high-quality image: 2160x1080px{" "}
           </Text>
         </VStack>
-        {errors?.browse && (
+        {methods?.formState?.errors?.browse && (
           <Text color="red" mt="0.5rem">
-            {errors?.browse?.message}
+            {/* {methods.formState?.errors?.browse?.message} */}
           </Text>
         )}
-
         <VStack w="90%">
           <FormControl
-            mb={errors?.eventName ? 0 : 6}
+            mb={methods?.formState?.errors?.eventName ? 0 : 6}
             pt="30px"
-            isInvalid={!!errors?.eventName}
+            isInvalid={!!methods?.formState?.errors?.eventName}
           >
             <FormLabel>Name</FormLabel>
             <Controller
               name="eventName"
-              control={control}
+              control={methods?.control}
               rules={{
                 required: "Event name is required!",
               }}
@@ -132,37 +125,34 @@ const EventDetails: React.FC<IEventDetailsProps> = ({ errors, control }) => {
               )}
             />
             <FormErrorMessage mt="0.5rem">
-              {errors?.eventName?.message}
+              {/* {methods?.formState?.errors?.eventName?.message} */}
             </FormErrorMessage>
           </FormControl>
-
           <HStack w="100%">
             <FormControl
-              mb={errors?.startDate ? 0 : 6}
-              isInvalid={!!errors?.startDate}
+              mb={methods?.formState?.errors?.startDate ? 0 : 6}
+              isInvalid={!!methods?.formState?.errors?.startDate}
             >
               <FormLabel>Start Date</FormLabel>
               <Controller
                 name="startDate"
-                control={control}
+                control={methods?.control}
                 rules={{
                   required: "Start date is required!",
                 }}
                 render={({ field }) => <Input {...field} type="date" />}
               />
-
               <FormErrorMessage mt="0.5rem">
-                {errors?.startDate?.message}
+                {/* {methods.formState?.errors?.startDate?.message} */}
               </FormErrorMessage>
             </FormControl>
-
             <FormControl
-              mb={errors?.startTime ? 0 : 6}
-              isInvalid={!!errors?.startTime}
+              mb={methods?.formState?.errors?.startTime ? 0 : 6}
+              isInvalid={!!methods?.formState?.errors?.startTime}
             >
               <Controller
                 name="startTime"
-                control={control}
+                control={methods?.control}
                 rules={{
                   required: "Start time is required!",
                 }}
@@ -170,40 +160,36 @@ const EventDetails: React.FC<IEventDetailsProps> = ({ errors, control }) => {
                   <Input {...field} mt="32px" type="time" />
                 )}
               />
-
               <FormErrorMessage mt="0.5rem">
-                {errors?.startTime?.message}
+                {/* {methods.formState?.errors?.startTime?.message} */}
               </FormErrorMessage>
             </FormControl>
           </HStack>
-
           <HStack w="100%">
             <FormControl
-              mb={errors?.endDate ? 0 : 6}
-              isInvalid={!!errors?.endDate}
+              mb={methods?.formState?.errors?.endDate ? 0 : 6}
+              isInvalid={!!methods?.formState?.errors?.endDate}
             >
               <FormLabel>End Date</FormLabel>
               <Controller
                 name="endDate"
-                control={control}
+                control={methods?.control}
                 rules={{
                   required: "End date is required!",
                 }}
                 render={({ field }) => <Input {...field} type="date" />}
               />
-
               <FormErrorMessage mt="0.5rem">
-                {errors?.endDate?.message}
+                {/* {methods.formState?.errors?.endDate?.message} */}
               </FormErrorMessage>
             </FormControl>
-
             <FormControl
-              mb={errors?.endTime ? 0 : 6}
-              isInvalid={!!errors?.endTime}
+              mb={methods?.formState?.errors?.endTime ? 0 : 6}
+              isInvalid={!!methods?.formState?.errors?.endTime}
             >
               <Controller
                 name="endTime"
-                control={control}
+                control={methods?.control}
                 rules={{
                   required: "End time is required!",
                 }}
@@ -211,14 +197,12 @@ const EventDetails: React.FC<IEventDetailsProps> = ({ errors, control }) => {
                   <Input {...field} mt="32px" type="time" />
                 )}
               />
-
               <FormErrorMessage mt="0.5rem">
-                {errors?.endTime?.message}
+                {/* {methods.formState?.errors?.endTime?.message} */}
               </FormErrorMessage>
             </FormControl>
           </HStack>
-
-          <FormControl isInvalid={!!errors?.privacy}>
+          <FormControl isInvalid={!!methods?.formState?.errors?.privacy}>
             <FormLabel pt="30px" fontSize="20px">
               Privacy
               <Text fontSize="12px" color="gray">
@@ -227,7 +211,7 @@ const EventDetails: React.FC<IEventDetailsProps> = ({ errors, control }) => {
             </FormLabel>
             <Controller
               name="privacy"
-              control={control}
+              control={methods?.control}
               rules={{
                 required: "This field is required!",
               }}
@@ -243,17 +227,16 @@ const EventDetails: React.FC<IEventDetailsProps> = ({ errors, control }) => {
               )}
             />
             <FormErrorMessage mt="0.5rem">
-              {errors?.privacy?.message}
+              {/* {errors?.privacy?.message} */}
             </FormErrorMessage>
           </FormControl>
-
           <FormControl
             pt="18px"
             display="flex"
             alignItems="center"
             gap="20px"
-            isInvalid={!!errors?.attendees}
-            mb={errors?.attendees ? 0 : 6}
+            // isInvalid={!!errors?.attendees}
+            // mb={errors?.attendees ? 0 : 6}
           >
             <FormLabel htmlFor="attendees" mb="0" fontSize="20px">
               Attendees permission
@@ -263,7 +246,7 @@ const EventDetails: React.FC<IEventDetailsProps> = ({ errors, control }) => {
             </FormLabel>
             <Controller
               name="attendees"
-              control={control}
+              control={methods?.control}
               rules={{
                 required: "This field is required!",
               }}
@@ -276,7 +259,7 @@ const EventDetails: React.FC<IEventDetailsProps> = ({ errors, control }) => {
               )}
             />
             <FormErrorMessage mt="0.5rem">
-              {errors?.attendees?.message}
+              {/* {errors?.attendees?.message} */}
             </FormErrorMessage>
           </FormControl>
         </VStack>
@@ -285,3 +268,17 @@ const EventDetails: React.FC<IEventDetailsProps> = ({ errors, control }) => {
   );
 };
 export default EventDetails;
+
+
+
+
+
+
+
+
+
+
+
+
+
+

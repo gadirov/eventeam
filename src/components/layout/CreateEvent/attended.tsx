@@ -10,15 +10,14 @@ import {
   FormErrorMessage,
 } from "@chakra-ui/react";
 import React from "react";
-import { Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { MdNumbers } from "react-icons/md";
 
-interface IAttendedProps {
-  errors: any;
-  control: any;
-}
 
-const Attended: React.FC<IAttendedProps> = ({ errors, control }) => {
+
+const Attended = () => {
+  const { control, formState } = useFormContext();
+  const { errors } = formState;
   return (
     <VStack
       w={{ base: "90%", sm: "70%", md: "50%" }}
@@ -39,12 +38,7 @@ const Attended: React.FC<IAttendedProps> = ({ errors, control }) => {
       <FormControl
         w="100%"
         pt="60px"
-        isInvalid={!!errors?.minmax?.min || !!errors?.minmax?.max}
-        mb={
-          errors?.minmax?.min || errors?.minmax?.max
-            ? { base: "0", md: "6" }
-            : "6"
-        }
+        // isInvalid={!!errors?.minmax?.min || !!errors?.minmax?.max}
       >
         <FormLabel fontSize="20px">Expected number of attendees</FormLabel>
         <HStack>
@@ -81,7 +75,7 @@ const Attended: React.FC<IAttendedProps> = ({ errors, control }) => {
           />
         </HStack>
         <FormErrorMessage mt="0.5rem">
-          {errors?.minmax?.min?.message || errors?.minmax?.max?.message}
+          {/* {errors?.minmax?.min?.message || errors?.minmax?.max?.message} */}
         </FormErrorMessage>
       </FormControl>
     </VStack>
