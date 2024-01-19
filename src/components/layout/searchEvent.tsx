@@ -42,7 +42,7 @@ export default function SearchEvent() {
   // Filter button click event handler
   const handleClearFilter = () => {
     setsearchData(data?.body);
-    setSearchField("");
+    setSearchField(""); 
     window.location.reload();
   };
 
