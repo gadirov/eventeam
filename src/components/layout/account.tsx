@@ -16,24 +16,19 @@ import Cookies from "js-cookie";
 import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useUserDetails } from "../../hooks/useUserDetails.ts";
-import axios from "axios";
 import { accountSchema } from "../../schemas/AccountSchema.ts";
 import { IFormAccount } from "../../model.ts";
+import { put } from "../../config/axiosConfig.ts";
 const Account = () => {
   const [editMode, setEditMode] = React.useState<boolean>(false);
 
   const id = Cookies.get("userId");
-  const { data } = useUserDetails(id);
+  const { data:userData } = useUserDetails(id);
 
   const onSubmit = (data) => {
-    axios
-      .put("http://173.212.221.237/user/user/change-personal-details", data)
-      .then((response) => {
-        console.log("Update successful", response.data);
-      })
-      .catch((error) => {
-        console.error("Error updating data", error);
-      });
+    
+       put("http://173.212.221.237:38765/user/user/change-personal-details", data)
+ 
     setEditMode(!editMode);
   };
   const {
@@ -47,13 +42,13 @@ const Account = () => {
   });
   useEffect(() => {
     reset({
-      email: data?.body?.userView?.email,
-      userName: data?.body?.userView?.userName,
-      birthday: data?.body?.userView?.birthday,
-      gender: data?.body?.userView?.gender,
-      profilePhoto: data?.body?.userView?.profilePhoto,
+      email: userData?.body?.userView?.email,
+      username: userData?.body?.userView?.userName,
+      dateOfBirth: userData?.body?.userView?.birthday,  
+      gender: userData?.body?.userView?.gender,
+      profilePhoto: userData?.body?.userView?.profilePhoto, 
     });
-  }, [data]);
+  }, [userData]);
   const handleEditProfile = () => {
     setEditMode(!editMode);
   };
@@ -153,16 +148,16 @@ const Account = () => {
               </FormControl>
             </Flex>
 
-            <FormControl mb={"40px"} isInvalid={!!errors?.userName}>
+            <FormControl mb={"40px"} isInvalid={!!errors?.username}>
               <FormLabel>USERNAME</FormLabel>
               <Controller
-                name="userName"
+                name="username"
                 control={control}
                 render={({ field }) => (
                   <Input isDisabled={!editMode} {...field} />
                 )}
               />
-              <FormErrorMessage>{errors?.userName?.message}</FormErrorMessage>
+              <FormErrorMessage>{errors?.username?.message}</FormErrorMessage>
             </FormControl>
             <FormControl mb={"40px"} isInvalid={!!errors.email}>
               <FormLabel>EMAIL</FormLabel>
@@ -175,16 +170,16 @@ const Account = () => {
               />
               <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
             </FormControl>
-            <FormControl mb={"40px"} isInvalid={!!errors.birthday}>
+            <FormControl mb={"40px"} isInvalid={!!errors.dateOfBirth}>
               <FormLabel>Birhtday</FormLabel>
               <Controller
-                name="birthday"
+                name="dateOfBirth"
                 control={control}
                 render={({ field }) => (
                   <Input isDisabled={!editMode} {...field} />
                 )}
               />
-              <FormErrorMessage>{errors?.birthday?.message}</FormErrorMessage>
+              <FormErrorMessage>{errors?.dateOfBirth?.message}</FormErrorMessage>
             </FormControl>
             <FormControl mb={"40px"} isInvalid={!!errors.gender}>
               <FormLabel>gender</FormLabel>

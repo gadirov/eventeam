@@ -46,9 +46,9 @@ export interface Event {
 }
 
 export interface IFormAccount {
-  userName: string;
+  username: string;
   email: string;
-  birthday: string;
+  dateOfBirth: string;
   gender: string;
   profilePhoto: string;
 }
