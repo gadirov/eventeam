@@ -1,34 +1,27 @@
 import {
   Box,
-  HStack,
-  Icon,
-  VStack,
-  Text,
-  FormControl,
-  Input,
   Button,
-  Image,
+  FormControl,
   FormErrorMessage,
   FormLabel,
+  HStack,
+  Icon,
+  Image,
+  Input,
+  Text,
   Textarea,
+  VStack,
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { MdDescription } from "react-icons/md";
+import { useHandleImage } from "../../../hooks/useEventImage.ts";
 
-
-const Description= () => {
-  const { control, formState } = useFormContext();
-  const {errors} = formState;
+const Description = () => {
+  const { control, formState, setValue, watch } = useFormContext();
+  const { errors } = formState;
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setSelectedImage(file);
-    }
-  };
+  const { submit } = useHandleImage("btnPhoto", setValue);
 
   const handleBrowseClick = () => {
     if (fileInputRef.current) {
@@ -72,12 +65,10 @@ const Description= () => {
                     {...field}
                     type="file"
                     accept="image/*"
+                    value={undefined}
                     style={{ display: "none" }}
                     ref={fileInputRef}
-                    onChange={(e) => {
-                      field.onChange(e);
-                      handleFileChange(e);
-                    }}
+                    onChange={(e) => submit(e?.target?.files?.[0])}
                   />
                   <Button
                     onClick={() => {
@@ -88,10 +79,12 @@ const Description= () => {
                     Add photo
                   </Button>
 
-                  {selectedImage && (
+                  {watch("btnPhoto") && (
                     <div>
                       <Image
-                        src={URL.createObjectURL(selectedImage)}
+                        src={`http://173.212.221.237/images/${watch(
+                          "btnPhoto"
+                        )}`}
                         alt="Add photo"
                         mt="20px"
                       />
@@ -105,10 +98,7 @@ const Description= () => {
             </FormErrorMessage>
           </FormControl>
 
-          <FormControl
-            mb={errors?.about ? 0 : 6}
-            isInvalid={!!errors?.about}
-          >
+          <FormControl mb={errors?.about ? 0 : 6} isInvalid={!!errors?.about}>
             <FormLabel pt="60px">About event</FormLabel>
             <Controller
               name="about"

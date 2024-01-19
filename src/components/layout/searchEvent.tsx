@@ -8,12 +8,11 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import CardItem from "../Card/CartdItem.tsx";
-import { useDetails } from "../../hooks/useDetails.ts";
 import useSWR from "swr";
 import { fetcher } from "../../config/axiosConfig.ts";
-import { useNavigate } from "react-router-dom";
 import { swrOptions } from "../../const.ts";
+import { useDetails } from "../../hooks/useDetails.ts";
+import CardItem from "../Card/CartdItem.tsx";
 
 
 export default function SearchEvent() {

@@ -13,11 +13,9 @@ import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { MdNumbers } from "react-icons/md";
 
-
-
 const Attended = () => {
-  const { control, formState } = useFormContext();
-  const { errors } = formState;
+  const { control } = useFormContext();
+  // const { errors } = formState;
   return (
     <VStack
       w={{ base: "90%", sm: "70%", md: "50%" }}
@@ -36,9 +34,8 @@ const Attended = () => {
       </HStack>
 
       <FormControl
-        w="100%"
         pt="60px"
-        // isInvalid={!!errors?.minmax?.min || !!errors?.minmax?.max}
+        // isInvalid={!!errors?.minmax?.min as || !!errors?.minmax?.max}
       >
         <FormLabel fontSize="20px">Expected number of attendees</FormLabel>
         <HStack>

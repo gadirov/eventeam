@@ -19,6 +19,7 @@ import { useUserDetails } from "../../hooks/useUserDetails.ts";
 import { accountSchema } from "../../schemas/AccountSchema.ts";
 import { IFormAccount } from "../../model.ts";
 import { put } from "../../config/axiosConfig.ts";
+import { useProfileImage } from "../../hooks/useProfileImage.ts";
 const Account = () => {
   const [editMode, setEditMode] = React.useState<boolean>(false);
 
@@ -35,6 +36,7 @@ const Account = () => {
     watch,
     reset,
     handleSubmit,
+    setValue,
     control,
     formState: { errors },
   } = useForm<IFormAccount>({
@@ -52,6 +54,8 @@ const Account = () => {
   const handleEditProfile = () => {
     setEditMode(!editMode);
   };
+
+  const { submit } = useProfileImage(setValue);
   return (
     <Box py={"200px"}>
       <Container
@@ -139,6 +143,7 @@ const Account = () => {
                       display="none"
                       type="file"
                       accept="image/*"
+                      onChange={(e) =>submit(e?.target?.files?.[0])}
                     />
                   )}
                 />

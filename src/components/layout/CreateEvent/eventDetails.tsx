@@ -15,22 +15,16 @@ import {
   Radio,
   Switch,
 } from "@chakra-ui/react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { MdEvent } from "react-icons/md";
-import { useEventImage } from "../../../hooks/useEventImage.ts";
-
+import { useHandleImage } from "../../../hooks/useEventImage.ts";
 
 const EventDetails = () => {
   const methods = useFormContext();
+  const {errors} = methods.formState;
   const fileInputRef = useRef<HTMLInputElement>(null);
-  // const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const { submit, image } = useEventImage()
-
-  useEffect(() => {
-    image && methods?.setValue("browse", image);
-  },[image])
-
+  const { submit } = useHandleImage("coverPhoto", methods.setValue);
 
   const handleBrowseClick = () => {
     if (fileInputRef.current) {
@@ -57,18 +51,18 @@ const EventDetails = () => {
           w="90%"
           mt="30px"
         >
-          {/* {!selectedImage && (
+          {!methods.watch("coverPhoto") && (
             <>
               <Image src="../assests/Outline.png" alt="Event outline" />
               <Text as="b" fontSize="36px">
                 Drag and drop an image
               </Text>
             </>
-          )} */}
+          )}
           <Text pt="16px">
             Or{" "}
             <Controller
-              name="browse"
+              name="coverPhoto"
               control={methods?.control}
               rules={{ required: "This field is required!" }}
               render={({ field }) => (
@@ -78,8 +72,9 @@ const EventDetails = () => {
                     ref={fileInputRef}
                     type="file"
                     accept="image/*"
+                    value={undefined}
                     style={{ display: "none" }}
-                    onChange={(e) =>submit(e?.target?.files?.[0])}
+                    onChange={(e) => submit(e?.target?.files?.[0])}
                   />
                   <Link onClick={handleBrowseClick} color="purple">
                     browse{" "}
@@ -89,23 +84,23 @@ const EventDetails = () => {
             />{" "}
             to choose a file{" "}
           </Text>
-          {/* {selectedImage && (
+          {methods.watch("coverPhoto") && (
             <div>
               <Image
-                src={URL.createObjectURL(selectedImage)}
+                src={`http://173.212.221.237/images/${methods.watch("coverPhoto")}`}
                 alt="Selected Image"
               />
             </div>
-          )} */}
+          )}
           <Text w="90%" as="b" pt="30px" textAlign="center" color="#667085">
             This is the first image attendees will see at the top of your
             listing. Use a high-quality image: 2160x1080px{" "}
           </Text>
         </VStack>
-        {methods?.formState?.errors?.browse && (
-          <Text color="red" mt="0.5rem">
-            {/* {methods.formState?.errors?.browse?.message} */}
-          </Text>
+        {methods?.formState?.errors?.coverPhoto && (
+          <FormErrorMessage color="red" mt="0.5rem">
+            {methods?.formState?.errors?.coverPhoto?.message as string}
+          </FormErrorMessage>
         )}
         <VStack w="90%">
           <FormControl
@@ -125,7 +120,7 @@ const EventDetails = () => {
               )}
             />
             <FormErrorMessage mt="0.5rem">
-              {/* {methods?.formState?.errors?.eventName?.message} */}
+              {methods?.formState?.errors?.eventName?.message as string}
             </FormErrorMessage>
           </FormControl>
           <HStack w="100%">
@@ -202,7 +197,7 @@ const EventDetails = () => {
               </FormErrorMessage>
             </FormControl>
           </HStack>
-          <FormControl isInvalid={!!methods?.formState?.errors?.privacy}>
+          <FormControl isInvalid={!!methods?.formState?.errors?.eventType}>
             <FormLabel pt="30px" fontSize="20px">
               Privacy
               <Text fontSize="12px" color="gray">
@@ -210,7 +205,7 @@ const EventDetails = () => {
               </Text>
             </FormLabel>
             <Controller
-              name="privacy"
+              name="eventType"
               control={methods?.control}
               rules={{
                 required: "This field is required!",
@@ -218,10 +213,10 @@ const EventDetails = () => {
               render={({ field }) => (
                 <RadioGroup {...field}>
                   <Stack direction="row">
-                    <Radio value="1" defaultChecked>
+                    <Radio value="PUBLIC" defaultChecked>
                       Public
                     </Radio>
-                    <Radio value="2">Private</Radio>
+                    <Radio value="PRIVATE">Private</Radio>
                   </Stack>
                 </RadioGroup>
               )}
@@ -235,8 +230,8 @@ const EventDetails = () => {
             display="flex"
             alignItems="center"
             gap="20px"
-            // isInvalid={!!errors?.attendees}
-            // mb={errors?.attendees ? 0 : 6}
+            isInvalid={!!errors?.attendeesPermission}
+            mb={errors?.attendeesPermission ? 0 : 6}
           >
             <FormLabel htmlFor="attendees" mb="0" fontSize="20px">
               Attendees permission
@@ -245,7 +240,7 @@ const EventDetails = () => {
               </Text>
             </FormLabel>
             <Controller
-              name="attendees"
+              name="attendeesPermission"
               control={methods?.control}
               rules={{
                 required: "This field is required!",
@@ -259,7 +254,7 @@ const EventDetails = () => {
               )}
             />
             <FormErrorMessage mt="0.5rem">
-              {/* {errors?.attendees?.message} */}
+              {errors?.attendeesPermission?.message  as string}
             </FormErrorMessage>
           </FormControl>
         </VStack>
@@ -268,17 +263,3 @@ const EventDetails = () => {
   );
 };
 export default EventDetails;
-
-
-
-
-
-
-
-
-
-
-
-
-
-

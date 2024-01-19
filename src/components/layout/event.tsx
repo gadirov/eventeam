@@ -9,8 +9,9 @@ import Category from "./CreateEvent/category.tsx";
 import Contact from "./CreateEvent/contact.tsx";
 import Ticket from "./CreateEvent/ticket.tsx";
 import { DevTool } from "@hookform/devtools";
+import { useCreateEvent } from "../../hooks/useCreateEvent.ts";
 function Event() {
-  const  methods = useForm({
+  const methods = useForm({
     mode: "all",
     defaultValues: {
       eventName: "",
@@ -18,58 +19,60 @@ function Event() {
       startTime: "",
       endDate: "",
       endTime: "",
-      privacy: "1",
-      attendees: false,
-      browse: "",
-      about: "",
+      eventType: "PUBLIC",
+      ticketType: "FREE",
+      attendeesPermission: false,
+      coverPhoto: "",
       minmax: { min: "", max: "" },
-      freePaid: "1",
       btnPhoto: "",
       location: "",
       contact: "",
     },
   });
+
+  const { submit } = useCreateEvent();
   const onSubmit = (data) => {
+    submit(data)
     console.log(data);
   };
+  
   return (
     <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(onSubmit)}>
-      <VStack
-        bg="#F9FAFB"
-        alignItems="center"
-        gap="60px"
-        pt="100px"
-        w="100%"
-        justifyContent="center"
-      >
-        <Box w="50%" pt="20px">
-          <Heading textAlign="left">Create an Event</Heading>
-        </Box>
-      <EventDetails />
-      <Description />
-      <Attended />
-      {/* <Location /> */}
-      {/* <Category /> */}
-      {/* <Contact /> */}
-      {/* <Ticket /> */}
-      
-      <Button
-        w="50%"
-        colorScheme="purple"
-        variant="solid"
-        color="white"
-        mb="60px"
-        isDisabled={!methods.formState.isValid}
-      >
-        Create
-      </Button>
-    </VStack>
-    <DevTool control={methods.control} />
-    </form>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <VStack
+          bg="#F9FAFB"
+          alignItems="center"
+          gap="60px"
+          pt="100px"
+          w="100%"
+          justifyContent="center"
+        >
+          <Box w="50%" pt="20px">
+            <Heading textAlign="left">Create an Event</Heading>
+          </Box>
+          <EventDetails />
+          <Description />
+          <Attended />
+          <Location />
+          <Category />
+          <Contact />
+          <Ticket />
+
+          <Button
+            type="submit"
+            w="50%"
+            colorScheme="purple"
+            variant="solid"
+            color="white"
+            mb="60px"
+            isDisabled={!methods.formState.isValid}
+          >
+            Create
+          </Button>
+        </VStack>
+        <DevTool control={methods.control} />
+      </form>
     </FormProvider>
-
-
-  )
+  );
 }
 export default Event;
