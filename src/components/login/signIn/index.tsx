@@ -42,14 +42,12 @@ const SignIn = () => {
   return (
     <FormProvider {...methods}>
       <VStack
-        width="768px"
-        flex={{ base: "1", lg: "1", xl: "5 1 0" }}
         minH="100vh"
         justifyContent="space-between"
         p="10px 0"
       >
         <Header />
-        <Box w="44%" display="flex" flexDirection="column" gap="30px">
+        <Box w="54%" display="flex" flexDirection="column" gap="30px">
           <Heading
             textAlign="center"
             m="-50px 0 10px 0"

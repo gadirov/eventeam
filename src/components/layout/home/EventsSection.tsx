@@ -14,7 +14,7 @@ const EventsSection = () => {
 
   return (
     <Box 
-      padding={{ base: "100px 20px"  , md: "120px 0px" }}
+      padding={{ base: "100px 20px"  , md: "120px 120px" }}
      
     >
       <Heading textAlign={"center"} mb={"30px"}>

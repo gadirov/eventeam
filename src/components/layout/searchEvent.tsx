@@ -18,8 +18,8 @@ import CardItem from "../Card/CartdItem.tsx";
 export default function SearchEvent() {
   const [searchField, setSearchField] = React.useState<string>("");
   const [searchData, setsearchData] = useState<any[]>([]);
-  const [filterValue, setFilterValue] = React.useState<string>();
-  const [nameOfInput, setNameOfInput] = React.useState<string>();
+  const [filterValue, setFilterValue] = React.useState<string>("");
+  const [nameOfInput, setNameOfInput] = React.useState<string>("");
   const { data: filteredData, isLoading: loadingFilter } = useSWR(
     `/events-ms/api/v1/events/filter?${nameOfInput}=${filterValue}`,
     fetcher,
@@ -118,7 +118,7 @@ export default function SearchEvent() {
                   .toLowerCase()
                   .includes(searchField.toLowerCase());
               })
-              ?.map((event) => <CardItem {...event} key={event.idEvent} />)
+              ?.map((event, index) => <CardItem {...event} key={index} />)
             : "loading..."}{" "}
         </SimpleGrid>
       </Container>
