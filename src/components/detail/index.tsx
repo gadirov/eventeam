@@ -70,11 +70,9 @@ const DetailView = () => {
   const timeDifferenceInMinutes =
     endHour * 60 + endMinute - (startHour * 60 + startMinute);
 
-  //category part
-  const category = detailData?.body?.listOfCategories[0]?.keyword
-    .split(".")[1]
-    .toUpperCase();
+  
 
+    // console.log(d)
   return (
     <Box pt="100px">
       <Box w="100%" margin="auto">
@@ -190,9 +188,10 @@ const DetailView = () => {
               </Box>
             </Box>
             <Box display="flex" flexDirection="column" gap="20px">
-              <Box display="flex" alignItems="center" gap="15px">
+              <Box display="flex" alignItems="center" gap="10px">
                 <FontAwesomeIcon fontSize="23px" icon={faListCheck} />
-                <Text fontSize="20px">{category}</Text>
+                {detailData?.body?.listOfCategories.map((item) => <Text fontSize="20px">{ item.name }</Text>)}
+                
               </Box>
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faLink} />

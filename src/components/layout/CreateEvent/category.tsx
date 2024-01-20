@@ -28,7 +28,7 @@ const Category = () => {
 
   const handleCategoryChange = (selected: string[]) => {
     setSelectedCategories(selected);
-    const obj = selectedCategories.map((item) =>{ return {"keyword": `category.${item}`}} )
+    const obj = selectedCategories.map((item) =>{ return {"keyword": item }} )
     console.log(obj);
     methods.setValue("listOfCategories", obj)
   };
@@ -61,8 +61,8 @@ const Category = () => {
           <Button
             alignSelf="flex-start"
             borderRadius="40px"
-            w="30%"
-            p="25px"
+            w="4.8"
+            p="25px 25px 25px 10px"
             onClick={onOpen}
           >
             <HStack gap="10px">
