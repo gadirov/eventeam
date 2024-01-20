@@ -11,7 +11,7 @@ const CardItem: React.FC<Event> = ({
   eventName,
 }) => {
   return (
-    <Card key={idEvent}>
+    <Card>
       <CardBody>
         <Image
           src={`http://173.212.221.237/images/${coverPhoto}`}

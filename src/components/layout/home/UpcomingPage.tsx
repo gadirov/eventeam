@@ -44,7 +44,7 @@ export default function UpcomingPage() {
           fontSize="25px"
           fontStyle="normal"
           fontWeight="500"
-          color="#fff"
+          color="black"
           bg="#7848F4"
           p="5px"
           borderRadius="10px"
