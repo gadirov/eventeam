@@ -11,6 +11,7 @@ import {
   Menu,
   MenuButton,
   MenuDivider,
+  MenuItem,
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
@@ -20,6 +21,7 @@ import {
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserDetails } from "../../hooks/useUserDetails.ts";
+import { HamburgerIcon } from "@chakra-ui/icons";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -60,8 +62,9 @@ const Header = () => {
       justifyContent="space-between"
       alignItems="center"
       p="25px 10vw"
+      padding={{ base: "25px 4vw", md: "25px 10vw" }}
       bgColor="#fff"
-      w="100vw"
+      w="100%"
       position="fixed"
       zIndex={"2"}
     >
@@ -74,9 +77,11 @@ const Header = () => {
           cursor="pointer"
         />
       </Link>
+
       <UnorderedList
+        display={{ base: "none", md: "flex" }}
         listStyleType="none"
-        display="flex"
+        // display="flex"
         gap="50px"
         fontWeight="500"
         fontSize="20px"
@@ -122,7 +127,64 @@ const Header = () => {
           <Link to="/searchevent">SearchEvent</Link>
         </ListItem>
       </UnorderedList>
-      <Box display="flex" alignItems="center" gap="20px">
+      <Box display="flex" alignItems="center" gap={{base:"0px",md:"20px"}}>
+        {/* Hamburger Menu */}
+        <Box
+          display={{ base: "flex", md: "none" }}
+        >
+          <Menu  >
+            <MenuButton
+              as={IconButton}
+              aria-label='Options'
+              icon={<HamburgerIcon />}
+              variant='outline'
+            />
+            <MenuList>
+              <MenuItem
+
+                _hover={{
+                  color: "#66f5ff",
+                  transition: "color 0.5s",
+                  textDecoration: "underline",
+                }}
+                cursor="pointer"
+              >
+                <Link to="/about">{t("About")}</Link>
+
+              </MenuItem>
+              <MenuItem
+                _hover={{
+                  color: "#66f5ff",
+                  transition: "color 0.5s",
+                  textDecoration: "underline",
+                }}
+                cursor="pointer"
+              >
+                <Link to="/contact">{t("Contact")}</Link>
+              </MenuItem>
+              <MenuItem
+                _hover={{
+                  color: "#66f5ff",
+                  transition: "color 0.5s",
+                  textDecoration: "underline",
+                }}
+                cursor="pointer"
+              >
+                <Link to="/events">{t("Events")}</Link>
+              </MenuItem>
+              <MenuItem
+                _hover={{
+                  color: "#66f5ff",
+                  transition: "color 0.5s",
+                  textDecoration: "underline",
+                }}
+                cursor="pointer"
+              >
+                <Link to="/searchevent">SearchEvent</Link>
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        </Box>
         {/* Language Select */}
         <Select
           width="100px"

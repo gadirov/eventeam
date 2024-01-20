@@ -54,7 +54,7 @@ export default function SearchEvent() {
   };
 
   return (
-    <Box p="200px 0 ">
+    <Box p={{ base: "165px 0px", md: "200px 0 " }}>
       <Container maxW="80vw">
         <Input
           py={"20px"}
@@ -63,57 +63,62 @@ export default function SearchEvent() {
           fontWeight={"bold"}
           onChange={handleChange}
         />
-        <Flex justify={"flex-start"} gap={"20px"} my={"40px"}>
-          <Select
-            placeholder="Attandance"
-            fontWeight={"bold"}
-            w={"207px"}
-            bg={"#F2F4F7"}
-            name={"ATTENDANCE"}
-            onChange={(event) => handleFilterChange(event)}
-          >
-            <option value="OFFLINE">Ofline</option>
-            <option value="ONLINE">Online</option>
-          </Select>
-          <Select
-            placeholder="DATE"
-            fontWeight={"bold"}
-            w={"141px"}
-            bg={"#F2F4F7"}
-            onChange={handleFilterChange}
-            name="date"
-          >
-            <option value="TODAY">TODAY</option>
-            <option value="TOMORROW">TOMORROW</option>
-            <option value="THISWEEK">THISWEEK</option>
-            <option value="THISWEEK">THISWEEK</option>
-          </Select>
-          <Select
-            placeholder="Price"
-            fontWeight={"bold"}
-            w={"141px"}
-            bg={"#F2F4F7"}
-            onChange={handleFilterChange}
-            name="ticketType"
-          >
-            <option value="FREE">Free</option>
-            <option value="PAID">Paid</option>
-          </Select>
-          <Button onClick={handleClearFilter} bg={"blue"} color={"#fff"}>
-            Clear Filter
-          </Button>
+        <Flex justify={"flex-start"} gap={"20px"} my={"40px"} flexDirection={{ base: "column", sm: "row", md: "row" }}>
+          <Box display={"flex"} gap={"20px"} flexDirection={{ base: "column", md: "row" }} >
+            <Select
+              placeholder="Attandance"
+              fontWeight={"bold"}
+              w={"207px"}
+              bg={"#F2F4F7"}
+              name={"ATTENDANCE"}
+              onChange={(event) => handleFilterChange(event)}
+            >
+              <option value="OFFLINE">Ofline</option>
+              <option value="ONLINE">Online</option>
+            </Select>
+            <Select
+              placeholder="DATE"
+              fontWeight={"bold"}
+              w={"141px"}
+              bg={"#F2F4F7"}
+              onChange={handleFilterChange}
+              name="date"
+            >
+              <option value="TODAY">TODAY</option>
+              <option value="TOMORROW">TOMORROW</option>
+              <option value="THISWEEK">THISWEEK</option>
+              <option value="THISWEEK">THISWEEK</option>
+            </Select>
+          </Box>
+          <Box display={"flex"} gap={"20px"} flexDirection={{ base: "column", md: "row" }}>
+            <Select
+              placeholder="Price"
+              fontWeight={"bold"}
+              w={"141px"}
+              bg={"#F2F4F7"}
+              onChange={handleFilterChange}
+              name="ticketType"
+            >
+              <option value="FREE">Free</option>
+              <option value="PAID">Paid</option>
+            </Select>
+            <Button onClick={handleClearFilter} bg={"blue"} color={"#fff"}>
+              Clear Filter
+            </Button>
+          </Box>
         </Flex>
 
+
         {/* Search part */}
-        <SimpleGrid columns={[1, 2, 3]} spacing="60px">
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing="60px">
           {searchData
             ? searchData
-                .filter((event) => {
-                  return event.eventName
-                    .toLowerCase()
-                    .includes(searchField.toLowerCase());
-                })
-                ?.map((event) => <CardItem {...event} key={event.idEvent} />)
+              .filter((event) => {
+                return event.eventName
+                  .toLowerCase()
+                  .includes(searchField.toLowerCase());
+              })
+              ?.map((event) => <CardItem {...event} key={event.idEvent} />)
             : "loading..."}{" "}
         </SimpleGrid>
       </Container>

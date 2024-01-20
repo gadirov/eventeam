@@ -75,13 +75,16 @@ const DetailView = () => {
     // console.log(d)
   return (
     <Box pt="100px">
-      <Box w="100%" margin="auto">
-        <Image
-          height="60vh"
-          w="100%"
-          src={`http://173.212.221.237/images/${detailData?.body?.coverPhoto}`}
-          alt=""
-        />
+      <Box  background="rgb(160,152,255)" 
+>
+        <Box w="82%" margin="auto">
+          <Image
+            height="70vh"
+            w="100%"
+            src={`http://173.212.221.237/images/${detailData?.body?.coverPhoto}`}
+            alt=""
+          />
+        </Box>
       </Box>
       <Box w="100%" borderRadius="20px" backgroundColor="white">
         <Box w="100%" margin="auto">

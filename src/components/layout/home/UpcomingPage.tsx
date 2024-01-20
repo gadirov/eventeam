@@ -37,8 +37,8 @@ export default function UpcomingPage() {
       flexDirection="column"
       w="100vw"
     >
-      <Box display="flex" justifyContent="center" mb="70px">
-        <Select
+      <Box display="flex" justifyContent="center" mb="70px" >
+      <Select
           onChange={changeHandlerSelect}
           fontFamily="revert-layer"
           fontSize="25px"
@@ -49,8 +49,8 @@ export default function UpcomingPage() {
           p="5px"
           borderRadius="10px"
           cursor="pointer"
-          border="1px solid #8F64FF"
-          w="17vw"
+          border="4px solid #8F64FF"
+          w="200px"
         >
           <option value="upcoming">Upcoming</option>
           <option value="popular-events/v2">Popular events</option>
@@ -65,7 +65,7 @@ export default function UpcomingPage() {
         </Box>
       ) : isLoading ? (
         <Box w="100vw" display="flex">
-          <SimpleGrid columns={[1, 2]} spacing="60px" margin="0 auto">
+          <SimpleGrid columns={{base:1,md:2}} spacing="60px" margin="0 auto">
             {Array.from({ length: next }).map((_, index) => (
               <UpcomingPageCardItemSkeleton key={index} />
             ))}
@@ -73,7 +73,7 @@ export default function UpcomingPage() {
         </Box>
       ) : (
         <Box w="100vw" display="flex">
-          <SimpleGrid columns={[1, 2]} spacing="60px" margin="0 auto">
+          <SimpleGrid columns={{base:1,md:2}} spacing="60px" margin="0 auto">
             {allData?.body?.listOfEvents?.slice(0, next)?.map((event) => (
               <UpcomingPageCardItem {...event} key={event.idEvent} />
             ))}
@@ -85,7 +85,7 @@ export default function UpcomingPage() {
         <Button
           mt="30px"
           mx="auto"
-          w="10vw"
+          w="150px"
           cursor="pointer"
           _hover={{ color: "white" }}
           p="25px 0"

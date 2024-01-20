@@ -19,16 +19,18 @@ const Contact = () => {
   return (
     <>
       <Box
-         bgImage="../assests/AboutPage-Image/abstract-bluish-paint-background-wallpaper.jpg" backgroundSize="100%"
+        bgImage="../assests/AboutPage-Image/abstract-bluish-paint-background-wallpaper.jpg" backgroundRepeat={"no-repeat"} backgroundSize="cover"
         // bg="conic-gradient(from 243.17deg at 52.66% 45.72%, rgba(7, 20, 80, .7) 0deg, hsla(0, 0%, 100%, 0) 66.85deg, rgba(18, 33, 102, .7) 266.25deg, rgba(7, 20, 80, .7) 1turn)"
         w="100vw"
         h="600px"
         pt="80px"
+        position="relative"
+
       >
         <Text
-          position="relative"
-          top="250px"
-          left="80px"
+          position="absolute"
+          top="350px"
+          left={{ base: "12px", md: "80px" }}
           fontStyle="italic"
           color="#071450"
           fontSize="100px"
@@ -38,23 +40,23 @@ const Contact = () => {
       </Box>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box
-         px={"40px"}
-         >
-          <Flex justifyContent="center" >
-            <Box m={"100px 0px"} display={"flex"} flexDirection={"column"} >
-              <Box w={"436px"} height={"147px"} >
-                <Box height={"153px"} display={"flex"} justifyContent={"flex-start"} p={"20px"} gap={"20px"}  alignItems={"center"}>
-                  <FontAwesomeIcon  fontSize={"50px"} color="#071450" icon={faMapMarkerAlt} />
+          px={"40px"}
+        >
+          <Flex flexDirection={{ base: "column-reverse", md: "row" }} justifyContent="center" >
+            <Box margin={{ base: "0px", md: "100px 0px" }} display={"flex"} flexDirection={"column"} >
+              <Box w={{ base: "100%", md: "436px" }} height={"147px"} >
+                <Box height={"153px"} display={"flex"} justifyContent={"flex-start"} p={"20px"} gap={"20px"} alignItems={"center"}>
+                  <FontAwesomeIcon fontSize={"50px"} color="#071450" icon={faMapMarkerAlt} />
                   <Box>
-                    <Heading  textTransform={"uppercase"} color={"#071450"}>
+                    <Heading textTransform={"uppercase"} color={"#071450"}>
                       Location
                     </Heading>
                     <Text color={"#071450"} fontWeight={"Bold"}>Baku</Text>
                   </Box>
                 </Box>
               </Box>
-              <Box w={"436px"} height={"147px"} >
-                <Box height={"147px"} display={"flex"} justifyContent={"flex-start"} p={"20px"} gap={"20px"}  alignItems={"center"}>
+              <Box w={{ base: "100%", md: "436px" }} height={"147px"} >
+                <Box height={"147px"} display={"flex"} justifyContent={"flex-start"} p={"20px"} gap={"20px"} alignItems={"center"}>
                   <FontAwesomeIcon fontSize={"50px"} color="#071450" icon={faPhone} />
                   <Box>
                     <Heading textTransform={"uppercase"} color={"#071450"}>
@@ -64,8 +66,8 @@ const Contact = () => {
                   </Box>
                 </Box>
               </Box>
-              <Box w={"436px"} height={"147px"} >
-                <Box height={"147px"} display={"flex"} justifyContent={"flex-start"} p={"20px"} gap={"20px"}  alignItems={"center"}>
+              <Box w={{ base: "100%", md: "436px" }} height={"147px"} >
+                <Box height={"147px"} display={"flex"} justifyContent={"flex-start"} p={"20px"} gap={"20px"} alignItems={"center"}>
                   <FontAwesomeIcon fontSize={"50px"} color="#071450" icon={faEnvelope} />
                   <Box>
                     <Heading textTransform={"uppercase"} color={"#071450"}>
@@ -76,9 +78,9 @@ const Contact = () => {
                 </Box>
               </Box>
             </Box>
-            <Box m={"50px 0px"}  w={"645px"}>
+            <Box m={"50px 0px"} w={{ base: "100%", md: "645px" }}>
               <Flex direction={"column"} w={"70%"} mx={"auto"} gap={"28px"} mt={"20px"}>
-              <Heading  color={"#071450"}>Write A Message</Heading>
+                <Heading fontSize={{ base: "25px", md: "35px" }} color={"#071450"}>Write A Message</Heading>
                 <FormControl isInvalid={!!errors.name}>
                   <Controller
                     name="name"
