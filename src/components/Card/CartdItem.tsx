@@ -33,6 +33,7 @@ const CardItem: React.FC<Event> = ({
               fontFamily="Euclid Circular B"
               fontSize="21px"
               lineHeight="30px"
+              h="60px"
               _hover={{textDecoration: "underline", transition: "textDecoration 5s"}}
             >
               {" "}
