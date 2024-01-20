@@ -64,8 +64,8 @@ const Account = () => {
         justifyContent={"space-between"}
       >
         <Flex gap={"24px"} direction={"column"} w={"562px"}>
-          <Heading fontSize={"45px"}>Organizer Profile</Heading>
-          <Text w={"467px"} color={"#667085"} fontWeight={"500"}>
+          <Heading fontSize={{base:"37px",md:"45px"}}>Organizer Profile</Heading>
+          <Text w={"100%"} color={"#667085"} fontWeight={"500"}>
             Create an organizer profile so attendees can browse all your events
             in one place
           </Text>
@@ -82,11 +82,12 @@ const Account = () => {
         >
           <form onSubmit={handleSubmit(onSubmit)}>
             <Flex
-              w={"700px"}
+              w={"100%"}
               justify={"space-between"}
-              gap={"80px"}
               align="center"
               mb={"40px"}
+              flexDirection={{base:"column",md:"row"}}
+              gap={{base:"0px",md:"80px"}}
             >
               <Box>
                 <Image
@@ -104,12 +105,14 @@ const Account = () => {
                   color="#707070"
                   fontSize="18px"
                   width="50%"
+                  
+
                 >
                   <Box
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
-                    w="100%"
+                    w="200px"
                     cursor="pointer"
                     textAlign="center"
                     _hover={{ color: "white" }}
@@ -119,7 +122,7 @@ const Account = () => {
                     fontWeight="600"
                     color="#fff"
                     bg="#7848F4"
-                    gap="5px"
+                    gap={"5px"}
                   >
                     <Image
                       src="../assests/login/photo.png"
