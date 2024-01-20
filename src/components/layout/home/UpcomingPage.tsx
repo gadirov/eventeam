@@ -44,11 +44,12 @@ export default function UpcomingPage() {
           fontSize="25px"
           fontStyle="normal"
           fontWeight="500"
-          bg="#8F64FF"
+          color="#fff"
+          bg="#7848F4"
           p="5px"
           borderRadius="10px"
           cursor="pointer"
-          border="1px solid black"
+          border="1px solid #8F64FF"
           w="17vw"
         >
           <option value="upcoming">Upcoming</option>
