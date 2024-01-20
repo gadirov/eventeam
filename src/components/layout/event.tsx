@@ -47,7 +47,7 @@ function Event() {
           w="100%"
           justifyContent="center"
         >
-          <Box w="50%" pt="20px">
+          <Box w={{base: "100%", lg: "70%"}} pt="20px">
             <Heading textAlign="left">Create an Event</Heading>
           </Box>
           <EventDetails />
@@ -60,7 +60,7 @@ function Event() {
 
           <Button
             type="submit"
-            w="50%"
+            w="70%"
             colorScheme="purple"
             variant="solid"
             color="white"

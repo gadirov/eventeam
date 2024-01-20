@@ -54,7 +54,7 @@ const Category = () => {
 
   return (
     <>
-      <VStack w="50%" alignItems="center" bg="white" p="60px">
+      <VStack w={{base: "100%", lg: "70%"}} alignItems="center" bg="white" p={{base: "10px",md:"60px"}}>
         <HStack w="90%" onClick={onOpen} cursor="pointer">
           <Icon as={MdCategory} w={12} h={12} color="purple.500" />
           <Box pl="32px">

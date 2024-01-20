@@ -31,7 +31,7 @@ const Description = () => {
 
   return (
     <>
-      <VStack w="50%" p="60px" bg="white" alignItems="center">
+      <VStack w={{base: "100%", lg: "70%"}} p={{base: "10px",md:"60px" }} bg="white" alignItems="center">
         <HStack w="90%">
           <Icon as={MdDescription} w={12} h={12} color="purple.500" />
           <Box pl="32px">

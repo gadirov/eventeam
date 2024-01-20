@@ -20,7 +20,7 @@ const Contact = () => {
   const { errors } = formState;
   return (
     <>
-      <VStack w="50%" alignItems="center" p="60px" bg="white">
+      <VStack w={{base: "100%", lg: "70%"}} alignItems="center" p={{base: "10px",md:"60px" }} bg="white">
         <HStack w="90%">
           <Icon as={MdContactSupport} w={12} h={12} color="purple.500" />
           <Box pl="32px">
@@ -36,6 +36,7 @@ const Contact = () => {
           pt="40px"
           isInvalid={!!errors?.contact}
           mb={errors?.contact ? 0 : 6}
+          w="90%"
         >
           <FormLabel>Mobile Number</FormLabel>
 
@@ -57,7 +58,7 @@ const Contact = () => {
             {errors?.contact?.message as string}
           </FormErrorMessage>
         </FormControl>
-        <VStack alignItems="flex-start" w="100%">
+        <VStack alignItems="flex-start" w="90%">
           <FormLabel pt="40px">Facebook</FormLabel>
           <Input variant="flushed" placeholder="Facebook.com/" />
 

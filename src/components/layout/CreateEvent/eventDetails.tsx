@@ -33,7 +33,7 @@ const EventDetails = () => {
   };
   return (
     <>
-      <VStack bg="white" p="60px" w="50%">
+      <VStack bg="white" p={{base: "10px",md:"60px" }} w={{base: "100%", lg: "70%"}}>
         <HStack w="90%" alignItems="center">
           <Icon as={MdEvent} w={12} h={12} color="purple.500" />
           <Box pl="32px">
@@ -54,13 +54,13 @@ const EventDetails = () => {
           {!methods.watch("coverPhoto") && (
             <>
               <Image src="../assests/Outline.png" alt="Event outline" />
-              <Text as="b" fontSize="36px">
-                Drag and drop an image
+              <Text as="b" fontSize={{ base: "24px", md: "34px", sm: "28px"}}>
+                Select an image
               </Text>
             </>
           )}
           <Text pt="16px">
-            Or{" "}
+            {" "}
             <Controller
               name="coverPhoto"
               control={methods?.control}
