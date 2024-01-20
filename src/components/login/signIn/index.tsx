@@ -1,21 +1,23 @@
-import React from "react";
 import {
   Box,
   Button,
   FormControl,
   Heading,
+  Image,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import Header from "../Header.tsx";
+import React from "react";
 import Footer from "../Footer.tsx";
-import Password from "./Password.tsx";
+import Header from "../Header.tsx";
 import Email from "./Email.tsx";
+import Password from "./Password.tsx";
 // import SocialIcons from "./SocialIcons.tsx";
 import { FormProvider, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useSignIn } from "../../../hooks/useSignIn.ts";
-import { useTranslation } from "react-i18next";
+
 // import { DevTool } from "@hookform/devtools";
 
 const SignIn = () => {
@@ -26,10 +28,17 @@ const SignIn = () => {
       password: "",
     },
   });
-  const { submit } = useSignIn();
+  const { submit, loading } = useSignIn();
   const onSubmit = (data: any) => {
     submit(data);
   };
+  if (loading) {
+    return (
+      <Box position={"absolute"} w="100vw" h={"100vh"} bg="#fff" zIndex={99} display="flex" justifyContent="center" alignItems="center">
+        <Image top="50%" left="50%" src="../assests/login/loadingGif.gif"/>
+      </Box>
+    );
+  }
   return (
     <FormProvider {...methods}>
       <VStack
@@ -81,7 +90,12 @@ const SignIn = () => {
             </Button>
           </FormControl>
           <Text textAlign="center" color="#707070" fontSize="18px">
-          Don't have an account? <Link to="signup"><span style={{ color: "#7848f4", fontWeight:"600" }}>{t("signin.signup")}</span></Link>
+            Don't have an account?{" "}
+            <Link to="signup">
+              <span style={{ color: "#7848f4", fontWeight: "600" }}>
+                {t("signin.signup")}
+              </span>
+            </Link>
           </Text>
         </Box>
         <Footer />

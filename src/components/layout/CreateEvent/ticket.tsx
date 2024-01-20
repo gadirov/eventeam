@@ -12,15 +12,12 @@ import {
   FormErrorMessage,
 } from "@chakra-ui/react";
 import React from "react";
-import { Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { MdTypeSpecimen } from "react-icons/md";
 
-interface ITicketProps {
-  errors: any;
-  control: any;
-}
-
-const Ticket: React.FC<ITicketProps> = ({ errors, control }) => {
+const Ticket = () => {
+  const { control, formState } = useFormContext();
+  const { errors } = formState;
   return (
     <>
       <VStack w="50%" alignItems="center" p="60px" bg="white">
@@ -37,7 +34,7 @@ const Ticket: React.FC<ITicketProps> = ({ errors, control }) => {
 
         <FormControl
           w="90%"
-          isInvalid={!!errors?.freePaid}
+          isInvalid={!!errors?.ticketType}
           mb={errors?.location ? 0 : 6}
         >
           <FormLabel pt="40px" fontSize="20px">
@@ -47,7 +44,7 @@ const Ticket: React.FC<ITicketProps> = ({ errors, control }) => {
             </Text>
           </FormLabel>
           <Controller
-            name="freePaid"
+            name="ticketType"
             control={control}
             rules={{
               required: "This field is required!",
@@ -55,16 +52,16 @@ const Ticket: React.FC<ITicketProps> = ({ errors, control }) => {
             render={({ field }) => (
               <RadioGroup {...field} pt="10px">
                 <Stack direction="row">
-                  <Radio value="1" defaultChecked>
+                  <Radio value="FREE" defaultChecked>
                     Free
                   </Radio>
-                  <Radio value="2">Paid</Radio>
+                  <Radio value="PAID">Paid</Radio>
                 </Stack>
               </RadioGroup>
             )}
           />
           <FormErrorMessage mt="0.5rem">
-            {errors?.freePaid?.message}
+            {errors?.ticketType?.message as string}
           </FormErrorMessage>
         </FormControl>
       </VStack>

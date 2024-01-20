@@ -12,6 +12,7 @@ import Event from "./components/layout/event.tsx";
 import SearchEvent from "./components/layout/searchEvent.tsx";
 import  DetailView from "./components/detail/index.tsx";
 import Account from "./components/layout/account.tsx";
+import ErrorPage from "./components/layout/ErrorPage.tsx";
 function App() {
 
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="searchevent" element={<SearchEvent />}/>
             <Route path="account" element={<Account/>}/>
             <Route path=":detailviewid" element={<DetailView />}/>
+            <Route path='*' element={< ErrorPage />} />
         </Route>
         <Route path="/sign-in" element={<LayoutLogin />}>
           <Route index  element={<SignIn />}/> 

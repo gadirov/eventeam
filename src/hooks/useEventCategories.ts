@@ -2,14 +2,12 @@ import useSWR from "swr";
 import { fetcher } from "../config/axiosConfig.ts";
 import { swrOptions } from "../const.ts";
 
-
-export function useFilterData() {
+export function useEventCategories() {
   const { data, error, isLoading } = useSWR(
-    "/events-ms/api/v1/events/filter?",
+    "properties-ms/property/parent-key/categories",
     fetcher,
     swrOptions
   );
-
   return {
     data,
     error,

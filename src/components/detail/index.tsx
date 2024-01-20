@@ -42,12 +42,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { fetcher } from "../../config/axiosConfig.ts";
 import useSWR from "swr";
-
-const swrOptions = {
-  revalidateOnFocus: false,
-  revalidateOnReconnect: false,
-  shouldRetryOnError: false,
-};
+import { swrOptions } from "../../const.ts";
 
 // interface DetailData {
 //   eventName: string;
@@ -75,20 +70,21 @@ const DetailView = () => {
   const timeDifferenceInMinutes =
     endHour * 60 + endMinute - (startHour * 60 + startMinute);
 
-  //category part
-  const category = detailData?.body?.listOfCategories[0]?.keyword
-    .split(".")[1]
-    .toUpperCase();
+  
 
+    // console.log(d)
   return (
     <Box pt="100px">
-      <Box w="100%" margin="auto">
-        <Image
-          height="60vh"
-          w="100%"
-          src={`http://173.212.221.237/images/${detailData?.body?.coverPhoto}`}
-          alt=""
-        />
+      <Box  background="rgb(160,152,255)" 
+>
+        <Box w="82%" margin="auto">
+          <Image
+            height="70vh"
+            w="100%"
+            src={`http://173.212.221.237/images/${detailData?.body?.coverPhoto}`}
+            alt=""
+          />
+        </Box>
       </Box>
       <Box w="100%" borderRadius="20px" backgroundColor="white">
         <Box w="100%" margin="auto">
@@ -195,9 +191,10 @@ const DetailView = () => {
               </Box>
             </Box>
             <Box display="flex" flexDirection="column" gap="20px">
-              <Box display="flex" alignItems="center" gap="15px">
+              <Box display="flex" alignItems="center" gap="10px">
                 <FontAwesomeIcon fontSize="23px" icon={faListCheck} />
-                <Text fontSize="20px">{category}</Text>
+                {detailData?.body?.listOfCategories.map((item) => <Text fontSize="20px">{ item.name }</Text>)}
+                
               </Box>
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faLink} />
@@ -326,7 +323,7 @@ const DetailView = () => {
                   <MenuList>
                     <MenuItem minH="48px">
                       <FacebookShareButton
-                        url={"https://www.eventeam.az/"}
+                        url={"https://abb-bank.az/"}
                         hashtag="#abb_tech"
                       >
                         <FacebookIcon size={35} round />
@@ -334,13 +331,13 @@ const DetailView = () => {
                       <Text margin="12px">Facebook</Text>
                     </MenuItem>
                     <MenuItem minH="40px">
-                      <WhatsappShareButton url={"https://www.eventeam.az/"}>
+                      <WhatsappShareButton url={"https://abb-bank.az/"}>
                         <WhatsappIcon size={35} round />
                       </WhatsappShareButton>
                       <Text margin="12px">Whatsapp</Text>
                     </MenuItem>
                     <MenuItem minH="40px">
-                      <LinkedinShareButton url={"https://www.eventeam.az/"}>
+                      <LinkedinShareButton url={"https://abb-bank.az/"}>
                         <LinkedinIcon size={35} round />
                       </LinkedinShareButton>
                       <Text margin="12px">Linkedin</Text>

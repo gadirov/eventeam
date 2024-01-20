@@ -15,62 +15,47 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Cookies from "js-cookie";
 import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import * as Yup from "yup";
 import { useUserDetails } from "../../hooks/useUserDetails.ts";
-import axios from "axios";
-const schema = Yup.object().shape({
-  userName: Yup.string().required("userName is required"),
-  email: Yup.string().email("Invalid email").required("Email is required"),
-  birthday: Yup.string().required(),
-  gender: Yup.string().required(),
-  profilePhoto: Yup.string().required(),
-});
-interface IContactFormAccount {
-  userName: string;
-  email: string;
-  birthday: string;
-  gender: string;
-  profilePhoto: string;
-}
-
+import { accountSchema } from "../../schemas/AccountSchema.ts";
+import { IFormAccount } from "../../model.ts";
+import { put } from "../../config/axiosConfig.ts";
+import { useProfileImage } from "../../hooks/useProfileImage.ts";
 const Account = () => {
   const [editMode, setEditMode] = React.useState<boolean>(false);
 
   const id = Cookies.get("userId");
-  const { data } = useUserDetails(id);
+  const { data:userData } = useUserDetails(id);
 
   const onSubmit = (data) => {
-    axios
-      .put("http://173.212.221.237/user/user/change-personal-details", data)
-      .then((response) => {
-        console.log("Update successful", response.data);
-      })
-      .catch((error) => {
-        console.error("Error updating data", error);
-      });
+    
+       put("http://173.212.221.237:38765/user/user/change-personal-details", data)
+ 
     setEditMode(!editMode);
   };
   const {
     watch,
     reset,
     handleSubmit,
+    setValue,
     control,
     formState: { errors },
-  } = useForm<IContactFormAccount>({
-    resolver: yupResolver(schema),
+  } = useForm<IFormAccount>({
+    resolver: yupResolver(accountSchema),
   });
   useEffect(() => {
     reset({
-      email: data?.body?.userView?.email,
-      userName: data?.body?.userView?.userName,
-      birthday: data?.body?.userView?.birthday,
-      gender: data?.body?.userView?.gender,
-      profilePhoto: data?.body?.userView?.profilePhoto,
+      email: userData?.body?.userView?.email,
+      username: userData?.body?.userView?.userName,
+      dateOfBirth: userData?.body?.userView?.birthday,  
+      gender: userData?.body?.userView?.gender,
+      profilePhoto: userData?.body?.userView?.profilePhoto, 
     });
-  }, [data]);
+  }, [userData]);
   const handleEditProfile = () => {
     setEditMode(!editMode);
   };
+
+  const { submit } = useProfileImage(setValue);
   return (
     <Box py={"200px"}>
       <Container
@@ -79,8 +64,8 @@ const Account = () => {
         justifyContent={"space-between"}
       >
         <Flex gap={"24px"} direction={"column"} w={"562px"}>
-          <Heading fontSize={"45px"}>Organizer Profile</Heading>
-          <Text w={"467px"} color={"#667085"} fontWeight={"500"}>
+          <Heading fontSize={{base:"37px",md:"45px"}}>Organizer Profile</Heading>
+          <Text w={"100%"} color={"#667085"} fontWeight={"500"}>
             Create an organizer profile so attendees can browse all your events
             in one place
           </Text>
@@ -97,11 +82,12 @@ const Account = () => {
         >
           <form onSubmit={handleSubmit(onSubmit)}>
             <Flex
-              w={"700px"}
+              w={"100%"}
               justify={"space-between"}
-              gap={"80px"}
               align="center"
               mb={"40px"}
+              flexDirection={{base:"column",md:"row"}}
+              gap={{base:"0px",md:"80px"}}
             >
               <Box>
                 <Image
@@ -119,12 +105,14 @@ const Account = () => {
                   color="#707070"
                   fontSize="18px"
                   width="50%"
+                  
+
                 >
                   <Box
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
-                    w="100%"
+                    w="200px"
                     cursor="pointer"
                     textAlign="center"
                     _hover={{ color: "white" }}
@@ -134,7 +122,7 @@ const Account = () => {
                     fontWeight="600"
                     color="#fff"
                     bg="#7848F4"
-                    gap="5px"
+                    gap={"5px"}
                   >
                     <Image
                       src="../assests/login/photo.png"
@@ -158,6 +146,7 @@ const Account = () => {
                       display="none"
                       type="file"
                       accept="image/*"
+                      onChange={(e) =>submit(e?.target?.files?.[0])}
                     />
                   )}
                 />
@@ -167,16 +156,16 @@ const Account = () => {
               </FormControl>
             </Flex>
 
-            <FormControl mb={"40px"} isInvalid={!!errors?.userName}>
+            <FormControl mb={"40px"} isInvalid={!!errors?.username}>
               <FormLabel>USERNAME</FormLabel>
               <Controller
-                name="userName"
+                name="username"
                 control={control}
                 render={({ field }) => (
                   <Input isDisabled={!editMode} {...field} />
                 )}
               />
-              <FormErrorMessage>{errors?.userName?.message}</FormErrorMessage>
+              <FormErrorMessage>{errors?.username?.message}</FormErrorMessage>
             </FormControl>
             <FormControl mb={"40px"} isInvalid={!!errors.email}>
               <FormLabel>EMAIL</FormLabel>
@@ -189,16 +178,16 @@ const Account = () => {
               />
               <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
             </FormControl>
-            <FormControl mb={"40px"} isInvalid={!!errors.birthday}>
+            <FormControl mb={"40px"} isInvalid={!!errors.dateOfBirth}>
               <FormLabel>Birhtday</FormLabel>
               <Controller
-                name="birthday"
+                name="dateOfBirth"
                 control={control}
                 render={({ field }) => (
                   <Input isDisabled={!editMode} {...field} />
                 )}
               />
-              <FormErrorMessage>{errors?.birthday?.message}</FormErrorMessage>
+              <FormErrorMessage>{errors?.dateOfBirth?.message}</FormErrorMessage>
             </FormControl>
             <FormControl mb={"40px"} isInvalid={!!errors.gender}>
               <FormLabel>gender</FormLabel>

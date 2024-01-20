@@ -10,15 +10,14 @@ import {
   FormErrorMessage,
 } from "@chakra-ui/react";
 import React from "react";
-import { Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { MdLocationOn } from "react-icons/md";
 
-interface ILocationProps {
-  errors: any;
-  control: any;
-}
 
-const Location: React.FC<ILocationProps> = ({ errors, control }) => {
+
+const Location = () => {
+  const { control, formState } = useFormContext();
+  const {errors} = formState;
   return (
     <>
       <VStack w="50%" alignItems="center" p="60px" bg="white">
@@ -48,7 +47,7 @@ const Location: React.FC<ILocationProps> = ({ errors, control }) => {
             render={({ field }) => <Input {...field} placeholder="Location" />}
           />
           <FormErrorMessage mt="0.5rem">
-            {errors?.location?.message}
+            {errors?.location?.message as string}
           </FormErrorMessage>
         </FormControl>
         <Input
