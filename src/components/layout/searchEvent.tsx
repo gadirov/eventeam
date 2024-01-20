@@ -8,23 +8,18 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import CardItem from "../Card/CartdItem.tsx";
-import { useDetails } from "../../hooks/useDetails.ts";
 import useSWR from "swr";
 import { fetcher } from "../../config/axiosConfig.ts";
+import { swrOptions } from "../../const.ts";
+import { useDetails } from "../../hooks/useDetails.ts";
+import CardItem from "../Card/CartdItem.tsx";
 
-const swrOptions = {
-  revalidateOnFocus: false,
-  revalidateOnReconnect: false,
-  shouldRetryOnError: false,
-};
 
 export default function SearchEvent() {
   const [searchField, setSearchField] = React.useState<string>("");
   const [searchData, setsearchData] = useState<any[]>([]);
   const [filterValue, setFilterValue] = React.useState<string>();
   const [nameOfInput, setNameOfInput] = React.useState<string>();
-
   const { data: filteredData, isLoading: loadingFilter } = useSWR(
     `/events-ms/api/v1/events/filter?${nameOfInput}=${filterValue}`,
     fetcher,
@@ -46,7 +41,8 @@ export default function SearchEvent() {
   // Filter button click event handler
   const handleClearFilter = () => {
     setsearchData(data?.body);
-    setSearchField("");
+    setSearchField(""); 
+    window.location.reload();
   };
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

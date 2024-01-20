@@ -67,7 +67,7 @@ const Header = () => {
     >
       <Link to="/">
         <Image
-          src="./assests/logo.png"
+          src="../assests/logo.png"
           alt="Dan Abramov"
           w="180px"
           h="40px"
@@ -173,7 +173,7 @@ const Header = () => {
                   <Image
                     borderRadius="full"
                     boxSize="150px"
-                    src={`http://173.212.221.237/images/${data?.body.userView.profilePhoto}`}
+                    src={`http://173.212.221.237/images/${data?.body?.userView?.profilePhoto}`}
                     alt="Profile Image"
                     w={"45px"}
                     height={"45px"}

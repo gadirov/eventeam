@@ -12,4 +12,8 @@ export enum Months {
   November = '11',
   December = "12"
 }
-
+export const swrOptions = {
+  revalidateOnFocus: false,
+  revalidateOnReconnect: false,
+  shouldRetryOnError: false,
+};
