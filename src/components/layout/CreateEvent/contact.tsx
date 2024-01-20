@@ -12,15 +12,12 @@ import {
   FormErrorMessage,
 } from "@chakra-ui/react";
 import React from "react";
-import { Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { MdContactSupport } from "react-icons/md";
 
-interface IContactProps {
-  errors: any;
-  control: any;
-}
-
-const Contact: React.FC<IContactProps> = ({ errors, control }) => {
+const Contact = () => {
+  const { control, formState } = useFormContext();
+  const { errors } = formState;
   return (
     <>
       <VStack w="50%" alignItems="center" p="60px" bg="white">
@@ -57,7 +54,7 @@ const Contact: React.FC<IContactProps> = ({ errors, control }) => {
           />
 
           <FormErrorMessage mt="0.5rem">
-            {errors?.contact?.message}
+            {errors?.contact?.message as string}
           </FormErrorMessage>
         </FormControl>
         <VStack alignItems="flex-start" w="100%">

@@ -1,13 +1,10 @@
-import {
-  Box,
-  Button,
-  Select,
-  SimpleGrid
-} from "@chakra-ui/react";
+import { Box, Button, Select, SimpleGrid } from "@chakra-ui/react";
+import Lottie from "lottie-react";
 import React, { useEffect, useState } from "react";
 import { useUpcoming } from "../../../hooks/useUpcoming.ts";
 import UpcomingPageCardItemSkeleton from "../../Card/CardItemSkeleton.tsx";
 import UpcomingPageCardItem from "../../Card/UpcomingPageCardItem.tsx";
+import DataNotFound from "..//..//..//dataNotFound.json";
 
 export default function UpcomingPage() {
   const [selectValue, setSelectValue] = useState<string>("upcoming");
@@ -20,11 +17,10 @@ export default function UpcomingPage() {
   };
 
   // request part section
-  const { data, isLoading } = useUpcoming(selectValue);
-
+  const { data, isLoading, error } = useUpcoming(selectValue);
   useEffect(() => {
     setallData(data);
-  }, [data, isLoading]);
+  }, [data, isLoading, error]);
 
   const changeHandlerSelect = (e: {
     target: { value: React.SetStateAction<string> };
@@ -36,34 +32,37 @@ export default function UpcomingPage() {
   return (
     <Box
       display="flex"
-      p="120px 0px"
+      p="120px 0px "
       justifyContent="center"
       flexDirection="column"
       w="100vw"
     >
       <Box display="flex" justifyContent="center" mb="70px">
-      <Select
+        <Select
           onChange={changeHandlerSelect}
           fontFamily="revert-layer"
           fontSize="25px"
           fontStyle="normal"
           fontWeight="500"
-          color="#8F64FF"
-          bg="white"
+          bg="#8F64FF"
           p="5px"
-          borderRadius="20px"
+          borderRadius="10px"
           cursor="pointer"
-          border="4px solid #8F64FF"
+          border="1px solid black"
           w="17vw"
         >
-          <option  value="upcoming">Upcoming</option>
+          <option value="upcoming">Upcoming</option>
           <option value="popular-events/v2">Popular events</option>
           <option value="friends-event-list">Friends event list</option>
           <option value="going">Going</option>
           <option value="interested">Interested</option>
         </Select>
       </Box>
-      {isLoading ? (
+      {data?.message === "NOT_FOUND" ? (
+        <Box w="100vw" display="flex" justifyContent="center" ml="30px" mt="-20px" height="500px">
+          <Lottie animationData={DataNotFound} />
+        </Box>
+      ) : isLoading ? (
         <Box w="100vw" display="flex">
           <SimpleGrid columns={[1, 2]} spacing="60px" margin="0 auto">
             {Array.from({ length: next }).map((_, index) => (
@@ -80,6 +79,7 @@ export default function UpcomingPage() {
           </SimpleGrid>
         </Box>
       )}
+
       {next < allData?.body?.listOfEvents?.length && (
         <Button
           mt="30px"

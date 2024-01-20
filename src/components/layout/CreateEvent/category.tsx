@@ -16,20 +16,21 @@ import {
   Checkbox,
   CheckboxGroup,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { useFormContext } from "react-hook-form";
 import { MdCategory } from "react-icons/md";
+import { useEventCategories } from "../../../hooks/useEventCategories.ts";
 
-interface ICategoryProps {
-  errors: any;
-  control: any;
-}
-
-const Category: React.FC<ICategoryProps> = ({ errors, control }) => {
+const Category = () => {
+  const methods = useFormContext();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   const handleCategoryChange = (selected: string[]) => {
     setSelectedCategories(selected);
+    const obj = selectedCategories.map((item) =>{ return {"keyword": `category.${item}`}} )
+    console.log(obj);
+    methods.setValue("listOfCategories", obj)
   };
 
   const handleRemoveCategory = (category) => {
@@ -37,27 +38,12 @@ const Category: React.FC<ICategoryProps> = ({ errors, control }) => {
     setSelectedCategories(updatedCategories);
   };
 
-  const allCategories = [
-    "Education",
-    "Courses",
-    "Discussion clubs",
-    "Training and master-classes",
-    "Conversation clubs",
-    "Online Education",
-    "Sport",
-    "Business",
-    "Music",
-    "Charity",
-    "Auto",
-    "Entertainment",
-    "Health & Beauty",
-    "Travel",
-    "Food and Beverage by Drinking Team",
-    "Art and Culture",
-    "For children",
-    "Other",
-  ];
+  const { data } = useEventCategories();
 
+  const datas = useMemo(() => {
+    const array = data?.body?.map((item) => item.name)
+    return array;
+  }, [data])
   return (
     <>
       <VStack w="50%" alignItems="center" bg="white" p="60px">
@@ -104,11 +90,13 @@ const Category: React.FC<ICategoryProps> = ({ errors, control }) => {
                 onChange={handleCategoryChange}
               >
                 <VStack align="start">
-                  {allCategories.map((category) => (
-                    <Checkbox key={category} value={category}>
-                      {category}
-                    </Checkbox>
-                  ))}
+                  {datas?.map((category, index) => {
+                   return (
+                    <Checkbox key={index} value={category}>
+                    {category}
+                  </Checkbox>
+                   )
+              })}
                 </VStack>
               </CheckboxGroup>
             </ModalBody>
@@ -124,9 +112,9 @@ const Category: React.FC<ICategoryProps> = ({ errors, control }) => {
           </ModalContent>
         </Modal>
         <VStack w="90%" mt="30px" align="start">
-          {selectedCategories.map((category) => (
+          {selectedCategories?.map((category, index) => (
             <HStack w="60%" justifyContent="space-between">
-              <Text key={category}>{category}</Text>
+              <Text key={index}>{category}</Text>
               <Button
                 bg="transparent"
                 _hover={{ bg: "transparent" }}
