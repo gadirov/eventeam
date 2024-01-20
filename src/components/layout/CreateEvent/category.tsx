@@ -24,13 +24,18 @@ import { useEventCategories } from "../../../hooks/useEventCategories.ts";
 const Category = () => {
   const methods = useFormContext();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
-  const handleCategoryChange = (selected: string[]) => {
-    setSelectedCategories(selected);
-    const obj = selectedCategories.map((item) =>{ return {"keyword": item }} )
-    console.log(obj);
+  const { data } = useEventCategories()
+  ;
+
+  useEffect(()=>{
+    const obj = selectedCategories.map((item)=>{return{"keyword": item}})
     methods.setValue("listOfCategories", obj)
+  }, [selectedCategories])
+
+  const handleCategoryChange = (selected) => {
+    setSelectedCategories(selected);
   };
 
   const handleRemoveCategory = (category) => {
@@ -38,11 +43,8 @@ const Category = () => {
     setSelectedCategories(updatedCategories);
   };
 
-  const { data } = useEventCategories();
-
   const datas = useMemo(() => {
-    const array = data?.body?.map((item) => item.name)
-    return array;
+    return data?.body;
   }, [data])
   return (
     <>
@@ -90,10 +92,10 @@ const Category = () => {
                 onChange={handleCategoryChange}
               >
                 <VStack align="start">
-                  {datas?.map((category, index) => {
+                  {datas?.map((category) => {
                    return (
-                    <Checkbox key={index} value={category}>
-                    {category}
+                    <Checkbox key={category.id} value={category.keyword}>
+                    {category.name}
                   </Checkbox>
                    )
               })}
@@ -114,7 +116,7 @@ const Category = () => {
         <VStack w="90%" mt="30px" align="start">
           {selectedCategories?.map((category, index) => (
             <HStack w="60%" justifyContent="space-between">
-              <Text key={index}>{category}</Text>
+              <Text key={index}>{(category as string)?.split(".")[1].charAt(0).toUpperCase()+(category as string)?.split(".")[1].slice(1)}</Text>
               <Button
                 bg="transparent"
                 _hover={{ bg: "transparent" }}
