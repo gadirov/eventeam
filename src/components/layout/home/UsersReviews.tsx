@@ -16,7 +16,7 @@ const UsersReviews: React.FC = () => {
   return (
     <Box
       display="flex"
-      padding={{ base: "0px", md: "120px 0px" }}
+      padding={{ base: "50px 0px", md: "120px 0px" }}
       justifyContent="center"
       alignItems="center"
       gap="24px"

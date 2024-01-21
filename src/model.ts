@@ -80,5 +80,4 @@ export interface IEventProps {
   idEvent: string;
   coverPhoto: string;
   eventName: string;
-  size: boolean;
 }

@@ -75,7 +75,7 @@ const DetailView = () => {
       <Box background="rgb(160,152,255)">
         <Box w="82%" margin="auto">
           <Image
-            height="70vh"
+            height={{ base: "30vh", md: "70vh " }}
             w="100%"
             src={`http://173.212.221.237/images/${detailData?.body?.coverPhoto}`}
             alt=""
@@ -146,7 +146,7 @@ const DetailView = () => {
             </Box>
           </Box>
           <Divider border="1px solid #d4d4d4  " />
-          <Box p="30px 0px" display="flex" gap="150px" margin="0 50px">
+          <Box p="30px 0px" display="flex" flexDirection={{ base: "column", md: "row" }} gap={{ base: "50px", md: "150px" }} margin="0 50px">
             <Box display="flex" flexDirection="column" gap="20px">
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faCalendar} />
@@ -164,9 +164,12 @@ const DetailView = () => {
                   Baki Kinoteatrı
                 </Text>
               </Box>
-              <Box display="flex" alignItems="center" gap="15px">
-                <FontAwesomeIcon fontSize="23px" icon={faUserGroup} />
-                <Box display="flex">
+              <Box display="flex" flexDirection={{ base: "column", md: "row" }} gap="15px">
+                <Box textAlign={{ made: "start", md: "center" }}>
+                  <FontAwesomeIcon fontSize="23px" icon={faUserGroup} />
+
+                </Box>
+                <Box display="flex" >
                   <Text color="gray" fontSize="20px">
                     {" "}
                     Min:{" "}
@@ -236,7 +239,7 @@ const DetailView = () => {
           </Box>
 
           <Box
-            p="120px 0px"
+            p={{ base: "40px 0px", md: "120px 0px" }}
             display="flex"
             gap="80px"
             w="100vw"
@@ -246,17 +249,17 @@ const DetailView = () => {
               <Heading textAlign="center" fontSize="40px">
                 Attended
               </Heading>
-              <Box p="30px 0px" display="flex" gap="120px">
+              <Box p="30px 0px" display="flex" gap={{ base: "19px", md: "120px" }}>
                 <Box>
                   <Text
                     textAlign="center"
                     color="#56d5f5"
-                    fontSize="40px"
+                    fontSize={{base:"37px",md:"40px"}}
                     fontWeight="500"
                   >
                     {detailData?.body?.usersList?.goingCount}
                   </Text>
-                  <Text color="gray" fontSize="25px">
+                  <Text color="gray" fontSize={{base:"20",md:"25px"}}>
                     GOING
                   </Text>
                 </Box>
@@ -264,12 +267,13 @@ const DetailView = () => {
                   <Text
                     textAlign="center"
                     color="#56d5f5"
-                    fontSize="40px"
+                    
+                    fontSize={{base:"37px",md:"40px"}}
                     fontWeight="500"
                   >
                     {detailData?.body?.usersList?.interestedCount}
                   </Text>
-                  <Text color="gray" fontSize="25px">
+                  <Text color="gray"  fontSize={{base:"20",md:"25px"}}>
                     INTERESTED
                   </Text>
                 </Box>
@@ -277,12 +281,13 @@ const DetailView = () => {
                   <Text
                     textAlign="center"
                     color="#56d5f5"
-                    fontSize="40px"
+                    
                     fontWeight="500"
+                    fontSize={{base:"37px",md:"40px"}}
                   >
                     0
                   </Text>
-                  <Text color="gray" fontSize="25px">
+                  <Text color="gray" fontSize={{base:"20",md:"25px"}}>
                     INVITED
                   </Text>
                 </Box>
@@ -290,10 +295,11 @@ const DetailView = () => {
             </Box>
           </Box>
           <Box
-            p="0 100px"
+            p={{base:"0 50px",md:"0 100px"}}
             mt="-50px"
             display="flex"
-            gap="80px"
+            flexDirection={{base:"column",md:"row"}}
+            gap={{base:"35px",md:"80px"}}
             w="100vw"
             justifyContent="space-around"
           >
@@ -302,6 +308,7 @@ const DetailView = () => {
               <Box p="30px 0px">
                 <Menu>
                   <MenuButton
+                  w={{base:"100%",md:"100%"}}
                     size="lg"
                     gap="10px"
                     p="32px 60px 32px 20px"
@@ -354,9 +361,11 @@ const DetailView = () => {
                     p="32px 80px 32px 10px"
                     backgroundColor="#ededed"
                     borderRadius="10px"
+                  w={{base:"100%",md:"100%"}}
+
                   >
-                    <Box backgroundColor="white" p="15px" borderRadius="15px">
-                      <FontAwesomeIcon icon={faPhone} color="#74C0FC" />
+                    <Box backgroundColor="white" p="15px" ml={{base:"-30px",md:"0px"}} mr={{base:"30px",md:"0px"}} borderRadius="15px">
+                      <FontAwesomeIcon  icon={faPhone} color="#74C0FC" />
                     </Box>
                     <Text color="black">{detailData?.body?.mobileNumber} </Text>
                   </Button>
@@ -379,7 +388,7 @@ const DetailView = () => {
           </Box>
         </Box>
       </Box>
-    </Box>
+    </Box >
   );
 };
 
