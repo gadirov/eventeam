@@ -1,4 +1,13 @@
-import { Box, Button, Select, SimpleGrid } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  SimpleGrid,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+} from "@chakra-ui/react";
 import Lottie from "lottie-react";
 import React, { useEffect, useState } from "react";
 import { useUpcoming } from "../../../hooks/useUpcoming.ts";
@@ -10,23 +19,73 @@ export default function UpcomingPage() {
   const [selectValue, setSelectValue] = useState<string>("upcoming");
   const imagePerRow = 2;
   const [next, setNext] = useState(imagePerRow);
-  const [allData, setallData] = useState<any>();
+  const [allData, setAllData] = useState<any>();
 
   const handleMoreImage = () => {
     setNext(next + imagePerRow);
   };
 
-  // request part section
-  const { data, isLoading, error } = useUpcoming(selectValue);
-  useEffect(() => {
-    setallData(data);
-  }, [data, isLoading, error]);
+  const { data, isLoading } = useUpcoming(selectValue);
 
-  const changeHandlerSelect = (e: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setSelectValue(e.target.value);
-    setallData(data);
+  useEffect(() => {
+    setAllData(data);
+  }, [data, isLoading]);
+
+  const changeHandlerSelect = (index: number) => {
+    const values = [
+      "upcoming",
+      "popular-events/v2",
+      "friends-event-list",
+      "going",
+      "interested",
+    ];
+    setSelectValue(values[index]);
+    setAllData(data);
+  };
+
+  const renderTabPanelContent = () => {
+    if (data?.message === "NOT_FOUND") {
+      return (
+        <Box
+          w="100vw"
+          display="flex"
+          justifyContent="center"
+          ml="30px"
+          mt="-20px"
+          height="500px"
+        >
+          <Lottie animationData={DataNotFound} />
+        </Box>
+      );
+    } else if (isLoading) {
+      return (
+        <Box w="100vw" display="flex">
+          <SimpleGrid
+            columns={{ base: 1, md: 2 }}
+            spacing="60px"
+            margin="0 auto"
+          >
+            {Array.from({ length: next }).map((_, index) => (
+              <UpcomingPageCardItemSkeleton key={index} />
+            ))}
+          </SimpleGrid>
+        </Box>
+      );
+    } else {
+      return (
+        <Box w="100vw" display="flex">
+          <SimpleGrid
+            columns={{ base: 1, md: 2 }}
+            spacing="60px"
+            margin="0 auto"
+          >
+            {allData?.body?.listOfEvents?.slice(0, next)?.map((event) => (
+              <UpcomingPageCardItem {...event} key={event.idEvent} />
+            ))}
+          </SimpleGrid>
+        </Box>
+      );
+    }
   };
 
   return (
@@ -35,51 +94,24 @@ export default function UpcomingPage() {
       p="120px 0px "
       justifyContent="center"
       flexDirection="column"
-      w="100vw"
     >
-      <Box display="flex" justifyContent="center" mb="70px" >
-      <Select
-          onChange={changeHandlerSelect}
-          fontFamily="revert-layer"
-          fontSize="25px"
-          fontStyle="normal"
-          fontWeight="500"
-          color="black"
-          bg="#7848F4"
-          p="5px"
-          borderRadius="10px"
-          cursor="pointer"
-          border="4px solid #8F64FF"
-          w="200px"
-        >
-          <option value="upcoming">Upcoming</option>
-          <option value="popular-events/v2">Popular events</option>
-          <option value="friends-event-list">Friends event list</option>
-          <option value="going">Going</option>
-          <option value="interested">Interested</option>
-        </Select>
+      <Box display="flex" justifyContent="center" mb="70px">
+        <Tabs onChange={(index) => changeHandlerSelect(index)}>
+          <TabList w="69%" m="0 auto" fontSize="32px">
+            <Tab fontSize="21px">Upcoming</Tab>
+            <Tab fontSize="21px">Popular events</Tab>
+            <Tab fontSize="21px">Friends event list</Tab>
+            <Tab fontSize="21px">Going</Tab>
+            <Tab fontSize="21px">Interested</Tab>
+          </TabList>
+
+          <TabPanels>
+            {[0, 1, 2, 3, 4].map((index) => (
+              <TabPanel key={index}>{renderTabPanelContent()}</TabPanel>
+            ))}
+          </TabPanels>
+        </Tabs>
       </Box>
-      {data?.message === "NOT_FOUND" ? (
-        <Box w="100vw" display="flex" justifyContent="center" ml="30px" mt="-20px" height="500px">
-          <Lottie animationData={DataNotFound} />
-        </Box>
-      ) : isLoading ? (
-        <Box w="100vw" display="flex">
-          <SimpleGrid columns={{base:1,md:2}} spacing="60px" margin="0 auto">
-            {Array.from({ length: next }).map((_, index) => (
-              <UpcomingPageCardItemSkeleton key={index} />
-            ))}
-          </SimpleGrid>
-        </Box>
-      ) : (
-        <Box w="100vw" display="flex">
-          <SimpleGrid columns={{base:1,md:2}} spacing="60px" margin="0 auto">
-            {allData?.body?.listOfEvents?.slice(0, next)?.map((event) => (
-              <UpcomingPageCardItem {...event} key={event.idEvent} />
-            ))}
-          </SimpleGrid>
-        </Box>
-      )}
 
       {next < allData?.body?.listOfEvents?.length && (
         <Button

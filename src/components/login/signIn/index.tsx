@@ -34,18 +34,23 @@ const SignIn = () => {
   };
   if (loading) {
     return (
-      <Box position={"absolute"} w="100vw" h={"100vh"} bg="#fff" zIndex={99} display="flex" justifyContent="center" alignItems="center">
-        <Image top="50%" left="50%" src="../assests/login/loadingGif.gif"/>
+      <Box
+        position={"absolute"}
+        w="100vw"
+        h={"100vh"}
+        bg="#fff"
+        zIndex={99}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Image top="50%" left="50%" src="../assests/login/loadingGif.gif" />
       </Box>
     );
   }
   return (
     <FormProvider {...methods}>
-      <VStack
-        minH="100vh"
-        justifyContent="space-between"
-        p="10px 0"
-      >
+      <VStack minH="100vh" justifyContent="space-between" p="10px 0">
         <Header />
         <Box w="54%" display="flex" flexDirection="column" gap="30px">
           <Heading

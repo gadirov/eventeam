@@ -6,7 +6,6 @@ import { Box, Text, Image } from "@chakra-ui/react";
 
 const UsersReviews: React.FC = () => {
   const settings = {
-    // dots: true,
     infinite: true,
     speed: 2000,
     slidesToShow: 1,
@@ -21,7 +20,6 @@ const UsersReviews: React.FC = () => {
       justifyContent="center"
       alignItems="center"
       gap="24px"
-
     >
       <Box>
         <Image
@@ -31,7 +29,11 @@ const UsersReviews: React.FC = () => {
           alt=""
         />
       </Box>
-      <Box overflow={"hidden"} display="flex" flexDirection="column" alignItems="center"
+      <Box
+        overflow={"hidden"}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
         gap="0px"
       >
         <Box
@@ -51,10 +53,7 @@ const UsersReviews: React.FC = () => {
             What our clients say
           </Text>
         </Box>
-        <Box
-          width={{ base: "100%", md: "780px" }}
-
-        >
+        <Box width={{ base: "100%", md: "780px" }}>
           <Slider {...settings}>
             <Box p="0px 20px">
               <Text

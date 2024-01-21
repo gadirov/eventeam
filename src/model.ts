@@ -16,17 +16,14 @@ export interface IDependencies {
   axiosInstance: AxiosInstance;
   httpClient: IHttpClient;
   axiosService: IAxiosService;
-  //  pushNotificationService?: IPushNotificationService;
 }
 
 export interface IEventData {
-    id: number;
-    title: string;
-    date: string; 
-    imgUrl: string;
+  id: number;
+  title: string;
+  date: string;
+  imgUrl: string;
 }
-
-
 
 //Premium Event Requests and Search Event
 export interface ApiResponse {
@@ -35,14 +32,14 @@ export interface ApiResponse {
   body: Event[];
 }
 
-export interface Event {
-  idEvent: string,
-  coverPhoto: string,
-  eventName: string,
-  startDate: string,
-  startTime: string,
-  endDate: string,
-  endTime: string
+export interface IEvent {
+  idEvent: string;
+  coverPhoto: string;
+  eventName: string;
+  startDate: string;
+  startTime: string;
+  endDate: string;
+  endTime: string;
 }
 
 export interface IFormAccount {
@@ -57,6 +54,25 @@ export interface IContactFormData {
   name: string;
   email: string;
   phone: string;
-  subject: string,
-  message: string
+  subject: string;
+  message: string;
+}
+
+export interface ICategory {
+  count: number;
+  categoryName: string;
+}
+export interface IUpcomingPageCardItem {
+  idEvent: string;
+  ticketType: string;
+  eventName: string;
+  startDate: string;
+  startTime: string;
+  coverPhoto: string;
+}
+
+export interface IEventProps {
+  idEvent: string;
+  coverPhoto: string;
+  eventName: string;
 }

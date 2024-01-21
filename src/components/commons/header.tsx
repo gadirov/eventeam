@@ -127,21 +127,18 @@ const Header = () => {
           <Link to="/searchevent">SearchEvent</Link>
         </ListItem>
       </UnorderedList>
-      <Box display="flex" alignItems="center" gap={{base:"0px",md:"20px"}}>
+      <Box display="flex" alignItems="center" gap={{ base: "0px", md: "20px" }}>
         {/* Hamburger Menu */}
-        <Box
-          display={{ base: "flex", md: "none" }}
-        >
-          <Menu  >
+        <Box display={{ base: "flex", md: "none" }}>
+          <Menu>
             <MenuButton
               as={IconButton}
-              aria-label='Options'
+              aria-label="Options"
               icon={<HamburgerIcon />}
-              variant='outline'
+              variant="outline"
             />
             <MenuList>
               <MenuItem
-
                 _hover={{
                   color: "#66f5ff",
                   transition: "color 0.5s",
@@ -150,7 +147,6 @@ const Header = () => {
                 cursor="pointer"
               >
                 <Link to="/about">{t("About")}</Link>
-
               </MenuItem>
               <MenuItem
                 _hover={{

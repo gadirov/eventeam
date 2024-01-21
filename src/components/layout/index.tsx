@@ -4,9 +4,7 @@ import Footer from "../commons/footer.tsx";
 import { Outlet } from "react-router-dom";
 
 
-
 const Layout = () => {
-  
   return (
     <>
       <Header/>

@@ -32,7 +32,7 @@ const Category = () => {
       return { keyword: item };
     });
     methods.setValue("listOfCategories", obj);
-  }, [selectedCategories]);
+  }, [selectedCategories, methods]);
 
   const handleCategoryChange = (selected) => {
     setSelectedCategories(selected);
@@ -48,13 +48,18 @@ const Category = () => {
   }, [data]);
 
   const categoryString = (str) => {
-      const str1=str.split('.')[1]
-      return str1.charat(0).toUpperCase()+str1.splice(1)
-  } 
+    const str1 = str.split(".")[1];
+    return str1.charAt(0).toUpperCase() + str1.slice(1);
+  };
 
   return (
     <>
-      <VStack w={{base: "100%", lg: "70%"}} alignItems="center" bg="white" p={{base: "10px",md:"60px"}}>
+      <VStack
+        w={{ base: "100%", lg: "70%" }}
+        alignItems="center"
+        bg="white"
+        p={{ base: "10px", md: "60px" }}
+      >
         <HStack w="90%" onClick={onOpen} cursor="pointer">
           <Icon as={MdCategory} w={12} h={12} color="purple.500" />
           <Box pl="32px">
@@ -122,9 +127,7 @@ const Category = () => {
         <VStack w="90%" mt="30px" align="start">
           {selectedCategories?.map((category, index) => (
             <HStack w="60%" justifyContent="space-between">
-              <Text key={index}>
-                {categoryString(category)}
-              </Text>
+              <Text key={index}>{categoryString(category)}</Text>
               <Button
                 bg="transparent"
                 _hover={{ bg: "transparent" }}

@@ -1,16 +1,17 @@
 import { Box, Image, Text, Heading, Button, Divider } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDetails } from "../../../hooks/useDetails.ts";
-import { Event } from "../../../model.ts";
+import { IEvent } from "../../../model.ts";
 import { Link } from "react-router-dom";
+
 export default function FeaturedEvents() {
-  const [datas, setDatas] = useState<Event>();
+  const [datas, setDatas] = useState<IEvent>();
   const { data } = useDetails();
   useEffect(() => {
-    setDatas(data?.body[2]);
+    setDatas(data?.body[0]);
   }, [data]);
   return (
-    <Box m="10px 0px 120px 0" >
+    <Box m="10px 0px 120px 0">
       <Divider />
       <Box w="75%" margin="auto" padding="70px 0px">
         <Box
@@ -19,7 +20,6 @@ export default function FeaturedEvents() {
           justifyContent="center"
           alignItems="center"
           gap={{ base: " 80px", md: "130px" }}
-          
         >
           <Box
             display="flex"
@@ -42,7 +42,6 @@ export default function FeaturedEvents() {
                   fontWeight="600"
                   lineHeight="24px"
                   margin={{ base: " 0px 30px", md: "0px" }}
-
                 >
                   FEATURED EVENT
                 </Text>
@@ -62,7 +61,6 @@ export default function FeaturedEvents() {
                   fontWeight="500"
                   lineHeight="46px"
                   margin={{ base: " 0px 30px", md: "0px" }}
-
                 >
                   {datas?.eventName}
                 </Heading>
@@ -74,7 +72,6 @@ export default function FeaturedEvents() {
                   fontWeight="500"
                   lineHeight="24px"
                   margin={{ base: " 0px 30px", md: "0px" }}
-
                 >
                   `Embarking on a Soulful Journey: Candid Conversations on
                   Spirituality and Life's True Essence "{datas?.eventName}"`
@@ -95,7 +92,6 @@ export default function FeaturedEvents() {
                   _hover={{ background: "#8F64FF" }}
                   cursor="pointer"
                   margin={{ base: " 0px 30px", md: "0px" }}
-
                 >
                   Learn More
                 </Button>
@@ -103,7 +99,12 @@ export default function FeaturedEvents() {
             </Box>
           </Box>
           <Box boxShadow={"0px 15px 20px gray;"}>
-            <Image width={"750px"} height="60vh" objectPosition={"center"} src={`http://173.212.221.237/images/${datas?.coverPhoto}`} />
+            <Image
+              width={"750px"}
+              height="60vh"
+              objectPosition={"center"}
+              src={`http://173.212.221.237/images/${datas?.coverPhoto}`}
+            />
           </Box>
         </Box>
       </Box>
@@ -111,12 +112,3 @@ export default function FeaturedEvents() {
     </Box>
   );
 }
-
-
-
-
-
-
-
-
-
