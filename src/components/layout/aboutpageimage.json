@@ -30,5 +30,9 @@
     {
         "id": 8,
         "src": "./assests/UpcomingEvents-images/Voleyball-Event.jpg"
+    },
+    {
+        "id": 9,
+        "src": "./assests/UpcomingEvents-images/Joseph-Abbas.jpg"
     }
 ]

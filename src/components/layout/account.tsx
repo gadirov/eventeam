@@ -20,16 +20,15 @@ import { accountSchema } from "../../schemas/AccountSchema.ts";
 import { IFormAccount } from "../../model.ts";
 import { put } from "../../config/axiosConfig.ts";
 import { useProfileImage } from "../../hooks/useProfileImage.ts";
+
+
 const Account = () => {
   const [editMode, setEditMode] = React.useState<boolean>(false);
-
   const id = Cookies.get("userId");
-  const { data:userData } = useUserDetails(id);
+  const { data: userData } = useUserDetails(id);
 
   const onSubmit = (data) => {
-    
-       put("http://173.212.221.237:38765/user/user/change-personal-details", data)
- 
+    put("http://173.212.221.237:38765/user/user/change-personal-details", data);
     setEditMode(!editMode);
   };
   const {
@@ -46,15 +45,15 @@ const Account = () => {
     reset({
       email: userData?.body?.userView?.email,
       username: userData?.body?.userView?.userName,
-      dateOfBirth: userData?.body?.userView?.birthday,  
+      dateOfBirth: userData?.body?.userView?.birthday,
       gender: userData?.body?.userView?.gender,
-      profilePhoto: userData?.body?.userView?.profilePhoto, 
+      profilePhoto: userData?.body?.userView?.profilePhoto,
     });
-  }, [userData]);
+  }, [userData, reset]);
   const handleEditProfile = () => {
     setEditMode(!editMode);
   };
-
+  //Image part
   const { submit } = useProfileImage(setValue);
   return (
     <Box py={"200px"}>
@@ -64,7 +63,9 @@ const Account = () => {
         justifyContent={"space-between"}
       >
         <Flex gap={"24px"} direction={"column"} w={"562px"}>
-          <Heading fontSize={{base:"37px",md:"45px"}}>Organizer Profile</Heading>
+          <Heading fontSize={{ base: "37px", md: "45px" }}>
+            Organizer Profile
+          </Heading>
           <Text w={"100%"} color={"#667085"} fontWeight={"500"}>
             Create an organizer profile so attendees can browse all your events
             in one place
@@ -86,8 +87,8 @@ const Account = () => {
               justify={"space-between"}
               align="center"
               mb={"40px"}
-              flexDirection={{base:"column",md:"row"}}
-              gap={{base:"0px",md:"80px"}}
+              flexDirection={{ base: "column", md: "row" }}
+              gap={{ base: "0px", md: "80px" }}
             >
               <Box>
                 <Image
@@ -105,8 +106,6 @@ const Account = () => {
                   color="#707070"
                   fontSize="18px"
                   width="50%"
-                  
-
                 >
                   <Box
                     display="flex"
@@ -146,7 +145,7 @@ const Account = () => {
                       display="none"
                       type="file"
                       accept="image/*"
-                      onChange={(e) =>submit(e?.target?.files?.[0])}
+                      onChange={(e) => submit(e?.target?.files?.[0])}
                     />
                   )}
                 />
@@ -187,7 +186,9 @@ const Account = () => {
                   <Input isDisabled={!editMode} {...field} />
                 )}
               />
-              <FormErrorMessage>{errors?.dateOfBirth?.message}</FormErrorMessage>
+              <FormErrorMessage>
+                {errors?.dateOfBirth?.message}
+              </FormErrorMessage>
             </FormControl>
             <FormControl mb={"40px"} isInvalid={!!errors.gender}>
               <FormLabel>gender</FormLabel>

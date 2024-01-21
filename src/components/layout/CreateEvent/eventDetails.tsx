@@ -138,7 +138,7 @@ const EventDetails = () => {
                 render={({ field }) => <Input {...field} type="date" />}
               />
               <FormErrorMessage mt="0.5rem">
-                {/* {methods.formState?.errors?.startDate?.message} */}
+                {methods.formState?.errors?.startDate?.message as string}
               </FormErrorMessage>
             </FormControl>
             <FormControl
@@ -156,7 +156,7 @@ const EventDetails = () => {
                 )}
               />
               <FormErrorMessage mt="0.5rem">
-                {/* {methods.formState?.errors?.startTime?.message} */}
+                {methods.formState?.errors?.startTime?.message as string}
               </FormErrorMessage>
             </FormControl>
           </HStack>
@@ -175,7 +175,7 @@ const EventDetails = () => {
                 render={({ field }) => <Input {...field} type="date" />}
               />
               <FormErrorMessage mt="0.5rem">
-                {/* {methods.formState?.errors?.endDate?.message} */}
+                {methods.formState?.errors?.endDate?.message as string}
               </FormErrorMessage>
             </FormControl>
             <FormControl
@@ -193,7 +193,7 @@ const EventDetails = () => {
                 )}
               />
               <FormErrorMessage mt="0.5rem">
-                {/* {methods.formState?.errors?.endTime?.message} */}
+                {methods.formState?.errors?.endTime?.message as string}
               </FormErrorMessage>
             </FormControl>
           </HStack>
@@ -222,7 +222,7 @@ const EventDetails = () => {
               )}
             />
             <FormErrorMessage mt="0.5rem">
-              {/* {errors?.privacy?.message} */}
+              {errors?.privacy?.message as string} 
             </FormErrorMessage>
           </FormControl>
           <FormControl

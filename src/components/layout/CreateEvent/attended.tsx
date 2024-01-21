@@ -1,13 +1,12 @@
 import {
   Box,
-  HStack,
-  Icon,
-  VStack,
-  Text,
   FormControl,
   FormLabel,
+  HStack,
+  Icon,
   Input,
-  FormErrorMessage,
+  Text,
+  VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
@@ -15,13 +14,12 @@ import { MdNumbers } from "react-icons/md";
 
 const Attended = () => {
   const { control } = useFormContext();
-  // const { errors } = formState;
   return (
     <VStack
-    w={{base: "100%", lg: "70%"}}
+      w={{ base: "100%", lg: "70%" }}
       alignItems="center"
       bg="white"
-      p={{base: "10px",md:"60px" }}
+      p={{ base: "10px", md: "60px" }}
     >
       <HStack w="90%">
         <Icon as={MdNumbers} w={12} h={12} color="purple.500" />
@@ -33,11 +31,7 @@ const Attended = () => {
         </Box>
       </HStack>
 
-      <FormControl
-        pt="60px"
-        w="90%"
-        // isInvalid={!!errors?.minmax?.min as || !!errors?.minmax?.max}
-      >
+      <FormControl pt="60px" w="90%">
         <FormLabel fontSize="20px">Expected number of attendees</FormLabel>
         <HStack>
           <Controller
@@ -72,9 +66,6 @@ const Attended = () => {
             )}
           />
         </HStack>
-        <FormErrorMessage mt="0.5rem">
-          {/* {errors?.minmax?.min?.message || errors?.minmax?.max?.message} */}
-        </FormErrorMessage>
       </FormControl>
     </VStack>
   );

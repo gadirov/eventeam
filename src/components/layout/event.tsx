@@ -8,7 +8,7 @@ import Location from "./CreateEvent/location.tsx";
 import Category from "./CreateEvent/category.tsx";
 import Contact from "./CreateEvent/contact.tsx";
 import Ticket from "./CreateEvent/ticket.tsx";
-import { DevTool } from "@hookform/devtools";
+// import { DevTool } from "@hookform/devtools";
 import { useCreateEvent } from "../../hooks/useCreateEvent.ts";
 function Event() {
   const methods = useForm({
@@ -32,10 +32,10 @@ function Event() {
 
   const { submit } = useCreateEvent();
   const onSubmit = (data) => {
-    submit(data)
+    submit(data);
     console.log(data);
   };
-  
+
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
@@ -47,7 +47,7 @@ function Event() {
           w="100%"
           justifyContent="center"
         >
-          <Box w={{base: "100%", lg: "70%"}} pt="20px">
+          <Box w={{ base: "100%", lg: "70%" }} pt="20px" pl={{base:"15px", md:"0px"}}>
             <Heading textAlign="left">Create an Event</Heading>
           </Box>
           <EventDetails />
@@ -70,7 +70,7 @@ function Event() {
             Create
           </Button>
         </VStack>
-        <DevTool control={methods.control} />
+        {/* <DevTool control={methods.control} /> */}
       </form>
     </FormProvider>
   );

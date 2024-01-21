@@ -8,10 +8,10 @@ import Password from "../signIn/Password.tsx";
 
 const ForgetPassword = () => {
   const methods = useForm({
-    defaultValues:{
+    defaultValues: {
       email: "",
-      password: ""
-    }
+      password: "",
+    },
   });
   const onSubmit = (data: any) => {
     console.log(data);
@@ -27,16 +27,38 @@ const ForgetPassword = () => {
       >
         <Header />
         <Box w="50%" display="flex" flexDirection="column" gap="30px">
-          <Heading textAlign="center" m="-50px 0 10px 0" fontSize="36px" color="#7848F4" fontStyle="italic">Forget Password</Heading>
+          <Heading
+            textAlign="center"
+            m="-50px 0 10px 0"
+            fontSize="36px"
+            color="#7848F4"
+            fontStyle="italic"
+          >
+            Forget Password
+          </Heading>
           <FormControl as="form" onSubmit={methods.handleSubmit(onSubmit)}>
             <Password />
-            <Button mt="30px" w="100%" cursor="pointer" _hover={{color:"white"}} p="25px 0"  type="submit" borderRadius="6px" border="1px solid #bababc" fontSize="18px" fontWeight="600" color="#fff" bg="#7848F4">Forget Password</Button>
+            <Button
+              mt="30px"
+              w="100%"
+              cursor="pointer"
+              _hover={{ color: "white" }}
+              p="25px 0"
+              type="submit"
+              borderRadius="6px"
+              border="1px solid #bababc"
+              fontSize="18px"
+              fontWeight="600"
+              color="#fff"
+              bg="#7848F4"
+            >
+              Forget Password
+            </Button>
           </FormControl>
         </Box>
         <Footer />
       </VStack>
     </FormProvider>
-
   );
 };
 

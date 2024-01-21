@@ -3,9 +3,9 @@ import { Image } from "@chakra-ui/image";
 import { Box, Divider, Heading, Stack, Text } from "@chakra-ui/layout";
 import React from "react";
 import { Link } from "react-router-dom";
-import { Event } from "../../model";
+import { IEventProps } from "../../model.ts";
 
-const CardItem: React.FC<Event> = ({
+const CardItem: React.FC<IEventProps> = ({
   idEvent,
   coverPhoto,
   eventName,

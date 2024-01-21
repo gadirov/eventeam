@@ -5,34 +5,6 @@ import { FaUser } from "react-icons/fa";
 import { IoMdHeart } from "react-icons/io";
 import { MdPeople } from "react-icons/md";
 
-const CountIcon = ({ icon, count, label }) => (
-  <Box
-    textAlign="center"
-    className="count-icon"
-    style={{ transition: "transform 0.3s ease-in-out" }}
-  >
-    <Box w="300px">
-      <Icon as={icon} boxSize={6} color="#7848f4" w="80px" h="80px" mb="20px" />
-    </Box>
-    <Box w="300px">
-      <Heading
-        fontSize="80px"
-        fontStyle="italic"
-        color="#7848f4"
-        fontWeight="500"
-        mb="15px"
-      >
-        {count}
-      </Heading>
-    </Box>
-    <Box w="300px">
-      <Text fontSize="40px" color="#7848f4">
-        {label}
-      </Text>
-    </Box>
-  </Box>
-);
-
 const EventCountSection = () => {
   const [count1, setCount1] = useState(0);
   const [count2, setCount2] = useState(0);
@@ -97,3 +69,31 @@ const EventCountSection = () => {
 };
 
 export default EventCountSection;
+
+const CountIcon = ({ icon, count, label }) => (
+  <Box
+    textAlign="center"
+    className="count-icon"
+    style={{ transition: "transform 0.3s ease-in-out" }}
+  >
+    <Box w="300px">
+      <Icon as={icon} boxSize={6} color="#7848f4" w="80px" h="80px" mb="20px" />
+    </Box>
+    <Box w="300px">
+      <Heading
+        fontSize="80px"
+        fontStyle="italic"
+        color="#7848f4"
+        fontWeight="500"
+        mb="15px"
+      >
+        {count}
+      </Heading>
+    </Box>
+    <Box w="300px">
+      <Text fontSize="40px" color="#7848f4">
+        {label}
+      </Text>
+    </Box>
+  </Box>
+);

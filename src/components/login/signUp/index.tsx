@@ -11,7 +11,6 @@ import File from "./File.tsx";
 import { useSignup } from "../../../hooks/useSignup.ts";
 import Email from "./Email.tsx";
 
-
 const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const methods = useForm({
@@ -26,9 +25,8 @@ const SignUp = () => {
   });
   const { submit } = useSignup();
   const onSubmit = (data: any) => {
-
     submit(data);
-    if(data.profilePhoto !== ""){
+    if (data.profilePhoto !== "") {
       setIsLoading(!isLoading);
     }
   };
@@ -43,7 +41,7 @@ const SignUp = () => {
         p="10px 0"
       >
         <Header />
-        <Box w="50%" display="flex" flexDirection="column" gap="10px">
+        <Box w="54%" display="flex" flexDirection="column" gap="10px">
           <Heading
             textAlign="center"
             m="-50px 0 30px 0"
@@ -76,7 +74,7 @@ const SignUp = () => {
               color="#fff"
               bg="#7848F4"
             >
-              {isLoading ? <Spinner/> : "Sign up"}
+              {isLoading ? <Spinner /> : "Sign up"}
             </Button>
           </form>
           {/* <Text textAlign="center" color="#707070" fontSize="18px">or</Text> */}
