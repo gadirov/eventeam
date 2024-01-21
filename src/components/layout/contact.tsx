@@ -78,14 +78,14 @@ const Contact = () => {
                   alignItems={"center"}
                 >
                   <FontAwesomeIcon
-                    fontSize={"50px"}
+                    fontSize={"32px"}
                     color="#071450"
                     icon={faMapMarkerAlt}
                   />
                   <Box>
-                    <Heading textTransform={"uppercase"} color={"#071450"}>
+                    <Heading fontSize={"24px"} textTransform={"uppercase"} color={"#071450"}>
                     {t("Location")}
-                    </Heading>
+                    </Heading >
                     <Text color={"#071450"} fontWeight={"Bold"}>
                     {t("Baku")}
                     </Text>
@@ -102,12 +102,12 @@ const Contact = () => {
                   alignItems={"center"}
                 >
                   <FontAwesomeIcon
-                    fontSize={"50px"}
+                    fontSize={"32px"}
                     color="#071450"
                     icon={faPhone}
                   />
                   <Box>
-                    <Heading textTransform={"uppercase"} color={"#071450"}>
+                    <Heading fontSize={"24px"} textTransform={"uppercase"} color={"#071450"}>
                     {t("Phone")}
                     </Heading>
                     <Text color={"#071450"} fontWeight={"Bold"}>
@@ -126,12 +126,12 @@ const Contact = () => {
                   alignItems={"center"}
                 >
                   <FontAwesomeIcon
-                    fontSize={"50px"}
+                    fontSize={"32px"}
                     color="#071450"
                     icon={faEnvelope}
                   />
                   <Box>
-                    <Heading textTransform={"uppercase"} color={"#071450"}>
+                    <Heading fontSize={"24px"} textTransform={"uppercase"} color={"#071450"}>
                     {t("Email")}
                     </Heading>
                     <Text color={"#071450"} fontWeight={"Bold"}>

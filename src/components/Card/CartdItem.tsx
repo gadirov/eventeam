@@ -42,6 +42,7 @@ const CardItem: React.FC<IEventProps> = ({
           </Link>
           <Box display="flex" justifyContent="space-between" >
             <Box
+              mt={"16px"}
               display="flex"
               p="4px 10px"
               justifyContent="center"

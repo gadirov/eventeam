@@ -33,7 +33,7 @@ const FacebookIcon = () => {
         as={FaFacebook}
         boxSize={8}
         color="white"
-        _hover={{ color: "#66f5ff", transition: "color 0.5s" }}
+        _hover={{ color: "#8F64FF", transition: "color 0.5s" }}
       />
     </Link>
   );
@@ -45,7 +45,7 @@ const WhatsappIcon = () => {
         as={FaWhatsapp}
         boxSize={8}
         color="white"
-        _hover={{ color: "#66f5ff", transition: "color 0.5s" }}
+        _hover={{ color: "#8F64FF", transition: "color 0.5s" }}
       />
     </Link>
   );
@@ -57,7 +57,7 @@ const LinkedinIcon = () => {
         as={FaLinkedin}
         boxSize={8}
         color="white"
-        _hover={{ color: "#66f5ff", transition: "color 0.5s" }}
+        _hover={{ color: "#8F64FF", transition: "color 0.5s" }}
       />
     </Link>
   );
@@ -79,26 +79,27 @@ const Footer = () => {
             {t("Quick Link")}
           </Text>
           <UnorderedList>
-            <Link href="/about">
+            <Link  href="/about" _hover={{ textDecoration: "none"}}>
               <ListItem
-                _hover={{ color: "#66f5ff", transition: "color 0.5s" }}
+                _hover={{ color: "#8F64FF", transition: "color 0.5s" }}
                 pb="10px"
                 cursor="pointer"
               >
                 {t("About")}
               </ListItem>
             </Link>
-            <Link href="/contact">
+            <Link href="/contact" _hover={{ textDecoration: "none"}}>
               <ListItem
-                _hover={{ color: "#66f5ff", transition: "color 0.5s" }}
+                _hover={{ color: "#8F64FF", transition: "color 0.5s" }}
                 pb="10px"
                 cursor="pointer"
+                
               >
                 {t("Contact")}
               </ListItem>
             </Link>
             <ListItem
-              _hover={{ color: "#66f5ff", transition: "color 0.5s" }}
+              _hover={{ color: "#8F64FF", transition: "color 0.5s" }}
               pb="10px"
               cursor="pointer"
               onClick={onOpen}
@@ -113,7 +114,7 @@ const Footer = () => {
           </Text>
           <UnorderedList listStyleType="none" m="0">
             <Box
-              _hover={{ color: "#66f5ff", transition: "color 0.5s" }}
+              _hover={{ color: "#8F64FF", transition: "color 0.5s" }}
               display="flex"
               alignItems="center"
               pb="10px"
@@ -124,7 +125,7 @@ const Footer = () => {
               <ListItem cursor="pointer">{t("Footer Location")}</ListItem>
             </Box>
             <Box
-              _hover={{ color: "#66f5ff", transition: "color 0.5s" }}
+              _hover={{ color: "#8F64FF", transition: "color 0.5s" }}
               display="flex"
               alignItems="center"
               pb="10px"
@@ -134,7 +135,7 @@ const Footer = () => {
               <ListItem cursor="pointer">+994 55 967 72 82</ListItem>
             </Box>
             <Box
-              _hover={{ color: "#66f5ff", transition: "color 0.5s" }}
+              _hover={{ color: "#8F64FF", transition: "color 0.5s" }}
               display="flex"
               alignItems="center"
               pb="10px"
