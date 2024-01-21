@@ -143,5 +143,17 @@
      "Ticket":"Ticket type",
      "Ticket Info":"Determine the type of ticket you need, depending on the type of event.",
      "Ticket Choose":"Choose ticket type",
-     "Create":"Create"
+     "Create":"Create",
+     "Successly login":"Successly login",
+     "Name required":"Name is required",
+     "Phone required":"Phone is a required field",
+     "Email required":"Email is required",
+     "Subject required":"Subject is a required field",
+     "Message required":"Message is a required",
+     "DateOfBirth required":"DateOfBirth is a required field",
+     "UserName required":"Username is required",
+     "Eventname required!":"Event name is required!",
+     "This required":"This field is required!",
+     "About required":"About info is required!",
+     "Location required!":"Location is required!"
 }
