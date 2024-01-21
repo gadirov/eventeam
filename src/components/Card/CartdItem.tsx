@@ -3,15 +3,15 @@ import { Image } from "@chakra-ui/image";
 import { Box, Divider, Heading, Stack, Text } from "@chakra-ui/layout";
 import React from "react";
 import { Link } from "react-router-dom";
-import { Event } from "../../model";
+import { IEventProps } from "../../model.ts";
 
-const CardItem: React.FC<Event> = ({
+const CardItem: React.FC<IEventProps> = ({
   idEvent,
   coverPhoto,
   eventName,
 }) => {
   return (
-    <Card key={idEvent}>
+    <Card>
       <CardBody>
         <Image
           src={`http://173.212.221.237/images/${coverPhoto}`}
@@ -42,6 +42,7 @@ const CardItem: React.FC<Event> = ({
           </Link>
           <Box display="flex" justifyContent="space-between" >
             <Box
+              mt={"16px"}
               display="flex"
               p="4px 10px"
               justifyContent="center"

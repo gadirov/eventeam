@@ -4,7 +4,7 @@ import { swrOptions } from "../const.ts";
 
 export function useCategory() {
   const { data, error, isLoading } = useSWR(
-    "eventcategory/eventcategory/getEventCount",
+    "categories/api/v1/categories/getAll",
     fetcher,
     swrOptions
   );

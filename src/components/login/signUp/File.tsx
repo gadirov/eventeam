@@ -21,7 +21,7 @@ export default function File() {
   const methods = useFormContext<FormValues>();
 
   return (
-    <FormControl mt="20px" isInvalid={!!methods.formState.errors.profilePhoto} >
+    <FormControl mt="20px" isInvalid={!!methods.formState.errors.profilePhoto}>
       <FormLabel htmlFor="file" color="#707070" fontSize="18px" width="100%">
         <Box
           display="flex"

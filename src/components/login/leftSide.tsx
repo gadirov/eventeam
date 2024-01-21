@@ -29,11 +29,10 @@ export default function LeftSide() {
   };
   return (
     <Box
+      display={{base:"none",md:"flex"}}
       background="linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url(../assests/signin.png)"
       backgroundSize="cover"
       backgroundPosition="center"
-      width="1000px"
-      display="flex"
       flexDirection="column"
       alignItems="center"
       justifyContent="center"

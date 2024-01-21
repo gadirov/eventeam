@@ -5,34 +5,6 @@ import { FaUser } from "react-icons/fa";
 import { IoMdHeart } from "react-icons/io";
 import { MdPeople } from "react-icons/md";
 
-const CountIcon = ({ icon, count, label }) => (
-  <Box
-    textAlign="center"
-    className="count-icon"
-    style={{ transition: "transform 0.3s ease-in-out" }}
-  >
-    <Box w="300px">
-      <Icon as={icon} boxSize={6} color="#7848f4" w="80px" h="80px" mb="20px" />
-    </Box>
-    <Box w="300px">
-      <Heading
-        fontSize="80px"
-        fontStyle="italic"
-        color="#7848f4"
-        fontWeight="500"
-        mb="15px"
-      >
-        {count}
-      </Heading>
-    </Box>
-    <Box w="300px">
-      <Text fontSize="40px" color="#7848f4">
-        {label}
-      </Text>
-    </Box>
-  </Box>
-);
-
 const EventCountSection = () => {
   const [count1, setCount1] = useState(0);
   const [count2, setCount2] = useState(0);
@@ -77,23 +49,58 @@ const EventCountSection = () => {
       alignItems="center"
       gap="40px"
       mb="100px"
-      h="450px"
+      p="120px 0px"
       bgGradient="conic-gradient(from 243.17deg at 52.66% 45.72%, rgba(7, 20, 80, .25) 0deg, hsla(0, 0%, 100%, 0) 66.85deg, rgba(18, 33, 102, .3) 266.25deg, rgba(7, 20, 80, .25) 1turn)"
     >
       <Box
         w="80%"
-        display="flex"
         justifyContent="space-around"
         alignItems="center"
-        gap="20px"
+        gap="40px"
+        display={"flex"}
+        flexDirection={{ base: "column", md: "row" }}
       >
-        <CountIcon icon={BiCalendarHeart} count={count1} label="Events" />
-        <CountIcon icon={FaUser} count={count2} label="Online Events" />
-        <CountIcon icon={IoMdHeart} count={count3} label="In Person Events" />
-        <CountIcon icon={MdPeople} count={count4} label="Users" />
+        <Box display={"flex"} flexDirection={{ base: "column", md: "row" }} gap={"50px"} >
+          <CountIcon icon={BiCalendarHeart} count={count1} label="Events" />
+          <CountIcon icon={FaUser} count={count2} label="Online Events" />
+        </Box>
+
+        <Box display={"flex"}  flexDirection={{ base: "column", md: "row" }} gap={"50px"}>
+          <CountIcon icon={IoMdHeart} count={count3} label="In Person Events" />
+          <CountIcon icon={MdPeople} count={count4} label="Users" />
+        </Box>
+
       </Box>
     </Box>
   );
 };
 
 export default EventCountSection;
+
+const CountIcon = ({ icon, count, label }) => (
+  <Box
+    textAlign="center"
+    className="count-icon"
+    style={{ transition: "transform 0.3s ease-in-out" }}
+  >
+    <Box w="300px">
+      <Icon as={icon} boxSize={6} color="#7848f4" w="80px" h="80px" mb="20px" />
+    </Box>
+    <Box w="300px">
+      <Heading
+        fontSize="80px"
+        fontStyle="italic"
+        color="#7848f4"
+        fontWeight="500"
+        mb="15px"
+      >
+        {count}
+      </Heading>
+    </Box>
+    <Box w="300px">
+      <Text fontSize="40px" color="#7848f4">
+        {label}
+      </Text>
+    </Box>
+  </Box>
+);

@@ -1,9 +1,17 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle } from '@chakra-ui/react';
-import React from 'react';
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
+} from "@chakra-ui/react";
+import React from "react";
 interface ErrorBoundaryState {
   hasError: boolean;
 }
-class ErrorBoundary extends React.Component<React.PropsWithChildren, ErrorBoundaryState> {
+class ErrorBoundary extends React.Component<
+  React.PropsWithChildren,
+  ErrorBoundaryState
+> {
   constructor(props) {
     super(props);
     this.state = { hasError: false };
