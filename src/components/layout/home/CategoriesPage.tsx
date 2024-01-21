@@ -86,8 +86,7 @@ const Categories: React.FC = () => {
             >
               <Box display="grid" height="400px">
                 <CategoriesPageCardItem
-                  count={category.count}
-                  categoryName={category.categoryName}
+                  {...category}
                 />
               </Box>
             </Box>
