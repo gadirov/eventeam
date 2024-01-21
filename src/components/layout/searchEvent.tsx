@@ -15,8 +15,11 @@ import { swrOptions } from "../../const.ts";
 import { useDetails } from "../../hooks/useDetails.ts";
 import CardItem from "../Card/CartdItem.tsx";
 import { useCategory } from "../../hooks/useCategory.ts";
+import { useSearchParams } from "react-router-dom";
 
 export default function SearchEvent() {
+  const [searchParams] = useSearchParams();
+  const selectValue = searchParams.get("category");
   const [searchField, setSearchField] = React.useState<string>("");
   const [searchData, setsearchData] = useState<any[]>([]);
   const [filterValue, setFilterValue] = React.useState<string>("");
@@ -24,13 +27,15 @@ export default function SearchEvent() {
   const [attendanceFilter, setAttendanceFilter] = React.useState<string>("");
   const [dateFilter, setDateFilter] = React.useState<string>("");
   const [priceFilter, setPriceFilter] = React.useState<string>("");
-  const [categoryFilter, setCategoryFilter] = React.useState<string>("");
+  const [categoryFilter, setCategoryFilter] = React.useState<any>(selectValue);
 
   // Request part
   const { data, isLoading } = useDetails();
   const { data: categoryData } = useCategory();
   const { data: filteredData, isLoading: loadingFilter } = useSWR(
-    `/events-ms/api/v1/events/filter?${nameOfInput}=${filterValue}`,
+    `/events-ms/api/v1/events/filter?${
+      nameOfInput ? nameOfInput : "Category"
+    }=${filterValue ? filterValue : selectValue}`,
     fetcher,
     swrOptions
   );
@@ -39,7 +44,11 @@ export default function SearchEvent() {
     if (!isLoading) {
       setsearchData(data.body);
     }
-  }, [data, isLoading]); 
+
+    selectValue && setsearchData(filteredData?.body?.eventsList)
+
+    
+  }, [data, isLoading, selectValue]);
 
   // Input value changing for search part
   const handleChange = (e: {
@@ -50,9 +59,9 @@ export default function SearchEvent() {
 
   // Filter button click event handler
   const handleClearFilter = () => {
-    setFilterValue("11111");
+    setFilterValue("");
     setNameOfInput("");
-    setCategoryFilter("")
+    setCategoryFilter("");
     setAttendanceFilter("");
     setDateFilter("");
     setPriceFilter("");
@@ -72,7 +81,7 @@ export default function SearchEvent() {
       case "date":
         setDateFilter(event.target.value);
         break;
-        case "CATEGORY":
+      case "Category":
         setCategoryFilter(event.target.value);
         break;
       case "ticketType":
@@ -103,7 +112,6 @@ export default function SearchEvent() {
           my={"40px"}
           flexDirection={{ base: "column", sm: "row", md: "row" }}
         >
-          
           <Box
             display={"flex"}
             gap={"20px"}
@@ -114,11 +122,15 @@ export default function SearchEvent() {
               fontWeight={"bold"}
               size={{ base: "lg", md: "md" }}
               bg={"#F2F4F7"}
-              name={"CATEGORY"}
+              name={"Category"}
               onChange={(event) => handleFilterChange(event)}
               value={categoryFilter}
             >
-              {categoryData?.body.map(({name, categoryKey}) => <option key={categoryKey} value={name}>{name}</option>)}
+              {categoryData?.body.map(({ name, categoryKey }) => (
+                <option key={categoryKey} value={name}>
+                  {name}
+                </option>
+              ))}
             </Select>
             <Select
               placeholder="Attendance"
@@ -177,13 +189,9 @@ export default function SearchEvent() {
         </Flex>
 
         {/* Search part */}
-        <Box mb="30px" w="50%" mx="auto">
-          <CardItem {...searchData[0]} />
-        </Box>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing="60px">
           {searchData ? (
             searchData
-              ?.slice(1)
               ?.filter((event) => {
                 return event.eventName
                   .toLowerCase()
@@ -191,7 +199,7 @@ export default function SearchEvent() {
               })
               ?.map((event, index) => <CardItem {...event} key={index} />)
           ) : (
-            <Text>Loading</Text>
+            <Text>Not found</Text>
           )}
         </SimpleGrid>
       </Container>
