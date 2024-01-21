@@ -156,7 +156,6 @@ export default function SearchEvent() {
               <option value="TODAY">TODAY</option>
               <option value="TOMORROW">TOMORROW</option>
               <option value="THISWEEK">THISWEEK</option>
-              <option value="THISWEEK">THISWEEK</option>
             </Select>
           </Box>
           <Box

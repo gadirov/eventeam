@@ -13,13 +13,13 @@ export default function FeaturedEvents() {
   return (
     <Box m="10px 0px 120px 0">
       <Divider />
-      <Box w="75%" margin="auto" padding="70px 0px">
+      <Box w="80%" margin="auto" padding="70px 0px">
         <Box
           flexDirection={{ base: "column", md: "row" }}
           display="flex"
           justifyContent="center"
           alignItems="center"
-          gap={{ base: " 80px", md: "130px" }}
+          gap={{ base: " 50px", md: "130px" }}
         >
           <Box
             display="flex"
@@ -50,13 +50,13 @@ export default function FeaturedEvents() {
                 display="flex"
                 flexDirection="column"
                 alignItems="flex-start"
-                gap="24px"
+                gap={{base:"10px",md:"24px"}}
                 width="399px"
               >
                 <Heading
                   color="var(--Black-Black, #000)"
                   fontFamily="Inter"
-                  fontSize="32px"
+                  fontSize={{base:"22",md:"32px"}}
                   fontStyle="normal"
                   fontWeight="500"
                   lineHeight="46px"
@@ -67,7 +67,7 @@ export default function FeaturedEvents() {
                 <Text
                   color="#707070"
                   fontFamily="Euclid Circular B"
-                  fontSize="17px"
+                  fontSize={{base:"14",md:"19px"}}
                   fontStyle="normal"
                   fontWeight="500"
                   lineHeight="24px"
@@ -101,7 +101,7 @@ export default function FeaturedEvents() {
           <Box boxShadow={"0px 15px 20px gray;"}>
             <Image
               width={"750px"}
-              height="60vh"
+              height={{base:"37vh",md:"60vh"}}
               objectPosition={"center"}
               src={`http://173.212.221.237/images/${datas?.coverPhoto}`}
             />

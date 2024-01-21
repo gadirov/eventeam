@@ -51,7 +51,7 @@ export default function UpcomingPage() {
           display="flex"
           justifyContent="center"
           ml="30px"
-          mt="-20px"
+          mt="20px"
           height="500px"
         >
           <Lottie animationData={DataNotFound} />
@@ -100,18 +100,18 @@ export default function UpcomingPage() {
   return (
     <Box
       display="flex"
-      p="120px 0px "
+      p={{base:"0px 0px 120px 0px",md:"0px 0px 120px 0px"}}
       justifyContent="center"
       flexDirection="column"
     >
       <Box display="flex" justifyContent="center" mb="70px">
         <Tabs onChange={(index) => changeHandlerSelect(index)}>
-          <TabList w="69%" m="0 auto" fontSize="32px">
-            <Tab fontSize="21px">Upcoming</Tab>
-            <Tab fontSize="21px">Popular events</Tab>
-            <Tab fontSize="21px">Friends event list</Tab>
-            <Tab fontSize="21px">Going</Tab>
-            <Tab fontSize="21px">Interested</Tab>
+          <TabList w={{base:"80%",md:"69%"}} m="0 auto" gap={"15px"}>
+            <Tab  p={{base:"0px",md:"8px 16px"}} fontSize={{base:"12px",md:"22px"}} >Upcoming</Tab>
+            <Tab  p={{base:"0px",md:"8px 16px"}} fontSize={{base:"12px",md:"22px"}}>Popular events</Tab>
+            <Tab  p={{base:"0px",md:"8px 16px"}} fontSize={{base:"12px",md:"22px"}}>Friends event list</Tab>
+            <Tab  p={{base:"0px",md:"8px 16px"}} fontSize={{base:"12px",md:"22px"}}>Going</Tab>
+            <Tab  p={{base:"0px",md:"8px 16px"}} fontSize={{base:"12px",md:"22px"}}>Interested</Tab>
           </TabList>
 
           <TabPanels>

@@ -25,7 +25,7 @@ const Categories: React.FC = () => {
     speed: 3000,
     slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay: true,
+    // autoplay: true,
     autoplaySpeed: 3000,
     responsive: [
       {
@@ -58,11 +58,11 @@ const Categories: React.FC = () => {
   return (
     <Box
       display="flex"
-      p="120px 0px"
+      p="0px 0px 100px 0px" 
       justifyContent="center"
       flexDirection="column"
     >
-      <Box display="flex" justifyContent="center" mb="80px">
+      <Box display="flex" justifyContent="center" mb={{base:"55px",md:"80px"}}>
         <Heading
           color="#131313"
           fontFamily="Euclid Circular B"

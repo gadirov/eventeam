@@ -72,8 +72,8 @@ const Header = () => {
         <Image
           src="../assests/logo.png"
           alt="Dan Abramov"
-          w="180px"
-          h="40px"
+          w={{ base: "110px", md: "180px" }}
+          h={{ base: "23px", md: "40px" }}
           cursor="pointer"
         />
       </Link>
@@ -88,7 +88,7 @@ const Header = () => {
       >
         <ListItem
           _hover={{
-            color: "#66f5ff",
+            color: "#8F64FF",
             transition: "color 0.5s",
             textDecoration: "underline",
           }}
@@ -98,7 +98,7 @@ const Header = () => {
         </ListItem>
         <ListItem
           _hover={{
-            color: "#66f5ff",
+            color: "#8F64FF",
             transition: "color 0.5s",
             textDecoration: "underline",
           }}
@@ -108,7 +108,7 @@ const Header = () => {
         </ListItem>
         <ListItem
           _hover={{
-            color: "#66f5ff",
+            color: "#8F64FF",
             transition: "color 0.5s",
             textDecoration: "underline",
           }}
@@ -118,7 +118,7 @@ const Header = () => {
         </ListItem>
         <ListItem
           _hover={{
-            color: "#66f5ff",
+            color: "#8F64FF",
             transition: "color 0.5s",
             textDecoration: "underline",
           }}
@@ -127,60 +127,7 @@ const Header = () => {
           <Link to="/searchevent">SearchEvent</Link>
         </ListItem>
       </UnorderedList>
-      <Box display="flex" alignItems="center" gap={{ base: "0px", md: "20px" }}>
-        {/* Hamburger Menu */}
-        <Box display={{ base: "flex", md: "none" }}>
-          <Menu>
-            <MenuButton
-              as={IconButton}
-              aria-label="Options"
-              icon={<HamburgerIcon />}
-              variant="outline"
-            />
-            <MenuList>
-              <MenuItem
-                _hover={{
-                  color: "#66f5ff",
-                  transition: "color 0.5s",
-                  textDecoration: "underline",
-                }}
-                cursor="pointer"
-              >
-                <Link to="/about">{t("About")}</Link>
-              </MenuItem>
-              <MenuItem
-                _hover={{
-                  color: "#66f5ff",
-                  transition: "color 0.5s",
-                  textDecoration: "underline",
-                }}
-                cursor="pointer"
-              >
-                <Link to="/contact">{t("Contact")}</Link>
-              </MenuItem>
-              <MenuItem
-                _hover={{
-                  color: "#66f5ff",
-                  transition: "color 0.5s",
-                  textDecoration: "underline",
-                }}
-                cursor="pointer"
-              >
-                <Link to="/events">{t("Events")}</Link>
-              </MenuItem>
-              <MenuItem
-                _hover={{
-                  color: "#66f5ff",
-                  transition: "color 0.5s",
-                  textDecoration: "underline",
-                }}
-                cursor="pointer"
-              >
-                <Link to="/searchevent">SearchEvent</Link>
-              </MenuItem>
-            </MenuList>
-          </Menu>
-        </Box>
+      <Box display="flex" alignItems="center" gap={{ base: "10px", md: "20px" }}>
         {/* Language Select */}
         <Select
           width="100px"
@@ -190,10 +137,10 @@ const Header = () => {
           p="8px"
           borderRadius="100px"
           cursor="pointer"
-          border="1px solid #111833"
+          border="1px solid #8F64FF"
           fontWeight="600"
           onChange={(e) => changeLanguage(e.target.value)}
-          color="##111833"
+          color="#8F64FF"
         >
           <option value="en">EN</option>
           <option value="az">AZ</option>
@@ -271,6 +218,59 @@ const Header = () => {
             </MenuList>
           </Menu>
         )}
+        {/* Hamburger Menu */}
+        <Box display={{ base: "flex", md: "none" }}>
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              aria-label="Options"
+              icon={<HamburgerIcon />}
+              variant="outline"
+            />
+            <MenuList>
+              <MenuItem
+                _hover={{
+                  color: "#66f5ff",
+                  transition: "color 0.5s",
+                  textDecoration: "underline",
+                }}
+                cursor="pointer"
+              >
+                <Link to="/about">{t("About")}</Link>
+              </MenuItem>
+              <MenuItem
+                _hover={{
+                  color: "#66f5ff",
+                  transition: "color 0.5s",
+                  textDecoration: "underline",
+                }}
+                cursor="pointer"
+              >
+                <Link to="/contact">{t("Contact")}</Link>
+              </MenuItem>
+              <MenuItem
+                _hover={{
+                  color: "#66f5ff",
+                  transition: "color 0.5s",
+                  textDecoration: "underline",
+                }}
+                cursor="pointer"
+              >
+                <Link to="/events">{t("Events")}</Link>
+              </MenuItem>
+              <MenuItem
+                _hover={{
+                  color: "#66f5ff",
+                  transition: "color 0.5s",
+                  textDecoration: "underline",
+                }}
+                cursor="pointer"
+              >
+                <Link to="/searchevent">SearchEvent</Link>
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        </Box>
       </Box>
     </Box>
   );
