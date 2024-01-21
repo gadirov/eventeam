@@ -15,8 +15,8 @@ const Home = () => {
       <FeaturedEvents />
       <Categories />
       <UpcomingPage />
-      {/* <UsersReviews />
-      <EventCountSection /> */}
+      <UsersReviews />
+      <EventCountSection />
     </Box>
   );
 };
