@@ -143,5 +143,18 @@
      "Ticket":"Bilet tipi",
      "Ticket Info":"Tədbirin növündən asılı olaraq sizə lazım olan bilet növünü müəyyənləşdirin.",
      "Ticket Choose":"Bilet növünü seçin",
-     "Create":"Yarat"
+     "Create":"Yarat",
+     "Successly login":"Uğurla daxil oldun",
+     "Name required":"Ad tələb olunur",
+     "Phone required":"Telefon tələb olunur",
+     "Email required":"E-poçt tələb olunur",
+     "Subject required":"Mövzu tələb olunur",
+     "Message required":"Mesaj tələb olunur",
+     "DateOfBirth required":"Doğum tarixi tələb olunan sahədir",
+     "UserName required":"İstifadəçi adı tələb olunur",
+     "Eventname required!":"Tədbirin adı tələb olunur!",
+     "This required":"Bu xananın doldurulması məcburidir!",
+     "About required":"Haqqında məlumat tələb olunur!",
+     "Location required!":"Məkan tələb olunur!"
+
 }
