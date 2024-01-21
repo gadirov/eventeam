@@ -31,7 +31,7 @@ export const useSignIn = () => {
       });
       console.log(error);
     } finally {
-      setLoading(!loading);
+      setLoading(false);
     }
   };
   return { submit, loading };

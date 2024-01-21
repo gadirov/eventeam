@@ -24,13 +24,18 @@ import { useEventCategories } from "../../../hooks/useEventCategories.ts";
 const Category = () => {
   const methods = useFormContext();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
-  const handleCategoryChange = (selected: string[]) => {
+  const { data } = useEventCategories();
+  useEffect(() => {
+    const obj = selectedCategories.map((item) => {
+      return { keyword: item };
+    });
+    methods.setValue("listOfCategories", obj);
+  }, [selectedCategories, methods]);
+
+  const handleCategoryChange = (selected) => {
     setSelectedCategories(selected);
-    const obj = selectedCategories.map((item) =>{ return {"keyword": item }} )
-    console.log(obj);
-    methods.setValue("listOfCategories", obj)
   };
 
   const handleRemoveCategory = (category) => {
@@ -38,15 +43,23 @@ const Category = () => {
     setSelectedCategories(updatedCategories);
   };
 
-  const { data } = useEventCategories();
-
   const datas = useMemo(() => {
-    const array = data?.body?.map((item) => item.name)
-    return array;
-  }, [data])
+    return data?.body;
+  }, [data]);
+
+  const categoryString = (str) => {
+    const str1 = str.split(".")[1];
+    return str1.charAt(0).toUpperCase() + str1.slice(1);
+  };
+
   return (
     <>
-      <VStack w="50%" alignItems="center" bg="white" p="60px">
+      <VStack
+        w={{ base: "100%", lg: "70%" }}
+        alignItems="center"
+        bg="white"
+        p={{ base: "10px", md: "60px" }}
+      >
         <HStack w="90%" onClick={onOpen} cursor="pointer">
           <Icon as={MdCategory} w={12} h={12} color="purple.500" />
           <Box pl="32px">
@@ -90,13 +103,13 @@ const Category = () => {
                 onChange={handleCategoryChange}
               >
                 <VStack align="start">
-                  {datas?.map((category, index) => {
-                   return (
-                    <Checkbox key={index} value={category}>
-                    {category}
-                  </Checkbox>
-                   )
-              })}
+                  {datas?.map((category) => {
+                    return (
+                      <Checkbox key={category.id} value={category.keyword}>
+                        {category.name}
+                      </Checkbox>
+                    );
+                  })}
                 </VStack>
               </CheckboxGroup>
             </ModalBody>
@@ -114,7 +127,7 @@ const Category = () => {
         <VStack w="90%" mt="30px" align="start">
           {selectedCategories?.map((category, index) => (
             <HStack w="60%" justifyContent="space-between">
-              <Text key={index}>{category}</Text>
+              <Text key={index}>{categoryString(category)}</Text>
               <Button
                 bg="transparent"
                 _hover={{ bg: "transparent" }}

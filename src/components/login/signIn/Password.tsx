@@ -28,16 +28,16 @@ export default function Password() {
           name="password"
           control={methods.control}
           rules={{
-          required: "This field is required",
-          pattern: {
-            value: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]+$/,
-            message:
-              "Password must include at least  one uppercase letter and one digit",
-          },
-          minLength:{
-            value: 8,
-            message: "Password must be at least 8 characters long",
-          }
+            required: "This field is required",
+            pattern: {
+              value: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]+$/,
+              message:
+                "Password must include at least  one uppercase letter and one digit",
+            },
+            minLength: {
+              value: 8,
+              message: "Password must be at least 8 characters long",
+            },
           }}
           render={({ field }) => (
             <Input

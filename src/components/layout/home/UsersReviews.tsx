@@ -6,7 +6,6 @@ import { Box, Text, Image } from "@chakra-ui/react";
 
 const UsersReviews: React.FC = () => {
   const settings = {
-    // dots: true,
     infinite: true,
     speed: 2000,
     slidesToShow: 1,
@@ -17,19 +16,26 @@ const UsersReviews: React.FC = () => {
   return (
     <Box
       display="flex"
-      p="120px 0px"
+      padding={{ base: "0px", md: "120px 0px" }}
       justifyContent="center"
       alignItems="center"
       gap="24px"
     >
       <Box>
         <Image
+          display={{ base: "none", md: "block" }}
           w="100%"
           src="/assests/UsersReviews-Images/HumansIcon-LestSide.png"
           alt=""
         />
       </Box>
-      <Box display="flex" flexDirection="column" alignItems="center" gap="45px">
+      <Box
+        overflow={"hidden"}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        gap="0px"
+      >
         <Box
           width="323px"
           height="126px"
@@ -41,13 +47,13 @@ const UsersReviews: React.FC = () => {
             fontFamily="Euclid Circular B"
             fontSize="34px"
             fontStyle="normal"
-            fontWeight="400"
+            fontWeight="600"
             lineHeight="40px"
           >
             What our clients say
           </Text>
         </Box>
-        <Box w="780px">
+        <Box width={{ base: "100%", md: "780px" }}>
           <Slider {...settings}>
             <Box p="0px 20px">
               <Text
@@ -85,6 +91,7 @@ const UsersReviews: React.FC = () => {
 
       <Box>
         <Image
+          display={{ base: "none", md: "block" }}
           w="100%"
           src="/assests/UsersReviews-Images/HumansIcon-RightSide.png"
           alt=""

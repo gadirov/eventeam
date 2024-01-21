@@ -14,9 +14,9 @@ const Home = () => {
       <EventsSection />
       <FeaturedEvents />
       <Categories />
-      <EventCountSection />
-      <UsersReviews />
       <UpcomingPage />
+      <UsersReviews />
+      <EventCountSection />
     </Box>
   );
 };

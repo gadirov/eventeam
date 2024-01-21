@@ -50,7 +50,6 @@ import { swrOptions } from "../../const.ts";
 const DetailView = () => {
   const params = useParams();
   const [detailData, setDetailData] = useState<any>(undefined);
-
   const { data, error, isLoading } = useSWR(
     `/events-ms/api/v1/events/${params.detailviewid}`,
     fetcher,
@@ -70,18 +69,18 @@ const DetailView = () => {
   const timeDifferenceInMinutes =
     endHour * 60 + endMinute - (startHour * 60 + startMinute);
 
-  
-
-    // console.log(d)
+  // console.log(d)
   return (
     <Box pt="100px">
-      <Box w="100%" margin="auto">
-        <Image
-          height="60vh"
-          w="100%"
-          src={`http://173.212.221.237/images/${detailData?.body?.coverPhoto}`}
-          alt=""
-        />
+      <Box background="rgb(160,152,255)">
+        <Box w="82%" margin="auto">
+          <Image
+            height="70vh"
+            w="100%"
+            src={`http://173.212.221.237/images/${detailData?.body?.coverPhoto}`}
+            alt=""
+          />
+        </Box>
       </Box>
       <Box w="100%" borderRadius="20px" backgroundColor="white">
         <Box w="100%" margin="auto">
@@ -190,8 +189,9 @@ const DetailView = () => {
             <Box display="flex" flexDirection="column" gap="20px">
               <Box display="flex" alignItems="center" gap="10px">
                 <FontAwesomeIcon fontSize="23px" icon={faListCheck} />
-                {detailData?.body?.listOfCategories.map((item) => <Text fontSize="20px">{ item.name }</Text>)}
-                
+                {detailData?.body?.listOfCategories.map((item) => (
+                  <Text fontSize="20px">{item.name}</Text>
+                ))}
               </Box>
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faLink} />

@@ -6,7 +6,6 @@ import { Box, Heading, Text, Image } from "@chakra-ui/react";
 
 const SliderMainPage: React.FC = () => {
   const settings = {
-    // dots: true,
     infinite: true,
     speed: 2000,
     slidesToShow: 1,

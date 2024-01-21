@@ -9,8 +9,12 @@ import {
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilm } from "@fortawesome/free-solid-svg-icons";
+import { ICategory } from "../../model";
 
-export default function CategoriesPageCardItem({ count, categoryName }) {
+const CategoriesPageCardItem: React.FC<ICategory> = ({
+  count,
+  categoryName,
+}) => {
   const category = categoryName.split(".")[1].toUpperCase();
   return (
     <Card
@@ -46,4 +50,6 @@ export default function CategoriesPageCardItem({ count, categoryName }) {
       </CardFooter>
     </Card>
   );
-}
+};
+
+export default CategoriesPageCardItem;

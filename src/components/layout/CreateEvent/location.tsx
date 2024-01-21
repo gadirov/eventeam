@@ -13,14 +13,17 @@ import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { MdLocationOn } from "react-icons/md";
 
-
-
 const Location = () => {
   const { control, formState } = useFormContext();
-  const {errors} = formState;
+  const { errors } = formState;
   return (
     <>
-      <VStack w="50%" alignItems="center" p="60px" bg="white">
+      <VStack
+        w={{ base: "100%", lg: "70%" }}
+        alignItems="center"
+        p={{ base: "10px", md: "60px" }}
+        bg="white"
+      >
         <HStack w="90%">
           <Icon as={MdLocationOn} w={12} h={12} color="purple.500" />
           <Box pl="32px">
