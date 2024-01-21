@@ -18,12 +18,12 @@ const Attended = () => {
   // const { errors } = formState;
   return (
     <VStack
-      w={{ base: "90%", sm: "70%", md: "50%" }}
+    w={{base: "100%", lg: "70%"}}
       alignItems="center"
       bg="white"
-      p="60px"
+      p={{base: "10px",md:"60px" }}
     >
-      <HStack w="100%">
+      <HStack w="90%">
         <Icon as={MdNumbers} w={12} h={12} color="purple.500" />
         <Box pl={{ base: 0, md: "32px" }}>
           <Text as="b">Attended</Text>
@@ -35,6 +35,7 @@ const Attended = () => {
 
       <FormControl
         pt="60px"
+        w="90%"
         // isInvalid={!!errors?.minmax?.min as || !!errors?.minmax?.max}
       >
         <FormLabel fontSize="20px">Expected number of attendees</FormLabel>
