@@ -84,10 +84,10 @@ const Contact = () => {
                   />
                   <Box>
                     <Heading textTransform={"uppercase"} color={"#071450"}>
-                      Location
+                    {t("Location")}
                     </Heading>
                     <Text color={"#071450"} fontWeight={"Bold"}>
-                      Baku
+                    {t("Baku")}
                     </Text>
                   </Box>
                 </Box>
@@ -108,7 +108,7 @@ const Contact = () => {
                   />
                   <Box>
                     <Heading textTransform={"uppercase"} color={"#071450"}>
-                      Phone
+                    {t("Phone")}
                     </Heading>
                     <Text color={"#071450"} fontWeight={"Bold"}>
                       +99412555555
@@ -132,7 +132,7 @@ const Contact = () => {
                   />
                   <Box>
                     <Heading textTransform={"uppercase"} color={"#071450"}>
-                      Email
+                    {t("Email")}
                     </Heading>
                     <Text color={"#071450"} fontWeight={"Bold"}>
                       eventteam@app.com
@@ -153,7 +153,7 @@ const Contact = () => {
                   fontSize={{ base: "25px", md: "35px" }}
                   color={"#071450"}
                 >
-                  Write A Message
+                 {t("Write Message")}
                 </Heading>
                 <FormControl isInvalid={!!errors.name}>
                   <Controller
@@ -161,7 +161,7 @@ const Contact = () => {
                     control={control}
                     defaultValue=""
                     render={({ field }) => (
-                      <Input {...field} bg={"#fff"} placeholder="Your Name" />
+                      <Input {...field} bg={"#fff"} placeholder={t("Your Name")} />
                     )}
                   />
                   <FormErrorMessage>{errors?.name?.message}</FormErrorMessage>
@@ -172,7 +172,7 @@ const Contact = () => {
                     control={control}
                     defaultValue=""
                     render={({ field }) => (
-                      <Input {...field} bg={"#fff"} placeholder="Your Email" />
+                      <Input {...field} bg={"#fff"} placeholder={t("Your Email")} />
                     )}
                   />
                   <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
@@ -183,7 +183,7 @@ const Contact = () => {
                     control={control}
                     defaultValue=""
                     render={({ field }) => (
-                      <Input {...field} bg={"#fff"} placeholder="Your Phone" />
+                      <Input {...field} bg={"#fff"} placeholder={t("Phone")} />
                     )}
                   />
                   <FormErrorMessage>{errors?.phone?.message}</FormErrorMessage>
@@ -194,7 +194,7 @@ const Contact = () => {
                     control={control}
                     defaultValue=""
                     render={({ field }) => (
-                      <Input {...field} bg={"#fff"} placeholder="Subject" />
+                      <Input {...field} bg={"#fff"} placeholder={t("Subject")} />
                     )}
                   />
                   <FormErrorMessage>{errors.subject?.message}</FormErrorMessage>
@@ -208,14 +208,14 @@ const Contact = () => {
                       <Textarea
                         {...field}
                         bg={"#fff"}
-                        placeholder="Write a message"
+                        placeholder={t("Write Message")}
                       />
                     )}
                   />
                   <FormErrorMessage>{errors.message?.message}</FormErrorMessage>
                 </FormControl>
                 <Button type="submit" color="#fff" bg="#8F64FF" mt={4}>
-                  Submit
+                {t("Submit")}
                 </Button>
               </Flex>
             </Box>

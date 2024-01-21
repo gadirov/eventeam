@@ -6,20 +6,25 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
+  Image
 } from "@chakra-ui/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFilm } from "@fortawesome/free-solid-svg-icons";
-import { ICategory } from "../../model";
+import { ICategory } from "../../model.ts";
 
 const CategoriesPageCardItem: React.FC<ICategory> = ({
-  count,
-  categoryName,
+  name,  
+  categoryKey ,
+  backgroundLink, 
+  iconLink,
+  eventCount,
+
 }) => {
-  const category = categoryName.split(".")[1].toUpperCase();
+
   return (
     <Card
       borderRadius="20px"
-      bgGradient="linear(to-l, #7928CA, #FF0080)"
+      bgImage={`url(http://173.212.221.237/images/${backgroundLink})`}
+      backgroundRepeat="no-repeat"
+      backgroundSize="cover"
       margin="0 10px"
     >
       <CardHeader p="30px 30px 0px 30px">
@@ -31,7 +36,7 @@ const CategoriesPageCardItem: React.FC<ICategory> = ({
           fontWeight="500"
           lineHeight="40px"
         >
-          {count} Events
+          {eventCount} Events
         </Heading>
       </CardHeader>
       <CardBody p="6px 30px 30px 30px">
@@ -42,11 +47,11 @@ const CategoriesPageCardItem: React.FC<ICategory> = ({
           fontStyle="normal"
           fontWeight="600"
         >
-          {category}
+          {name}
         </Text>
       </CardBody>
       <CardFooter p="6px 30px 30px 30px">
-        <FontAwesomeIcon color="white" fontSize="40px" icon={faFilm} />
+        <Image  src={`http://173.212.221.237/images/${iconLink}`}/>
       </CardFooter>
     </Card>
   );

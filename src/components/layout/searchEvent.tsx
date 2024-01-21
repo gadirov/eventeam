@@ -6,6 +6,7 @@ import {
   Input,
   Select,
   SimpleGrid,
+  Text,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
@@ -13,6 +14,7 @@ import { fetcher } from "../../config/axiosConfig.ts";
 import { swrOptions } from "../../const.ts";
 import { useDetails } from "../../hooks/useDetails.ts";
 import CardItem from "../Card/CartdItem.tsx";
+import { useCategory } from "../../hooks/useCategory.ts";
 
 export default function SearchEvent() {
   const [searchField, setSearchField] = React.useState<string>("");
@@ -22,9 +24,11 @@ export default function SearchEvent() {
   const [attendanceFilter, setAttendanceFilter] = React.useState<string>("");
   const [dateFilter, setDateFilter] = React.useState<string>("");
   const [priceFilter, setPriceFilter] = React.useState<string>("");
+  const [categoryFilter, setCategoryFilter] = React.useState<string>("");
 
   // Request part
   const { data, isLoading } = useDetails();
+  const { data: categoryData } = useCategory();
   const { data: filteredData, isLoading: loadingFilter } = useSWR(
     `/events-ms/api/v1/events/filter?${nameOfInput}=${filterValue}`,
     fetcher,
@@ -35,7 +39,7 @@ export default function SearchEvent() {
     if (!isLoading) {
       setsearchData(data.body);
     }
-  }, [data, isLoading]);
+  }, [data, isLoading]); 
 
   // Input value changing for search part
   const handleChange = (e: {
@@ -46,8 +50,9 @@ export default function SearchEvent() {
 
   // Filter button click event handler
   const handleClearFilter = () => {
-    setFilterValue("");
+    setFilterValue("11111");
     setNameOfInput("");
+    setCategoryFilter("")
     setAttendanceFilter("");
     setDateFilter("");
     setPriceFilter("");
@@ -66,6 +71,9 @@ export default function SearchEvent() {
         break;
       case "date":
         setDateFilter(event.target.value);
+        break;
+        case "CATEGORY":
+        setCategoryFilter(event.target.value);
         break;
       case "ticketType":
         setPriceFilter(event.target.value);
@@ -95,11 +103,23 @@ export default function SearchEvent() {
           my={"40px"}
           flexDirection={{ base: "column", sm: "row", md: "row" }}
         >
+          
           <Box
             display={"flex"}
             gap={"20px"}
             flexDirection={{ base: "column", md: "row" }}
           >
+            <Select
+              placeholder="Category"
+              fontWeight={"bold"}
+              size={{ base: "lg", md: "md" }}
+              bg={"#F2F4F7"}
+              name={"CATEGORY"}
+              onChange={(event) => handleFilterChange(event)}
+              value={categoryFilter}
+            >
+              {categoryData?.body.map(({name, categoryKey}) => <option key={categoryKey} value={name}>{name}</option>)}
+            </Select>
             <Select
               placeholder="Attendance"
               fontWeight={"bold"}
@@ -144,23 +164,35 @@ export default function SearchEvent() {
               <option value="FREE">Free</option>
               <option value="PAID">Paid</option>
             </Select>
-            <Button onClick={handleClearFilter} bg={"blue"} color={"#fff"} size={{ base: "lg", md: "md" }} padding="0 30px!important">
+            <Button
+              onClick={handleClearFilter}
+              bg={"blue"}
+              color={"#fff"}
+              size={{ base: "lg", md: "md" }}
+              padding="0 30px!important"
+            >
               Clear Filter
             </Button>
           </Box>
         </Flex>
 
         {/* Search part */}
+        <Box mb="30px" w="50%" mx="auto">
+          <CardItem {...searchData[0]} />
+        </Box>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing="60px">
-          {searchData
-            ? searchData
-                .filter((event) => {
-                  return event.eventName
-                    .toLowerCase()
-                    .includes(searchField.toLowerCase());
-                })
-                ?.map((event, index) => <CardItem {...event} key={index} />)
-            : "loading..."}{" "}
+          {searchData ? (
+            searchData
+              ?.slice(1)
+              ?.filter((event) => {
+                return event.eventName
+                  .toLowerCase()
+                  .includes(searchField.toLowerCase());
+              })
+              ?.map((event, index) => <CardItem {...event} key={index} />)
+          ) : (
+            <Text>Loading</Text>
+          )}
         </SimpleGrid>
       </Container>
     </Box>

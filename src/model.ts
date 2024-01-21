@@ -59,8 +59,13 @@ export interface IContactFormData {
 }
 
 export interface ICategory {
-  count: number;
-  categoryName: string;
+  name: string,
+  categoryKey: string,
+  backgroundLink: string,
+  iconLink: string,
+  eventCount: number,
+  backgroundImage?: null,
+  icon?: null
 }
 export interface IUpcomingPageCardItem {
   idEvent: string;
@@ -75,4 +80,5 @@ export interface IEventProps {
   idEvent: string;
   coverPhoto: string;
   eventName: string;
+  size: boolean;
 }

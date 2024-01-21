@@ -121,7 +121,7 @@ const Footer = () => {
               gap="10px"
             >
               <LocationIcon />
-              <ListItem cursor="pointer">Baku, Azerbaijan</ListItem>
+              <ListItem cursor="pointer">{t("Footer Location")}</ListItem>
             </Box>
             <Box
               _hover={{ color: "#66f5ff", transition: "color 0.5s" }}
