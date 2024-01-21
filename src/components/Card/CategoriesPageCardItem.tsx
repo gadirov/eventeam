@@ -41,11 +41,12 @@ const CategoriesPageCardItem: React.FC<ICategory> = ({
         </Heading>
       </CardHeader>
       <CardBody p="6px 30px 30px 30px">
-        <Link to={`/searchevent?category=${name}`}>
+        <Link to={`/searchevent?category=${name}`} >
         <Text
+        _hover={{ textDecoration: "underline"}}
           color="#FFF"
           fontFamily="Euclid Circular B"
-          fontSize="35px"
+          fontSize="30px"
           fontStyle="normal"
           fontWeight="600"
         >
@@ -54,7 +55,7 @@ const CategoriesPageCardItem: React.FC<ICategory> = ({
         </Link>
       </CardBody>
       <CardFooter p="6px 30px 30px 30px">
-        <Image  src={`http://173.212.221.237/images/${iconLink}`}/>
+        <Image width={"45px"}   src={`http://173.212.221.237/images/${iconLink}`}/>
       </CardFooter>
     </Card>
   );

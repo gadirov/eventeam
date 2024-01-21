@@ -72,10 +72,10 @@ const DetailView = () => {
   // console.log(d)
   return (
     <Box pt="100px">
-      <Box background="rgb(160,152,255)">
-        <Box w="82%" margin="auto">
+      <Box backgroundRepeat={"no-repeat"} backgroundSize={"100%"} mt={"-22px"}  backgroundImage={"url(http://173.212.221.237/images/1636232647386_Mesh_25.png)"}>
+        <Box w="72%" margin="auto">
           <Image
-            height={{ base: "30vh", md: "70vh " }}
+            height={{ base: "30vh", md: "78vh " }}
             w="100%"
             src={`http://173.212.221.237/images/${detailData?.body?.coverPhoto}`}
             alt=""
