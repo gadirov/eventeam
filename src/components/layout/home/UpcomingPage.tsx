@@ -79,9 +79,18 @@ export default function UpcomingPage() {
             spacing="60px"
             margin="0 auto"
           >
-            {allData?.body?.listOfEvents?.slice(0, next)?.map((event) => (
-              <UpcomingPageCardItem {...event} key={event.idEvent} />
-            ))}
+            {" "}
+            {allData?.body?.listOfEvents
+              ? allData?.body?.listOfEvents
+                  ?.slice(0, next)
+                  ?.map((event) => (
+                    <UpcomingPageCardItem {...event} key={event.idEvent} />
+                  ))
+              : allData?.body
+                  ?.slice(0, next)
+                  ?.map((event) => (
+                    <UpcomingPageCardItem {...event} key={event.idEvent} />
+                  ))}
           </SimpleGrid>
         </Box>
       );
