@@ -67,7 +67,7 @@ const Category = () => {
           <Box pl="32px">
             <Text as="b">{t("Category")}</Text>
             <Text color="#98A2B3" pt="16px">
-            {t("Category info")}
+              {t("Category info")}
             </Text>
           </Box>
         </HStack>
@@ -105,6 +105,13 @@ const Category = () => {
                 onChange={handleCategoryChange}
               >
                 <VStack align="start">
+                  {datas?.map((category, index) => {
+                    return (
+                      <Checkbox key={index} value={category}>
+                        {category}
+                      </Checkbox>
+                    );
+                  })}
                   {datas?.map((category) => {
                     return (
                       <Checkbox key={category.id} value={category.keyword}>

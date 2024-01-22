@@ -49,7 +49,7 @@ import { useTranslation } from "react-i18next";
 //   eventName: string;
 // }
 const DetailView = () => {
-  const {t}=useTranslation();
+  const { t } = useTranslation();
   const params = useParams();
   const [detailData, setDetailData] = useState<any>(undefined);
   const { data, error, isLoading } = useSWR(
@@ -74,7 +74,14 @@ const DetailView = () => {
   // console.log(d)
   return (
     <Box pt="100px">
-      <Box backgroundRepeat={"no-repeat"} backgroundSize={"100%"} mt={"-22px"}  backgroundImage={"url(http://173.212.221.237/images/1636232647386_Mesh_25.png)"}>
+      <Box
+        backgroundRepeat={"no-repeat"}
+        backgroundSize={"100%"}
+        mt={"-22px"}
+        backgroundImage={
+          "url(http://173.212.221.237/images/1636232647386_Mesh_25.png)"
+        }
+      >
         <Box w="72%" margin="auto">
           <Image
             height={{ base: "30vh", md: "78vh " }}
@@ -123,7 +130,7 @@ const DetailView = () => {
                       style={{ color: "#ffffff" }}
                     />
                     <Text color="white" ml="5px">
-                    {t("Going")}
+                      {t("Going")}
                     </Text>
                   </Box>
                 </MenuButton>
@@ -142,13 +149,19 @@ const DetailView = () => {
               >
                 <FontAwesomeIcon icon={faStar} style={{ color: "#74C0FC" }} />{" "}
                 <Text ml="5px" color="black">
-                {t("Interested")}
+                  {t("Interested")}
                 </Text>
               </Button>
             </Box>
           </Box>
           <Divider border="1px solid #d4d4d4  " />
-          <Box p="30px 0px" display="flex" flexDirection={{ base: "column", md: "row" }} gap={{ base: "50px", md: "150px" }} margin="0 50px">
+          <Box
+            p="30px 0px"
+            display="flex"
+            flexDirection={{ base: "column", md: "row" }}
+            gap={{ base: "50px", md: "150px" }}
+            margin="0 50px"
+          >
             <Box display="flex" flexDirection="column" gap="20px">
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faCalendar} />
@@ -158,7 +171,9 @@ const DetailView = () => {
               </Box>
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faClock} />
-                <Text fontSize="20px">{timeDifferenceInMinutes} {t("Minutes")}</Text>
+                <Text fontSize="20px">
+                  {timeDifferenceInMinutes} {t("Minutes")}
+                </Text>
               </Box>
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faLocationDot} />
@@ -166,12 +181,15 @@ const DetailView = () => {
                   Baki Kinoteatrı
                 </Text>
               </Box>
-              <Box display="flex" flexDirection={{ base: "column", md: "row" }} gap="15px">
+              <Box
+                display="flex"
+                flexDirection={{ base: "column", md: "row" }}
+                gap="15px"
+              >
                 <Box textAlign={{ made: "start", md: "center" }}>
                   <FontAwesomeIcon fontSize="23px" icon={faUserGroup} />
-
                 </Box>
-                <Box display="flex" >
+                <Box display="flex">
                   <Text color="gray" fontSize="20px">
                     {" "}
                     Min:{" "}
@@ -249,59 +267,61 @@ const DetailView = () => {
           >
             <Box>
               <Heading textAlign="center" fontSize="40px">
-              {t("Attended")}
+                {t("Attended")}
               </Heading>
-              <Box p="30px 0px" display="flex" gap={{ base: "19px", md: "120px" }}>
+              <Box
+                p="30px 0px"
+                display="flex"
+                gap={{ base: "19px", md: "120px" }}
+              >
                 <Box>
                   <Text
                     textAlign="center"
                     color="#56d5f5"
-                    fontSize={{base:"37px",md:"40px"}}
+                    fontSize={{ base: "37px", md: "40px" }}
                     fontWeight="500"
                   >
                     {detailData?.body?.usersList?.goingCount}
                   </Text>
-                  <Text color="gray" fontSize={{base:"20",md:"25px"}}>
-                  {t("Going")}
+                  <Text color="gray" fontSize={{ base: "20", md: "25px" }}>
+                    {t("Going")}
                   </Text>
                 </Box>
                 <Box>
                   <Text
                     textAlign="center"
                     color="#56d5f5"
-                    
-                    fontSize={{base:"37px",md:"40px"}}
+                    fontSize={{ base: "37px", md: "40px" }}
                     fontWeight="500"
                   >
                     {detailData?.body?.usersList?.interestedCount}
                   </Text>
-                  <Text color="gray"  fontSize={{base:"20",md:"25px"}}>
-                  {t("Interested")}
+                  <Text color="gray" fontSize={{ base: "20", md: "25px" }}>
+                    {t("Interested")}
                   </Text>
                 </Box>
                 <Box>
                   <Text
                     textAlign="center"
                     color="#56d5f5"
-                    
                     fontWeight="500"
-                    fontSize={{base:"37px",md:"40px"}}
+                    fontSize={{ base: "37px", md: "40px" }}
                   >
                     0
                   </Text>
-                  <Text color="gray" fontSize={{base:"20",md:"25px"}}>
-                  {t("Invited")}
+                  <Text color="gray" fontSize={{ base: "20", md: "25px" }}>
+                    {t("Invited")}
                   </Text>
                 </Box>
               </Box>
             </Box>
           </Box>
           <Box
-            p={{base:"0 50px",md:"0 100px"}}
+            p={{ base: "0 50px", md: "0 100px" }}
             mt="-50px"
             display="flex"
-            flexDirection={{base:"column",md:"row"}}
-            gap={{base:"35px",md:"80px"}}
+            flexDirection={{ base: "column", md: "row" }}
+            gap={{ base: "35px", md: "80px" }}
             w="100vw"
             justifyContent="space-around"
           >
@@ -310,7 +330,7 @@ const DetailView = () => {
               <Box p="30px 0px">
                 <Menu>
                   <MenuButton
-                  w={{base:"100%",md:"100%"}}
+                    w={{ base: "100%", md: "100%" }}
                     size="lg"
                     gap="10px"
                     p="32px 60px 32px 20px"
@@ -363,11 +383,16 @@ const DetailView = () => {
                     p="32px 80px 32px 10px"
                     backgroundColor="#ededed"
                     borderRadius="10px"
-                  w={{base:"100%",md:"100%"}}
-
+                    w={{ base: "100%", md: "100%" }}
                   >
-                    <Box backgroundColor="white" p="15px" ml={{base:"-30px",md:"0px"}} mr={{base:"30px",md:"0px"}} borderRadius="15px">
-                      <FontAwesomeIcon  icon={faPhone} color="#74C0FC" />
+                    <Box
+                      backgroundColor="white"
+                      p="15px"
+                      ml={{ base: "-30px", md: "0px" }}
+                      mr={{ base: "30px", md: "0px" }}
+                      borderRadius="15px"
+                    >
+                      <FontAwesomeIcon icon={faPhone} color="#74C0FC" />
                     </Box>
                     <Text color="black">{detailData?.body?.mobileNumber} </Text>
                   </Button>
@@ -390,7 +415,7 @@ const DetailView = () => {
           </Box>
         </Box>
       </Box>
-    </Box >
+    </Box>
   );
 };
 

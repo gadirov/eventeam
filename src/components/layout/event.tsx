@@ -12,7 +12,7 @@ import Ticket from "./CreateEvent/ticket.tsx";
 import { useCreateEvent } from "../../hooks/useCreateEvent.ts";
 import { useTranslation } from "react-i18next";
 function Event() {
-   const {t}=useTranslation();
+  const { t } = useTranslation();
   const methods = useForm({
     mode: "all",
     defaultValues: {
@@ -49,7 +49,11 @@ function Event() {
           w="100%"
           justifyContent="center"
         >
-          <Box w={{ base: "100%", lg: "70%" }} pt="20px" pl={{base:"15px", md:"0px"}}>
+          <Box
+            w={{ base: "100%", lg: "70%" }}
+            pt="20px"
+            pl={{ base: "15px", md: "0px" }}
+          >
             <Heading textAlign="left">{t("Create an Event")}</Heading>
           </Box>
           <EventDetails />
