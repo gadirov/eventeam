@@ -35,6 +35,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useUserDetails } from "../../hooks/useUserDetails.ts";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { useDisclosure } from '@chakra-ui/react'
+import { BaseUrl } from "../../const.ts";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -195,7 +196,7 @@ const Header = () => {
                   <Image
                     borderRadius="full"
                     boxSize="150px"
-                    src={`http://173.212.221.237/images/${data?.body?.userView?.profilePhoto}`}
+                    src={`${BaseUrl}/images/${data?.body?.userView?.profilePhoto}`}
                     alt="Profile Image"
                     w={"45px"}
                     height={"45px"}
@@ -246,6 +247,7 @@ const Header = () => {
                 <DrawerBody>
                   <Box display={"flex"} flexDirection={"column"} >
                     <Box
+                      onClick={onClose} 
                       _hover={{
                         color: "#8F64FF",
                         transition: "color 0.5s",
@@ -269,6 +271,7 @@ const Header = () => {
                         fontWeight: "400"
                       }} >
                       <Box
+                        onClick={onClose} 
                         fontSize={"25px"}
                         fontWeight={"400"}>
                         <Link to="/contact">{t("Contact")}</Link>
@@ -283,6 +286,7 @@ const Header = () => {
                         fontWeight: "400"
                       }} >
                       <Box
+                        onClick={onClose} 
                         fontSize={"25px"}
                         fontWeight={"400"}>
                         <Link to="/events">{t("Events")}</Link>
@@ -297,6 +301,7 @@ const Header = () => {
                         fontWeight: "400"
                       }} >
                       <Box
+                      onClick={onClose} 
                         fontSize={"25px"}
                         fontWeight={"400"}>
                         <Link to="/searchevent">SearchEvent</Link>

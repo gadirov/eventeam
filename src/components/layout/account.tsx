@@ -21,6 +21,7 @@ import { IFormAccount } from "../../model.ts";
 import { put } from "../../config/axiosConfig.ts";
 import { useProfileImage } from "../../hooks/useProfileImage.ts";
 import { useTranslation } from "react-i18next";
+import { BaseUrl } from "../../const.ts";
 
 
 const Account = () => {
@@ -30,7 +31,7 @@ const Account = () => {
   const { data: userData } = useUserDetails(id);
   
   const onSubmit = (data) => {
-    put("http://173.212.221.237:38765/user/user/change-personal-details", data);
+    put(`${BaseUrl}:38765/user/user/change-personal-details`, data);
     setEditMode(!editMode);
   };
   const {
@@ -94,7 +95,7 @@ const Account = () => {
               <Box>
                 <Image
                   boxSize="120px"
-                  src={"http://173.212.221.237/images/" + watch("profilePhoto")}
+                  src={`${BaseUrl}/images/${watch("profilePhoto")}`}
                   alt="Dan Abramov"
                   margin="30px"
                   borderRadius="full"

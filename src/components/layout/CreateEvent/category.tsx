@@ -105,13 +105,6 @@ const Category = () => {
                 onChange={handleCategoryChange}
               >
                 <VStack align="start">
-                  {datas?.map((category, index) => {
-                    return (
-                      <Checkbox key={index} value={category}>
-                        {category}
-                      </Checkbox>
-                    );
-                  })}
                   {datas?.map((category) => {
                     return (
                       <Checkbox key={category.id} value={category.keyword}>

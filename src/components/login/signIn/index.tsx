@@ -50,7 +50,7 @@ const SignIn = () => {
   }
   return (
     <FormProvider {...methods}>
-      <VStack minH="100vh" justifyContent="space-between" p="10px 0">
+      <VStack minH={{base:"75vh", md:"100vh"}} justifyContent="space-between" p="10px 0">
         <Header />
         <Box w="54%" display="flex" flexDirection="column" gap="30px">
           <Heading

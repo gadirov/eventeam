@@ -3,8 +3,8 @@ import { Box, Button, FormControl, Heading, VStack } from "@chakra-ui/react";
 import Header from "../Header.tsx";
 import Footer from "../Footer.tsx";
 import { FormProvider, useForm } from "react-hook-form";
-import Password from "../signIn/Password.tsx";
 import { useTranslation } from "react-i18next";
+import Email from "../signIn/Email.tsx";
 // import { DevTool } from "@hookform/devtools";
 
 const ForgetPassword = () => {
@@ -39,7 +39,7 @@ const ForgetPassword = () => {
            {t("Forget Password")}
           </Heading>
           <FormControl as="form" onSubmit={methods.handleSubmit(onSubmit)}>
-            <Password />
+            <Email/>
             <Button
               mt="30px"
               w="100%"
