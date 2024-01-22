@@ -10,9 +10,11 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { MdNumbers } from "react-icons/md";
 
 const Attended = () => {
+  const {t}=useTranslation();
   const { control } = useFormContext();
   return (
     <VStack
@@ -24,15 +26,15 @@ const Attended = () => {
       <HStack w="90%">
         <Icon as={MdNumbers} w={12} h={12} color="purple.500" />
         <Box pl={{ base: 0, md: "32px" }}>
-          <Text as="b">Attended</Text>
+          <Text as="b">{t("Attended")}</Text>
           <Text color="#98A2B3" pt="16px">
-            Roughly how many people do you want to invite?
+          {t("Attended İnfo")}
           </Text>
         </Box>
       </HStack>
 
       <FormControl pt="60px" w="90%">
-        <FormLabel fontSize="20px">Expected number of attendees</FormLabel>
+        <FormLabel fontSize="20px">{t("Expected number")}</FormLabel>
         <HStack>
           <Controller
             name="minmax.min"

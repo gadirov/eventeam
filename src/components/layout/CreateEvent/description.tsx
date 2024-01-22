@@ -16,8 +16,10 @@ import React, { useRef } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { MdDescription } from "react-icons/md";
 import { useHandleImage } from "../../../hooks/useEventImage.ts";
+import { useTranslation } from "react-i18next";
 
 const Description = () => {
+  const {t}=useTranslation();
   const { control, formState, setValue, watch } = useFormContext();
   const { errors } = formState;
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -40,19 +42,18 @@ const Description = () => {
         <HStack w="90%">
           <Icon as={MdDescription} w={12} h={12} color="purple.500" />
           <Box pl="32px">
-            <Text as="b">Description</Text>
+            <Text as="b">{t("Description")}</Text>
             <Text color="#98A2B3" pt="16px">
-              Provide more information about your event so that guests know what
-              to expect.
+              {t("Desc Info")};
             </Text>
           </Box>
         </HStack>
         <VStack alignItems="flex-start" w="90%">
           <Text fontSize="20px" pt="40px">
-            Event pictures
+          {t("Event Pictures")}
           </Text>
           <Text pb="25px" color="gray">
-            Add Your event's additional picture
+            {t("Picture Info")}
           </Text>
           <FormControl
             mb={errors?.btnPhoto ? 0 : 6}
@@ -81,7 +82,7 @@ const Description = () => {
                     }}
                     colorScheme="purple"
                   >
-                    Add photo
+                    {t("Add Photo")}
                   </Button>
 
                   {watch("btnPhoto") && (
@@ -104,7 +105,7 @@ const Description = () => {
           </FormControl>
 
           <FormControl mb={errors?.about ? 0 : 6} isInvalid={!!errors?.about}>
-            <FormLabel pt="60px">About event</FormLabel>
+            <FormLabel pt="60px">{t("About Event")}</FormLabel>
             <Controller
               name="about"
               control={control}
@@ -114,7 +115,7 @@ const Description = () => {
               render={({ field }) => (
                 <Textarea
                   {...field}
-                  placeholder="Input any info about your event"
+                  placeholder={t("İnput Event")}
                 />
               )}
             />

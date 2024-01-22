@@ -13,9 +13,11 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { MdContactSupport } from "react-icons/md";
 
 const Contact = () => {
+  const { t } = useTranslation();
   const { control, formState } = useFormContext();
   const { errors } = formState;
   return (
@@ -29,10 +31,9 @@ const Contact = () => {
         <HStack w="90%">
           <Icon as={MdContactSupport} w={12} h={12} color="purple.500" />
           <Box pl="32px">
-            <Text as="b">Contact</Text>
+            <Text as="b">{t("Contact")}</Text>
             <Text color="#98A2B3" pt="16px">
-              It is important to include a mobile number or other means of
-              communication to ensure the seriousness of the event.
+            {t("Contact info")}
             </Text>
           </Box>
         </HStack>
@@ -43,7 +44,7 @@ const Contact = () => {
           mb={errors?.contact ? 0 : 6}
           w="90%"
         >
-          <FormLabel>Mobile Number</FormLabel>
+          <FormLabel>{t("Mobile")}</FormLabel>
 
           <Controller
             name="contact"
@@ -64,11 +65,11 @@ const Contact = () => {
           </FormErrorMessage>
         </FormControl>
         <VStack alignItems="flex-start" w="90%">
-          <FormLabel pt="40px">Facebook</FormLabel>
+          <FormLabel pt="40px">{t("Facebook")}</FormLabel>
           <Input variant="flushed" placeholder="Facebook.com/" />
 
-          <FormLabel pt="40px">Website</FormLabel>
-          <Input type="url" variant="flushed" placeholder="Input website url" />
+          <FormLabel pt="40px">{t("Website")}</FormLabel>
+          <Input type="url" variant="flushed" placeholder={t("Input Website")} />
         </VStack>
       </VStack>
     </>

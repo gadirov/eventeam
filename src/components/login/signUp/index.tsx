@@ -10,8 +10,10 @@ import Gender from "./Gender.tsx";
 import File from "./File.tsx";
 import { useSignup } from "../../../hooks/useSignup.ts";
 import Email from "./Email.tsx";
+import { useTranslation } from "react-i18next";
 
 const SignUp = () => {
+  const {t}=useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const methods = useForm({
     defaultValues: {
@@ -49,7 +51,7 @@ const SignUp = () => {
             color="#7848F4"
             fontStyle="italic"
           >
-            Sign up
+            {t("Signup")}
           </Heading>
           <form onSubmit={methods.handleSubmit(onSubmit)}>
             <Fullname />

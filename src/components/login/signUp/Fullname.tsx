@@ -6,17 +6,19 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 interface FormValues {
   login: string;
 }
 export default function Fullname() {
+  const {t}=useTranslation();
   const methods = useFormContext<FormValues>();
 
   return (
     <FormControl isInvalid={!!methods.formState.errors.login} mb="20px">
       <FormLabel color="#707070" fontSize="18px">
-        Fullname
+      {t("Username")}
       </FormLabel>
       <Controller
         name="login"
