@@ -12,7 +12,7 @@ const SliderMainPage: React.FC = () => {
     speed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    // autoplay: true,
     autoplaySpeed: 2000,
   };
 
@@ -62,7 +62,7 @@ const SliderMainPage: React.FC = () => {
             />
           </Box>
         </Box>
-        <Box paddingTop={{ base: "64px", md: "0px" }} display="flex !important" alignItems="center">
+        {/* <Box paddingTop={{ base: "64px", md: "0px" }} display="flex !important" alignItems="center">
           <Box pl={{ base: "24px", md: "220px" }} flex="0 0 auto" width="50%">
             <Heading
               color="#111833"
@@ -97,7 +97,7 @@ const SliderMainPage: React.FC = () => {
               alt=""
             />
           </Box>
-        </Box>
+        </Box> */}
       </Slider>
     </Box>
   );

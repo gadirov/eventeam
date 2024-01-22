@@ -108,7 +108,7 @@ export default function UpcomingPage() {
     >
       <Box display="flex" justifyContent="center" mb="70px">
         <Tabs onChange={(index) => changeHandlerSelect(index)}>
-          <TabList w={{base:"80%",md:"69%"}} m="0 auto" gap={"15px"}>
+          <TabList w={{base:"86%",md:"69%"}} m="0 auto" gap={"15px"} p={"10px 0px"}>
             <Tab  p={{base:"0px",md:"8px 16px"}} fontSize={{base:"12px",md:"22px"}} >{t("Upcoming")}</Tab>
             <Tab  p={{base:"0px",md:"8px 16px"}} fontSize={{base:"12px",md:"22px"}}>{t("Popular Events")}</Tab>
             <Tab  p={{base:"0px",md:"8px 16px"}} fontSize={{base:"12px",md:"22px"}}>{t("Friend Events")}</Tab>
@@ -118,7 +118,7 @@ export default function UpcomingPage() {
 
           <TabPanels>
             {[0, 1, 2, 3, 4].map((index) => (
-              <TabPanel key={index}>{renderTabPanelContent()}</TabPanel>
+              <TabPanel p={"0px"} key={index}>{renderTabPanelContent()}</TabPanel>
             ))}
           </TabPanels>
         </Tabs>
