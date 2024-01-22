@@ -142,7 +142,7 @@ const Header = () => {
           }}
           cursor="pointer"
         >
-          <Link to="/searchevent">SearchEvent</Link>
+          <Link to="/searchevent">{t("SearchEvent")}</Link>
         </ListItem>
       </UnorderedList>
       <Box display="flex" alignItems="center" gap={{ base: "10px", md: "20px" }}>
@@ -223,14 +223,14 @@ const Header = () => {
                   <MenuItemOption minH="24px">
                     {token && (
                       <Box display="flex" alignItems="center" gap="5px">
-                        <Text>Your profile</Text>
+                        <Text>{t("Your profile")}</Text>
                       </Box>
                     )}
                   </MenuItemOption>
                 </Link>
                 <MenuDivider />
                 <MenuItemOption color="red" onClick={logoutHandler} minH="24px">
-                  Log out
+                {t("Log out")}
                 </MenuItemOption>
               </MenuOptionGroup>
             </MenuList>
@@ -304,12 +304,10 @@ const Header = () => {
                       onClick={onClose} 
                         fontSize={"25px"}
                         fontWeight={"400"}>
-                        <Link to="/searchevent">SearchEvent</Link>
+                        <Link to="/searchevent">{t("SearchEvent")}</Link>
                       </Box>
-                      
                     </Box>
                   </Box>
-
                 </DrawerBody>
               </DrawerContent>
             </Drawer>
