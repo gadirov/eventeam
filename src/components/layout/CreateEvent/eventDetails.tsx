@@ -20,6 +20,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import { MdEvent } from "react-icons/md";
 import { useHandleImage } from "../../../hooks/useEventImage.ts";
 import { useTranslation } from "react-i18next";
+import { BaseUrl } from "../../../const.ts";
 
 const EventDetails = () => {
   const {t}=useTranslation();
@@ -89,7 +90,7 @@ const EventDetails = () => {
           {methods.watch("coverPhoto") && (
             <div>
               <Image
-                src={`http://173.212.221.237/images/${methods.watch("coverPhoto")}`}
+                src={`${BaseUrl}/images/${methods.watch("coverPhoto")}`}
                 alt="Selected Image"
               />
             </div>

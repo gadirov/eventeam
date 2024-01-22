@@ -42,7 +42,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { fetcher } from "../../config/axiosConfig.ts";
 import useSWR from "swr";
-import { swrOptions } from "../../const.ts";
+import { BaseUrl, swrOptions } from "../../const.ts";
 import { useTranslation } from "react-i18next";
 
 // interface DetailData {
@@ -74,19 +74,12 @@ const DetailView = () => {
   // console.log(d)
   return (
     <Box pt="100px">
-      <Box
-        backgroundRepeat={"no-repeat"}
-        backgroundSize={"100%"}
-        mt={"-22px"}
-        backgroundImage={
-          "url(http://173.212.221.237/images/1636232647386_Mesh_25.png)"
-        }
-      >
+      <Box>
         <Box w="72%" margin="auto">
           <Image
             height={{ base: "30vh", md: "78vh " }}
             w="100%"
-            src={`http://173.212.221.237/images/${detailData?.body?.coverPhoto}`}
+            src={`${BaseUrl}/images/${detailData?.body?.coverPhoto}`}
             alt=""
           />
         </Box>
@@ -121,7 +114,7 @@ const DetailView = () => {
                   as={Button}
                   borderRadius="13px"
                   p="30px"
-                  backgroundColor="#56d5f5"
+                  backgroundColor="#8f64ff"
                   size="lg"
                 >
                   <Box display="flex" alignItems="center">
@@ -147,7 +140,7 @@ const DetailView = () => {
                 colorScheme="teal"
                 size="lg"
               >
-                <FontAwesomeIcon icon={faStar} style={{ color: "#74C0FC" }} />{" "}
+                <FontAwesomeIcon icon={faStar} style={{ color: "#8f64ff" }} />{" "}
                 <Text ml="5px" color="black">
                   {t("Interested")}
                 </Text>
@@ -277,7 +270,7 @@ const DetailView = () => {
                 <Box>
                   <Text
                     textAlign="center"
-                    color="#56d5f5"
+                    color="#8f64ff"
                     fontSize={{ base: "37px", md: "40px" }}
                     fontWeight="500"
                   >
@@ -290,7 +283,7 @@ const DetailView = () => {
                 <Box>
                   <Text
                     textAlign="center"
-                    color="#56d5f5"
+                    color="#8f64ff"
                     fontSize={{ base: "37px", md: "40px" }}
                     fontWeight="500"
                   >
@@ -303,7 +296,7 @@ const DetailView = () => {
                 <Box>
                   <Text
                     textAlign="center"
-                    color="#56d5f5"
+                    color="#8f64ff"
                     fontWeight="500"
                     fontSize={{ base: "37px", md: "40px" }}
                   >
@@ -340,7 +333,7 @@ const DetailView = () => {
                     leftIcon={
                       <FontAwesomeIcon
                         icon={faUserPlus}
-                        style={{ color: "#74C0FC" }}
+                        style={{ color: "#8f64ff" }}
                       />
                     }
                   >
@@ -392,7 +385,7 @@ const DetailView = () => {
                       mr={{ base: "30px", md: "0px" }}
                       borderRadius="15px"
                     >
-                      <FontAwesomeIcon icon={faPhone} color="#74C0FC" />
+                      <FontAwesomeIcon icon={faPhone} color="#8f64ff" />
                     </Box>
                     <Text color="black">{detailData?.body?.mobileNumber} </Text>
                   </Button>

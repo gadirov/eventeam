@@ -76,7 +76,7 @@ const SignUp = () => {
               color="#fff"
               bg="#7848F4"
             >
-              {isLoading ? <Spinner /> : "Sign up"}
+              {isLoading ? <Spinner /> : t("Signup")}
             </Button>
           </form>
           {/* <Text textAlign="center" color="#707070" fontSize="18px">or</Text> */}

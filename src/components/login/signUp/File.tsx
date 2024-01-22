@@ -78,9 +78,9 @@ export default function File() {
           />
         )}
       />
-      <FormErrorMessage>
+      {/* <FormErrorMessage>
         {methods.formState.errors?.profilePhoto?.message}
-      </FormErrorMessage>
+      </FormErrorMessage> */}
     </FormControl>
   );
 }

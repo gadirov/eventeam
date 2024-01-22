@@ -4,6 +4,7 @@ import { Box, Divider, Heading, Stack, Text } from "@chakra-ui/layout";
 import React from "react";
 import { Link } from "react-router-dom";
 import { IEventProps } from "../../model.ts";
+import { BaseUrl } from "../../const.ts";
 
 const CardItem: React.FC<IEventProps> = ({
   idEvent,
@@ -14,7 +15,7 @@ const CardItem: React.FC<IEventProps> = ({
     <Card>
       <CardBody>
         <Image
-          src={`http://173.212.221.237/images/${coverPhoto}`}
+          src={`${BaseUrl}/images/${coverPhoto}`}
           alt="Green double couch with wooden legs"
           borderRadius="lg"
           w={"100%"}

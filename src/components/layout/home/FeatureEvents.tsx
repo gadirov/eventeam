@@ -4,6 +4,7 @@ import { useDetails } from "../../../hooks/useDetails.ts";
 import { IEvent } from "../../../model.ts";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { BaseUrl } from "../../../const.ts";
 
 export default function FeaturedEvents() {
   const {t}=useTranslation();
@@ -105,7 +106,7 @@ export default function FeaturedEvents() {
               width={"750px"}
               height={{base:"37vh",md:"60vh"}}
               objectPosition={"center"}
-              src={`http://173.212.221.237/images/${datas?.coverPhoto}`}
+              src={`${BaseUrl}/images/${datas?.coverPhoto}`}
             />
           </Box>
         </Box>

@@ -32,7 +32,7 @@ export default function Footer() {
 
   return (
     <>
-      <Box display="flex">
+      <Box display="flex" p={{base:"0px 30px", md:"0px"}}>
         <Checkbox
           colorScheme="purple"
           size="lg"
@@ -40,7 +40,7 @@ export default function Footer() {
           isChecked={checkbox}
           onChange={() => setCheckbox(!checkbox)}
         ></Checkbox>
-        <Text fontSize="20px" fontWeight="400" textAlign="center" mb="5px">
+        <Text fontSize="16px" fontWeight="400" textAlign="center" mb="5px">
           {t("Agreement")}{" "}
           <span
             style={{ color: "#7848f4", cursor: "pointer" }}

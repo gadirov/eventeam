@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { IUpcomingPageCardItem } from "../../model";
+import { BaseUrl } from "../../const.ts";
 
 const UpcomingPageCardItem: React.FC<IUpcomingPageCardItem> = ({
   idEvent,
@@ -62,7 +63,7 @@ const UpcomingPageCardItem: React.FC<IUpcomingPageCardItem> = ({
               height={"170px"}
               w={"100%"}
               objectFit={"fill"}
-              src={`http://173.212.221.237/images/${coverPhoto}`}
+              src={`${BaseUrl}/images/${coverPhoto}`}
             />
           </Box>
         </Box>

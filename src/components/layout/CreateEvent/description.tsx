@@ -17,6 +17,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import { MdDescription } from "react-icons/md";
 import { useHandleImage } from "../../../hooks/useEventImage.ts";
 import { useTranslation } from "react-i18next";
+import { BaseUrl } from "../../../const.ts";
 
 const Description = () => {
   const {t}=useTranslation();
@@ -88,7 +89,7 @@ const Description = () => {
                   {watch("btnPhoto") && (
                     <div>
                       <Image
-                        src={`http://173.212.221.237/images/${watch(
+                        src={`${BaseUrl}/images/${watch(
                           "btnPhoto"
                         )}`}
                         alt="Add photo"

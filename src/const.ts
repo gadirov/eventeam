@@ -17,3 +17,5 @@ export const swrOptions = {
   revalidateOnReconnect: false,
   shouldRetryOnError: false,
 };
+
+export const BaseUrl = "http://173.212.221.237";

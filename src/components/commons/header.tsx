@@ -35,6 +35,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useUserDetails } from "../../hooks/useUserDetails.ts";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { useDisclosure } from '@chakra-ui/react'
+import { BaseUrl } from "../../const.ts";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -141,7 +142,7 @@ const Header = () => {
           }}
           cursor="pointer"
         >
-          <Link to="/searchevent">SearchEvent</Link>
+          <Link to="/searchevent">{t("SearchEvent")}</Link>
         </ListItem>
       </UnorderedList>
       <Box display="flex" alignItems="center" gap={{ base: "10px", md: "20px" }}>
@@ -195,7 +196,7 @@ const Header = () => {
                   <Image
                     borderRadius="full"
                     boxSize="150px"
-                    src={`http://173.212.221.237/images/${data?.body?.userView?.profilePhoto}`}
+                    src={`${BaseUrl}/images/${data?.body?.userView?.profilePhoto}`}
                     alt="Profile Image"
                     w={"45px"}
                     height={"45px"}
@@ -222,14 +223,14 @@ const Header = () => {
                   <MenuItemOption minH="24px">
                     {token && (
                       <Box display="flex" alignItems="center" gap="5px">
-                        <Text>Your profile</Text>
+                        <Text>{t("Your profile")}</Text>
                       </Box>
                     )}
                   </MenuItemOption>
                 </Link>
                 <MenuDivider />
                 <MenuItemOption color="red" onClick={logoutHandler} minH="24px">
-                  Log out
+                {t("Log out")}
                 </MenuItemOption>
               </MenuOptionGroup>
             </MenuList>
@@ -246,6 +247,7 @@ const Header = () => {
                 <DrawerBody>
                   <Box display={"flex"} flexDirection={"column"} >
                     <Box
+                      onClick={onClose} 
                       _hover={{
                         color: "#8F64FF",
                         transition: "color 0.5s",
@@ -269,6 +271,7 @@ const Header = () => {
                         fontWeight: "400"
                       }} >
                       <Box
+                        onClick={onClose} 
                         fontSize={"25px"}
                         fontWeight={"400"}>
                         <Link to="/contact">{t("Contact")}</Link>
@@ -283,6 +286,7 @@ const Header = () => {
                         fontWeight: "400"
                       }} >
                       <Box
+                        onClick={onClose} 
                         fontSize={"25px"}
                         fontWeight={"400"}>
                         <Link to="/events">{t("Events")}</Link>
@@ -297,14 +301,13 @@ const Header = () => {
                         fontWeight: "400"
                       }} >
                       <Box
+                      onClick={onClose} 
                         fontSize={"25px"}
                         fontWeight={"400"}>
-                        <Link to="/searchevent">SearchEvent</Link>
+                        <Link to="/searchevent">{t("SearchEvent")}</Link>
                       </Box>
-                      
                     </Box>
                   </Box>
-
                 </DrawerBody>
               </DrawerContent>
             </Drawer>
