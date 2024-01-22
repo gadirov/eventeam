@@ -3,8 +3,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Box, Heading, Text, Image } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 const SliderMainPage: React.FC = () => {
+  const {t}=useTranslation();
   const settings = {
     infinite: true,
     speed: 2000,
@@ -35,7 +37,7 @@ const SliderMainPage: React.FC = () => {
               fontSize={{ base: "18px", md: "60px" }}
               lineHeight={{ base: "29px", md: "80px" }}
             >
-              Join and hurry to make new friends
+              {t("Join hurry")}
             </Heading>
             <Text
               color="#111833"
@@ -48,7 +50,7 @@ const SliderMainPage: React.FC = () => {
               mt={{ base: "0px", md: "20px" }}
               pt="10px"
             >
-              Gain new friendships from the Eventeam experience
+              {t("Gain new")}
             </Text>
           </Box>
           <Box   >
@@ -71,7 +73,7 @@ const SliderMainPage: React.FC = () => {
               fontSize={{ base: "18px", md: "60px" }}
               lineHeight={{ base: "29px", md: "80px" }}
             >
-              Events, training and lots of fun
+              {t("Events training")}
             </Heading>
             <Text
               color="#111833"
@@ -84,7 +86,7 @@ const SliderMainPage: React.FC = () => {
               mr={{ base: "0px", md: "50px" }}
               mt={{ base: "0px", md: "20px" }}
             >
-              The first event-based social network in Azerbaijan
+              {t("First event")}
             </Text>
           </Box>
           <Box  >

@@ -13,9 +13,11 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { MdTypeSpecimen } from "react-icons/md";
 
 const Ticket = () => {
+  const { t } = useTranslation();
   const { control, formState } = useFormContext();
   const { errors } = formState;
   return (
@@ -29,10 +31,9 @@ const Ticket = () => {
         <HStack w="90%">
           <Icon as={MdTypeSpecimen} w={12} h={12} color="purple.500" />
           <Box pl="32px">
-            <Text as="b">Ticket type</Text>
+            <Text as="b">{t("Ticket Type")}</Text>
             <Text color="#98A2B3" pt="16px">
-              Determine the type of ticket you need, depending on the type of
-              event.
+            {t("Ticket Info")}
             </Text>
           </Box>
         </HStack>
@@ -43,9 +44,9 @@ const Ticket = () => {
           mb={errors?.location ? 0 : 6}
         >
           <FormLabel pt="40px" fontSize="20px">
-            Ticket type
+          {t("Ticket Type")}
             <Text fontSize="12px" color="gray">
-              Choose ticket type
+              {t("Ticket Choose")}
             </Text>
           </FormLabel>
           <Controller
@@ -58,9 +59,9 @@ const Ticket = () => {
               <RadioGroup {...field} pt="10px">
                 <Stack direction="row">
                   <Radio value="FREE" defaultChecked>
-                    Free
+                  {t("Free")}
                   </Radio>
-                  <Radio value="PAID">Paid</Radio>
+                  <Radio value="PAID">{t("Paid")}</Radio>
                 </Stack>
               </RadioGroup>
             )}

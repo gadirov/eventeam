@@ -2,20 +2,22 @@ import {
   Box,
   Button,
   SimpleGrid,
-  Tabs,
-  TabList,
-  TabPanels,
   Tab,
+  TabList,
   TabPanel,
+  TabPanels,
+  Tabs,
 } from "@chakra-ui/react";
 import Lottie from "lottie-react";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useUpcoming } from "../../../hooks/useUpcoming.ts";
 import UpcomingPageCardItemSkeleton from "../../Card/CardItemSkeleton.tsx";
 import UpcomingPageCardItem from "../../Card/UpcomingPageCardItem.tsx";
 import DataNotFound from "..//..//..//dataNotFound.json";
 
 export default function UpcomingPage() {
+  const { t } = useTranslation();
   const [selectValue, setSelectValue] = useState<string>("upcoming");
   const imagePerRow = 2;
   const [next, setNext] = useState(imagePerRow);
@@ -100,23 +102,55 @@ export default function UpcomingPage() {
   return (
     <Box
       display="flex"
-      p={{base:"0px 0px 120px 0px",md:"0px 0px 120px 0px"}}
+      p={{ base: "0px 0px 120px 0px", md: "0px 0px 120px 0px" }}
       justifyContent="center"
       flexDirection="column"
     >
       <Box display="flex" justifyContent="center" mb="70px">
         <Tabs onChange={(index) => changeHandlerSelect(index)}>
-          <TabList w={{base:"86%",md:"69%"}} m="0 auto" gap={"15px"} p={"10px 0px"}>
-            <Tab  p={{base:"0px",md:"8px 16px"}} fontSize={{base:"12px",md:"22px"}} >Upcoming</Tab>
-            <Tab  p={{base:"0px",md:"8px 16px"}} fontSize={{base:"12px",md:"22px"}}>Popular events</Tab>
-            <Tab  p={{base:"0px",md:"8px 16px"}} fontSize={{base:"12px",md:"22px"}}>Friends event list</Tab>
-            <Tab  p={{base:"0px",md:"8px 16px"}} fontSize={{base:"12px",md:"22px"}}>Going</Tab>
-            <Tab  p={{base:"0px",md:"8px 16px"}} fontSize={{base:"12px",md:"22px"}}>Interested</Tab>
+          <TabList
+            w={{ base: "86%", md: "69%" }}
+            m="0 auto"
+            gap={"15px"}
+            p={"10px 0px"}
+          >
+            <Tab
+              p={{ base: "0px", md: "8px 16px" }}
+              fontSize={{ base: "12px", md: "22px" }}
+            >
+              {t("Upcoming")}
+            </Tab>
+            <Tab
+              p={{ base: "0px", md: "8px 16px" }}
+              fontSize={{ base: "12px", md: "22px" }}
+            >
+              {t("Popular Events")}
+            </Tab>
+            <Tab
+              p={{ base: "0px", md: "8px 16px" }}
+              fontSize={{ base: "12px", md: "22px" }}
+            >
+              {t("Friend Events")}
+            </Tab>
+            <Tab
+              p={{ base: "0px", md: "8px 16px" }}
+              fontSize={{ base: "12px", md: "22px" }}
+            >
+              {t("Going")}
+            </Tab>
+            <Tab
+              p={{ base: "0px", md: "8px 16px" }}
+              fontSize={{ base: "12px", md: "22px" }}
+            >
+              {t("Interested")}
+            </Tab>
           </TabList>
 
           <TabPanels>
             {[0, 1, 2, 3, 4].map((index) => (
-              <TabPanel p={"0px"} key={index}>{renderTabPanelContent()}</TabPanel>
+              <TabPanel p={"0px"} key={index}>
+                {renderTabPanelContent()}
+              </TabPanel>
             ))}
           </TabPanels>
         </Tabs>
@@ -140,7 +174,7 @@ export default function UpcomingPage() {
           display="flex"
           justifyContent="center"
         >
-          Load more
+          {t("Load More")}
         </Button>
       )}
     </Box>

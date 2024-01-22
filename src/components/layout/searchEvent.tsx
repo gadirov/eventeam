@@ -16,8 +16,10 @@ import { useDetails } from "../../hooks/useDetails.ts";
 import CardItem from "../Card/CartdItem.tsx";
 import { useCategory } from "../../hooks/useCategory.ts";
 import { useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function SearchEvent() {
+  const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const selectValue = searchParams.get("category");
   const [searchField, setSearchField] = React.useState<string>("");
@@ -102,7 +104,7 @@ export default function SearchEvent() {
         <Input
           py={"20px"}
           size={"lg"}
-          placeholder="Search Here..."
+          placeholder={t("Search Here")}
           fontWeight={"bold"}
           onChange={handleChange}
         />
@@ -118,7 +120,7 @@ export default function SearchEvent() {
             flexDirection={{ base: "column", md: "row" }}
           >
             <Select
-              placeholder="Category"
+              placeholder={t("Category")}
               fontWeight={"bold"}
               size={{ base: "lg", md: "md" }}
               bg={"#F2F4F7"}
@@ -133,7 +135,7 @@ export default function SearchEvent() {
               ))}
             </Select>
             <Select
-              placeholder="Attendance"
+              placeholder={t("Attendance")}
               fontWeight={"bold"}
               size={{ base: "lg", md: "md" }}
               bg={"#F2F4F7"}
@@ -141,11 +143,11 @@ export default function SearchEvent() {
               onChange={(event) => handleFilterChange(event)}
               value={attendanceFilter}
             >
-              <option value="OFFLINE">Offline</option>
-              <option value="ONLINE">Online</option>
+              <option value="OFFLINE">{t("Offline")}</option>
+              <option value="ONLINE">{t("Online")}</option>
             </Select>
             <Select
-              placeholder="DATE"
+              placeholder={t("DATE")}
               fontWeight={"bold"}
               size={{ base: "lg", md: "md" }}
               bg={"#F2F4F7"}
@@ -153,9 +155,9 @@ export default function SearchEvent() {
               name="date"
               value={dateFilter}
             >
-              <option value="TODAY">TODAY</option>
-              <option value="TOMORROW">TOMORROW</option>
-              <option value="THISWEEK">THISWEEK</option>
+              <option value="TODAY">{t("TODAY")}</option>
+              <option value="TOMORROW">{t("TOMORROW")}</option>
+              <option value="THISWEEK">{t("THISWEEK")}</option>
             </Select>
           </Box>
           <Box
@@ -164,7 +166,7 @@ export default function SearchEvent() {
             flexDirection={{ base: "column", md: "row" }}
           >
             <Select
-              placeholder="Price"
+              placeholder={t("Price")}
               fontWeight={"bold"}
               size={{ base: "lg", md: "md" }}
               bg={"#F2F4F7"}
@@ -172,8 +174,8 @@ export default function SearchEvent() {
               name="ticketType"
               value={priceFilter}
             >
-              <option value="FREE">Free</option>
-              <option value="PAID">Paid</option>
+              <option value="FREE">{t("Free")}</option>
+              <option value="PAID">{t("Paid")}</option>
             </Select>
             <Button
               onClick={handleClearFilter}
@@ -182,7 +184,7 @@ export default function SearchEvent() {
               size={{ base: "lg", md: "md" }}
               padding="0 30px!important"
             >
-              Clear Filter
+              {t("Clear Filter")}
             </Button>
           </Box>
         </Flex>

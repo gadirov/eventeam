@@ -185,7 +185,7 @@ const Footer = () => {
             fontSize="24px"
             p="20px 0 10px 0"
           >
-            EventTeam Terms and Privacy Policy
+            {t("Eventeam Terms")}
           </ModalHeader>
           <ModalCloseButton color="white" />
           <ModalBody
@@ -193,25 +193,14 @@ const Footer = () => {
             fontSize="16px"
             padding="20px 0 10px 0"
           >
-            By accessing or using the EventTeam platform ("the Platform"), you
-            agree to comply with and be bound by these Terms and Conditions. If
-            you do not agree to these terms, please do not use the Platform.
+            {t("By accessing")}
             <br />
             <br />
-            <strong>Registration:</strong> To access certain features of the
-            Platform, you may be required to register for an account. You agree
-            to provide accurate, current, and complete information during the
-            registration process.
+            <strong>{t("Registration")}:</strong> {t("Registration info")}
             <br /> <br />
-            <strong>Account Security:</strong> You are responsible for
-            maintaining the confidentiality of your account credentials. Notify
-            us immediately of any unauthorized use of your account or any other
-            security breaches.
+            <strong>{t("Account Security")}:</strong> {t("Account info")}
             <br /> <br />
-            <strong> Prohibited Activities:</strong> Users shall not engage in
-            any unlawful, abusive, or otherwise inappropriate conduct while
-            using the Platform. This includes, but is not limited to, violating
-            any applicable laws or regulations.
+            <strong>{t("Prohibited Activities")}:</strong> {t("Prohibited info")}
           </ModalBody>
           <ModalFooter>
             <Button bg="white" color="black" onClick={onClose}>

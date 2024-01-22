@@ -60,7 +60,7 @@ const SignIn = () => {
             color="#7848F4"
             fontStyle="italic"
           >
-            Sign in
+            {t("Sign in")}
           </Heading>
           <FormControl as="form" onSubmit={methods.handleSubmit(onSubmit)}>
             <Email />
@@ -72,7 +72,7 @@ const SignIn = () => {
                 fontWeight="600"
                 lineHeight="16px"
               >
-                <Link to="forgetpassword">Forgot your password?</Link>
+                <Link to="forgetpassword">{t("Forgot password?")}</Link>
               </Text>
             </Box>
             <Button
@@ -89,11 +89,11 @@ const SignIn = () => {
               color="#fff"
               bg="#7848F4"
             >
-              Sign in
+              {t("Sign in")}
             </Button>
           </FormControl>
           <Text textAlign="center" color="#707070" fontSize="18px">
-            Don't have an account?{" "}
+            {t("No Account")}{" "}
             <Link to="signup">
               <span style={{ color: "#7848f4", fontWeight: "600" }}>
                 {t("signin.signup")}

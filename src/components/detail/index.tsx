@@ -43,11 +43,13 @@ import {
 import { fetcher } from "../../config/axiosConfig.ts";
 import useSWR from "swr";
 import { swrOptions } from "../../const.ts";
+import { useTranslation } from "react-i18next";
 
 // interface DetailData {
 //   eventName: string;
 // }
 const DetailView = () => {
+  const { t } = useTranslation();
   const params = useParams();
   const [detailData, setDetailData] = useState<any>(undefined);
   const { data, error, isLoading } = useSWR(
@@ -72,7 +74,14 @@ const DetailView = () => {
   // console.log(d)
   return (
     <Box pt="100px">
-      <Box backgroundRepeat={"no-repeat"} backgroundSize={"100%"} mt={"-22px"}  backgroundImage={"url(http://173.212.221.237/images/1636232647386_Mesh_25.png)"}>
+      <Box
+        backgroundRepeat={"no-repeat"}
+        backgroundSize={"100%"}
+        mt={"-22px"}
+        backgroundImage={
+          "url(http://173.212.221.237/images/1636232647386_Mesh_25.png)"
+        }
+      >
         <Box w="72%" margin="auto">
           <Image
             height={{ base: "30vh", md: "78vh " }}
@@ -121,14 +130,14 @@ const DetailView = () => {
                       style={{ color: "#ffffff" }}
                     />
                     <Text color="white" ml="5px">
-                      Going
+                      {t("Going")}
                     </Text>
                   </Box>
                 </MenuButton>
                 <MenuList>
-                  <MenuItem>Going</MenuItem>
-                  <MenuItem>Interested</MenuItem>
-                  <MenuItem>Unset</MenuItem>
+                  <MenuItem>{t("Going")}</MenuItem>
+                  <MenuItem>{t("Interested")}</MenuItem>
+                  <MenuItem>{t("Unset")}</MenuItem>
                 </MenuList>
               </Menu>
               <Button
@@ -140,13 +149,19 @@ const DetailView = () => {
               >
                 <FontAwesomeIcon icon={faStar} style={{ color: "#74C0FC" }} />{" "}
                 <Text ml="5px" color="black">
-                  Interested
+                  {t("Interested")}
                 </Text>
               </Button>
             </Box>
           </Box>
           <Divider border="1px solid #d4d4d4  " />
-          <Box p="30px 0px" display="flex" flexDirection={{ base: "column", md: "row" }} gap={{ base: "50px", md: "150px" }} margin="0 50px">
+          <Box
+            p="30px 0px"
+            display="flex"
+            flexDirection={{ base: "column", md: "row" }}
+            gap={{ base: "50px", md: "150px" }}
+            margin="0 50px"
+          >
             <Box display="flex" flexDirection="column" gap="20px">
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faCalendar} />
@@ -156,7 +171,9 @@ const DetailView = () => {
               </Box>
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faClock} />
-                <Text fontSize="20px">{timeDifferenceInMinutes} minutes</Text>
+                <Text fontSize="20px">
+                  {timeDifferenceInMinutes} {t("Minutes")}
+                </Text>
               </Box>
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faLocationDot} />
@@ -164,19 +181,22 @@ const DetailView = () => {
                   Baki Kinoteatrı
                 </Text>
               </Box>
-              <Box display="flex" flexDirection={{ base: "column", md: "row" }} gap="15px">
+              <Box
+                display="flex"
+                flexDirection={{ base: "column", md: "row" }}
+                gap="15px"
+              >
                 <Box textAlign={{ made: "start", md: "center" }}>
                   <FontAwesomeIcon fontSize="23px" icon={faUserGroup} />
-
                 </Box>
-                <Box display="flex" >
+                <Box display="flex">
                   <Text color="gray" fontSize="20px">
                     {" "}
                     Min:{" "}
                   </Text>
                   <Text fontSize="20px">
                     {" "}
-                    {detailData?.body?.minAttendees} Attended{" "}
+                    {detailData?.body?.minAttendees} {t("Attended")}{" "}
                   </Text>
                   <Text color="gray" fontSize="20px">
                     {" "}
@@ -184,7 +204,7 @@ const DetailView = () => {
                   </Text>
                   <Text fontSize="20px">
                     {" "}
-                    {detailData?.body?.maxAttendees} Attended
+                    {detailData?.body?.maxAttendees} {t("Attended")}
                   </Text>
                 </Box>
               </Box>
@@ -211,7 +231,7 @@ const DetailView = () => {
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faCircleUser} />
                 <Text fontSize="20px">
-                  Event hosted by <Link color="blue">eventeam</Link>
+                  {t("Event hosted")} <Link color="blue">eventeam</Link>
                 </Text>
               </Box>
             </Box>
@@ -224,7 +244,7 @@ const DetailView = () => {
           </Box>
 
           <Box margin="0 50px">
-            <Heading m="20px 0px">Description</Heading>
+            <Heading m="20px 0px">{t("Description")}</Heading>
             <Text fontSize="20px">{detailData?.body?.description}</Text>
             <br />
             <Text fontSize="20px">
@@ -247,68 +267,70 @@ const DetailView = () => {
           >
             <Box>
               <Heading textAlign="center" fontSize="40px">
-                Attended
+                {t("Attended")}
               </Heading>
-              <Box p="30px 0px" display="flex" gap={{ base: "19px", md: "120px" }}>
+              <Box
+                p="30px 0px"
+                display="flex"
+                gap={{ base: "19px", md: "120px" }}
+              >
                 <Box>
                   <Text
                     textAlign="center"
                     color="#56d5f5"
-                    fontSize={{base:"37px",md:"40px"}}
+                    fontSize={{ base: "37px", md: "40px" }}
                     fontWeight="500"
                   >
                     {detailData?.body?.usersList?.goingCount}
                   </Text>
-                  <Text color="gray" fontSize={{base:"20",md:"25px"}}>
-                    GOING
+                  <Text color="gray" fontSize={{ base: "20", md: "25px" }}>
+                    {t("Going")}
                   </Text>
                 </Box>
                 <Box>
                   <Text
                     textAlign="center"
                     color="#56d5f5"
-                    
-                    fontSize={{base:"37px",md:"40px"}}
+                    fontSize={{ base: "37px", md: "40px" }}
                     fontWeight="500"
                   >
                     {detailData?.body?.usersList?.interestedCount}
                   </Text>
-                  <Text color="gray"  fontSize={{base:"20",md:"25px"}}>
-                    INTERESTED
+                  <Text color="gray" fontSize={{ base: "20", md: "25px" }}>
+                    {t("Interested")}
                   </Text>
                 </Box>
                 <Box>
                   <Text
                     textAlign="center"
                     color="#56d5f5"
-                    
                     fontWeight="500"
-                    fontSize={{base:"37px",md:"40px"}}
+                    fontSize={{ base: "37px", md: "40px" }}
                   >
                     0
                   </Text>
-                  <Text color="gray" fontSize={{base:"20",md:"25px"}}>
-                    INVITED
+                  <Text color="gray" fontSize={{ base: "20", md: "25px" }}>
+                    {t("Invited")}
                   </Text>
                 </Box>
               </Box>
             </Box>
           </Box>
           <Box
-            p={{base:"0 50px",md:"0 100px"}}
+            p={{ base: "0 50px", md: "0 100px" }}
             mt="-50px"
             display="flex"
-            flexDirection={{base:"column",md:"row"}}
-            gap={{base:"35px",md:"80px"}}
+            flexDirection={{ base: "column", md: "row" }}
+            gap={{ base: "35px", md: "80px" }}
             w="100vw"
             justifyContent="space-around"
           >
             <Box>
-              <Heading>Friends</Heading>
+              <Heading>{t("Friends")}</Heading>
               <Box p="30px 0px">
                 <Menu>
                   <MenuButton
-                  w={{base:"100%",md:"100%"}}
+                    w={{ base: "100%", md: "100%" }}
                     size="lg"
                     gap="10px"
                     p="32px 60px 32px 20px"
@@ -322,7 +344,7 @@ const DetailView = () => {
                       />
                     }
                   >
-                    Invite friends
+                    {t("Invite Friends")}
                   </MenuButton>
                   <MenuList>
                     <MenuItem minH="48px">
@@ -351,7 +373,7 @@ const DetailView = () => {
               </Box>
             </Box>
             <Box>
-              <Heading>Contact</Heading>
+              <Heading>{t("Contact")}</Heading>
               <Box p="30px 0px">
                 <Link href={`tel:${detailData?.body?.mobileNumber}`}>
                   <Button
@@ -361,11 +383,16 @@ const DetailView = () => {
                     p="32px 80px 32px 10px"
                     backgroundColor="#ededed"
                     borderRadius="10px"
-                  w={{base:"100%",md:"100%"}}
-
+                    w={{ base: "100%", md: "100%" }}
                   >
-                    <Box backgroundColor="white" p="15px" ml={{base:"-30px",md:"0px"}} mr={{base:"30px",md:"0px"}} borderRadius="15px">
-                      <FontAwesomeIcon  icon={faPhone} color="#74C0FC" />
+                    <Box
+                      backgroundColor="white"
+                      p="15px"
+                      ml={{ base: "-30px", md: "0px" }}
+                      mr={{ base: "30px", md: "0px" }}
+                      borderRadius="15px"
+                    >
+                      <FontAwesomeIcon icon={faPhone} color="#74C0FC" />
                     </Box>
                     <Text color="black">{detailData?.body?.mobileNumber} </Text>
                   </Button>
@@ -373,7 +400,7 @@ const DetailView = () => {
               </Box>
             </Box>
             <Box>
-              <Heading>Hosted</Heading>
+              <Heading>{t("Hosted")}</Heading>
               <Box p="30px 0px" display="flex" gap="20px">
                 <Box padding="0">
                   <Text fontSize="20px">eventeam</Text>
@@ -388,7 +415,7 @@ const DetailView = () => {
           </Box>
         </Box>
       </Box>
-    </Box >
+    </Box>
   );
 };
 

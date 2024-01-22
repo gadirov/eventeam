@@ -10,18 +10,20 @@ import {
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Controller, useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 interface FormValues {
   password: string;
 }
 export default function Password() {
+  const {t}=useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const methods = useFormContext<FormValues>();
 
   return (
     <FormControl isInvalid={!!methods.formState.errors.password}>
       <FormLabel mt="15px" color="#707070" fontSize="18px">
-        Password
+      {t("Password")}
       </FormLabel>
       <InputGroup>
         <Controller
@@ -43,7 +45,7 @@ export default function Password() {
             <Input
               {...field}
               type={!showPassword ? "password" : "text"}
-              placeholder="8+ characters"
+              placeholder={t("Characters")}
               border="1px solid #bababc"
               p="22px 14px"
               _focus={{ zIndex: "-1" }}

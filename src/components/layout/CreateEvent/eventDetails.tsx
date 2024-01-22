@@ -19,8 +19,10 @@ import React, { useRef } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { MdEvent } from "react-icons/md";
 import { useHandleImage } from "../../../hooks/useEventImage.ts";
+import { useTranslation } from "react-i18next";
 
 const EventDetails = () => {
+  const {t}=useTranslation();
   const methods = useFormContext();
   const {errors} = methods.formState;
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -37,9 +39,9 @@ const EventDetails = () => {
         <HStack w="90%" alignItems="center">
           <Icon as={MdEvent} w={12} h={12} color="purple.500" />
           <Box pl="32px">
-            <Text as="b">Event details</Text>
+            <Text as="b">{t("Event details")}</Text>
             <Text color="#98A2B3" pt="16px">
-              Please enter the details correctly. Event info is important.
+              {t("Detail Info")}
             </Text>
           </Box>
         </HStack>
@@ -55,7 +57,7 @@ const EventDetails = () => {
             <>
               <Image src="../assests/Outline.png" alt="Event outline" />
               <Text as="b" fontSize={{ base: "24px", md: "34px", sm: "28px"}}>
-                Select an image
+                {t("Choose file")}
               </Text>
             </>
           )}
@@ -82,7 +84,7 @@ const EventDetails = () => {
                 </>
               )}
             />{" "}
-            to choose a file{" "}
+           {t("Choose file")}{" "}
           </Text>
           {methods.watch("coverPhoto") && (
             <div>
@@ -93,8 +95,7 @@ const EventDetails = () => {
             </div>
           )}
           <Text w="90%" as="b" pt="30px" textAlign="center" color="#667085">
-            This is the first image attendees will see at the top of your
-            listing. Use a high-quality image: 2160x1080px{" "}
+            {t("File Info")}{" "}
           </Text>
         </VStack>
         {methods?.formState?.errors?.coverPhoto && (
@@ -108,7 +109,7 @@ const EventDetails = () => {
             pt="30px"
             isInvalid={!!methods?.formState?.errors?.eventName}
           >
-            <FormLabel>Name</FormLabel>
+            <FormLabel>{t("Name")}</FormLabel>
             <Controller
               name="eventName"
               control={methods?.control}
@@ -116,7 +117,7 @@ const EventDetails = () => {
                 required: "Event name is required!",
               }}
               render={({ field }) => (
-                <Input {...field} id="eventName" placeholder="Event name" />
+                <Input {...field} id="eventName" placeholder={t("Event name")} />
               )}
             />
             <FormErrorMessage mt="0.5rem">
@@ -128,7 +129,7 @@ const EventDetails = () => {
               mb={methods?.formState?.errors?.startDate ? 0 : 6}
               isInvalid={!!methods?.formState?.errors?.startDate}
             >
-              <FormLabel>Start Date</FormLabel>
+              <FormLabel>{t("Start Date")}</FormLabel>
               <Controller
                 name="startDate"
                 control={methods?.control}
@@ -165,7 +166,7 @@ const EventDetails = () => {
               mb={methods?.formState?.errors?.endDate ? 0 : 6}
               isInvalid={!!methods?.formState?.errors?.endDate}
             >
-              <FormLabel>End Date</FormLabel>
+              <FormLabel>{t("End Date")}</FormLabel>
               <Controller
                 name="endDate"
                 control={methods?.control}
@@ -199,9 +200,9 @@ const EventDetails = () => {
           </HStack>
           <FormControl isInvalid={!!methods?.formState?.errors?.eventType}>
             <FormLabel pt="30px" fontSize="20px">
-              Privacy
+              {t("Privacy")}
               <Text fontSize="12px" color="gray">
-                Choose event privacy type
+              {t("Choose Privacy")}
               </Text>
             </FormLabel>
             <Controller
@@ -214,9 +215,9 @@ const EventDetails = () => {
                 <RadioGroup {...field}>
                   <Stack direction="row">
                     <Radio value="PUBLIC" defaultChecked>
-                      Public
+                      {t("Public")}
                     </Radio>
-                    <Radio value="PRIVATE">Private</Radio>
+                    <Radio value="PRIVATE">{t("Private")}</Radio>
                   </Stack>
                 </RadioGroup>
               )}
@@ -234,9 +235,9 @@ const EventDetails = () => {
             mb={errors?.attendeesPermission ? 0 : 6}
           >
             <FormLabel htmlFor="attendees" mb="0" fontSize="20px">
-              Attendees permission
+              {t("Attendees permission")}
               <Text fontSize="14px" color="gray">
-                Attendees can invite others
+              {t("Attendees info")}
               </Text>
             </FormLabel>
             <Controller

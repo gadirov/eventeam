@@ -10,7 +10,9 @@ import Contact from "./CreateEvent/contact.tsx";
 import Ticket from "./CreateEvent/ticket.tsx";
 // import { DevTool } from "@hookform/devtools";
 import { useCreateEvent } from "../../hooks/useCreateEvent.ts";
+import { useTranslation } from "react-i18next";
 function Event() {
+  const { t } = useTranslation();
   const methods = useForm({
     mode: "all",
     defaultValues: {
@@ -47,8 +49,12 @@ function Event() {
           w="100%"
           justifyContent="center"
         >
-          <Box w={{ base: "100%", lg: "70%" }} pt="20px" pl={{base:"15px", md:"0px"}}>
-            <Heading textAlign="left">Create an Event</Heading>
+          <Box
+            w={{ base: "100%", lg: "70%" }}
+            pt="20px"
+            pl={{ base: "15px", md: "0px" }}
+          >
+            <Heading textAlign="left">{t("Create an Event")}</Heading>
           </Box>
           <EventDetails />
           <Description />
@@ -67,7 +73,7 @@ function Event() {
             mb="60px"
             isDisabled={!methods.formState.isValid}
           >
-            Create
+            {t("Create")}
           </Button>
         </VStack>
         {/* <DevTool control={methods.control} /> */}

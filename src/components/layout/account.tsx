@@ -20,13 +20,15 @@ import { accountSchema } from "../../schemas/AccountSchema.ts";
 import { IFormAccount } from "../../model.ts";
 import { put } from "../../config/axiosConfig.ts";
 import { useProfileImage } from "../../hooks/useProfileImage.ts";
+import { useTranslation } from "react-i18next";
 
 
 const Account = () => {
+  const { t } =useTranslation();
   const [editMode, setEditMode] = React.useState<boolean>(false);
   const id = Cookies.get("userId");
   const { data: userData } = useUserDetails(id);
-
+  
   const onSubmit = (data) => {
     put("http://173.212.221.237:38765/user/user/change-personal-details", data);
     setEditMode(!editMode);
@@ -64,11 +66,10 @@ const Account = () => {
       >
         <Flex gap={"24px"} direction={"column"} w={"562px"}>
           <Heading fontSize={{ base: "37px", md: "45px" }}>
-            Organizer Profile
+            {t("Organizer Profile")}
           </Heading>
           <Text w={"100%"} color={"#667085"} fontWeight={"500"}>
-            Create an organizer profile so attendees can browse all your events
-            in one place
+           {t("Organizer Info")}
           </Text>
         </Flex>
       </Container>
@@ -130,7 +131,7 @@ const Account = () => {
                       h="20px"
                       cursor="pointer"
                     />
-                    <Text>Upload photo</Text>
+                    <Text>{t("Upload Photo")}</Text>
                   </Box>
                 </FormLabel>
 
@@ -156,7 +157,7 @@ const Account = () => {
             </Flex>
 
             <FormControl mb={"40px"} isInvalid={!!errors?.username}>
-              <FormLabel>USERNAME</FormLabel>
+              <FormLabel>{t("Username")}</FormLabel>
               <Controller
                 name="username"
                 control={control}
@@ -167,7 +168,7 @@ const Account = () => {
               <FormErrorMessage>{errors?.username?.message}</FormErrorMessage>
             </FormControl>
             <FormControl mb={"40px"} isInvalid={!!errors.email}>
-              <FormLabel>EMAIL</FormLabel>
+              <FormLabel>{t("Email")}</FormLabel>
               <Controller
                 name="email"
                 control={control}
@@ -178,7 +179,7 @@ const Account = () => {
               <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
             </FormControl>
             <FormControl mb={"40px"} isInvalid={!!errors.dateOfBirth}>
-              <FormLabel>Birhtday</FormLabel>
+              <FormLabel>{t("Birthday")}</FormLabel>
               <Controller
                 name="dateOfBirth"
                 control={control}
@@ -191,7 +192,7 @@ const Account = () => {
               </FormErrorMessage>
             </FormControl>
             <FormControl mb={"40px"} isInvalid={!!errors.gender}>
-              <FormLabel>gender</FormLabel>
+              <FormLabel>{t("Gender")}</FormLabel>
               <Controller
                 name="gender"
                 control={control}
@@ -204,12 +205,12 @@ const Account = () => {
             <Flex justify={"center"} mt={"40px"} gap={"20px"}>
               {!editMode && (
                 <Button onClick={handleEditProfile} w={"349px"}>
-                  Edit Profile
+                  {t("Edit Profile")}
                 </Button>
               )}
               {editMode && (
                 <Button type="submit" w={"349px"} bg={"#7F56D9"} color={"#fff"}>
-                  Save Profile
+                  {t("Save Profile")}
                 </Button>
               )}
             </Flex>
