@@ -18,10 +18,23 @@ import {
   Select,
   Text,
   UnorderedList,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  Stack,
+  RadioGroup,
+  Radio,
+  CloseButton,
+  List,
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserDetails } from "../../hooks/useUserDetails.ts";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import { useDisclosure } from '@chakra-ui/react'
 
 const Header = () => {
   const { t } = useTranslation();
@@ -56,15 +69,19 @@ const Header = () => {
     }
   }, []);
 
+  // hamburger 
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [placement, setPlacement] = React.useState('right')
+
   return (
     <Box
       display="flex"
       justifyContent="space-between"
       alignItems="center"
-      p="25px 10vw"
       padding={{ base: "25px 4vw", md: "25px 10vw" }}
       bgColor="#fff"
       w="100%"
+      margin={"auto"}
       position="fixed"
       zIndex={"2"}
     >
@@ -220,56 +237,78 @@ const Header = () => {
         )}
         {/* Hamburger Menu */}
         <Box display={{ base: "flex", md: "none" }}>
-          <Menu>
-            <MenuButton
-              as={IconButton}
-              aria-label="Options"
-              icon={<HamburgerIcon />}
-              variant="outline"
-            />
-            <MenuList>
-              <MenuItem
-                _hover={{
-                  color: "#66f5ff",
-                  transition: "color 0.5s",
-                  textDecoration: "underline",
-                }}
-                cursor="pointer"
-              >
-                <Link to="/about">{t("About")}</Link>
-              </MenuItem>
-              <MenuItem
-                _hover={{
-                  color: "#66f5ff",
-                  transition: "color 0.5s",
-                  textDecoration: "underline",
-                }}
-                cursor="pointer"
-              >
-                <Link to="/contact">{t("Contact")}</Link>
-              </MenuItem>
-              <MenuItem
-                _hover={{
-                  color: "#66f5ff",
-                  transition: "color 0.5s",
-                  textDecoration: "underline",
-                }}
-                cursor="pointer"
-              >
-                <Link to="/events">{t("Events")}</Link>
-              </MenuItem>
-              <MenuItem
-                _hover={{
-                  color: "#66f5ff",
-                  transition: "color 0.5s",
-                  textDecoration: "underline",
-                }}
-                cursor="pointer"
-              >
-                <Link to="/searchevent">SearchEvent</Link>
-              </MenuItem>
-            </MenuList>
-          </Menu>
+          <Box>
+            <HamburgerIcon fontSize={"25px"} onClick={onOpen} />
+            <Drawer onClose={onClose} isOpen={isOpen}>
+              <DrawerOverlay />
+              <DrawerContent>
+                <DrawerHeader display={"flex"} justifyContent={"space-between"} gap={"10px"} borderBottomWidth='1px' color={"8F64FF"}>Pages<CloseButton w={"30px"} onClick={onClose} /></DrawerHeader>
+                <DrawerBody>
+                  <Box display={"flex"} flexDirection={"column"} >
+                    <Box
+                      _hover={{
+                        color: "#8F64FF",
+                        transition: "color 0.5s",
+                        textDecoration: "underline",
+
+                      }} >
+                      <Box
+                        fontSize={"25px"}
+                        fontWeight={"400"}>
+                        <Link to="/about">{t("About")} </Link>
+
+                      </Box>
+
+                    </Box>
+                    <Box
+                      _hover={{
+                        color: "#8F64FF",
+                        transition: "color 0.5s",
+                        textDecoration: "underline",
+                        fontSize: "25px",
+                        fontWeight: "400"
+                      }} >
+                      <Box
+                        fontSize={"25px"}
+                        fontWeight={"400"}>
+                        <Link to="/contact">{t("Contact")}</Link>
+                      </Box>
+                    </Box>
+                    <Box
+                      _hover={{
+                        color: "#8F64FF",
+                        transition: "color 0.5s",
+                        textDecoration: "underline",
+                        fontsize: "25px",
+                        fontWeight: "400"
+                      }} >
+                      <Box
+                        fontSize={"25px"}
+                        fontWeight={"400"}>
+                        <Link to="/events">{t("Events")}</Link>
+                      </Box>
+                    </Box>
+                    <Box
+                      _hover={{
+                        color: "#8F64FF",
+                        transition: "color 0.5s",
+                        textDecoration: "underline",
+                        fontsize: "25px",
+                        fontWeight: "400"
+                      }} >
+                      <Box
+                        fontSize={"25px"}
+                        fontWeight={"400"}>
+                        <Link to="/searchevent">SearchEvent</Link>
+                      </Box>
+                      
+                    </Box>
+                  </Box>
+
+                </DrawerBody>
+              </DrawerContent>
+            </Drawer>
+          </Box>
         </Box>
       </Box>
     </Box>
