@@ -4,9 +4,11 @@ import Header from "../Header.tsx";
 import Footer from "../Footer.tsx";
 import { FormProvider, useForm } from "react-hook-form";
 import Password from "../signIn/Password.tsx";
+import { useTranslation } from "react-i18next";
 // import { DevTool } from "@hookform/devtools";
 
 const ForgetPassword = () => {
+  const {t}=useTranslation();
   const methods = useForm({
     defaultValues: {
       email: "",
@@ -34,7 +36,7 @@ const ForgetPassword = () => {
             color="#7848F4"
             fontStyle="italic"
           >
-            Forget Password
+           {t("Forget Password")}
           </Heading>
           <FormControl as="form" onSubmit={methods.handleSubmit(onSubmit)}>
             <Password />
@@ -52,7 +54,7 @@ const ForgetPassword = () => {
               color="#fff"
               bg="#7848F4"
             >
-              Forget Password
+              {t("Forget Password")}
             </Button>
           </FormControl>
         </Box>

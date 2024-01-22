@@ -20,8 +20,10 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { MdCategory } from "react-icons/md";
 import { useEventCategories } from "../../../hooks/useEventCategories.ts";
+import { useTranslation } from "react-i18next";
 
 const Category = () => {
+  const { t } = useTranslation();
   const methods = useFormContext();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -63,9 +65,9 @@ const Category = () => {
         <HStack w="90%" onClick={onOpen} cursor="pointer">
           <Icon as={MdCategory} w={12} h={12} color="purple.500" />
           <Box pl="32px">
-            <Text as="b">Category</Text>
+            <Text as="b">{t("Category")}</Text>
             <Text color="#98A2B3" pt="16px">
-              Select the category to which the event belongs.
+            {t("Category info")}
             </Text>
           </Box>
         </HStack>
@@ -87,7 +89,7 @@ const Category = () => {
               >
                 +
               </Button>
-              <Text>Add category</Text>
+              <Text>{t("Add category")}</Text>
             </HStack>
           </Button>
         </Box>

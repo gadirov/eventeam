@@ -1,11 +1,13 @@
 import { Box, Heading, Icon, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { BiCalendarHeart } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
 import { IoMdHeart } from "react-icons/io";
 import { MdPeople } from "react-icons/md";
 
 const EventCountSection = () => {
+  const {t}=useTranslation();
   const [count1, setCount1] = useState(0);
   const [count2, setCount2] = useState(0);
   const [count3, setCount3] = useState(0);
@@ -61,13 +63,13 @@ const EventCountSection = () => {
         flexDirection={{ base: "column", md: "row" }}
       >
         <Box display={"flex"} flexDirection={{ base: "column", md: "row" }} gap={"50px"} >
-          <CountIcon icon={BiCalendarHeart} count={count1} label="Events" />
-          <CountIcon icon={FaUser} count={count2} label="Online Events" />
+          <CountIcon icon={BiCalendarHeart} count={count1} label={t("Events")} />
+          <CountIcon icon={FaUser} count={count2} label={t("Online Events")} />
         </Box>
 
         <Box display={"flex"}  flexDirection={{ base: "column", md: "row" }} gap={"50px"}>
-          <CountIcon icon={IoMdHeart} count={count3} label="In Person Events" />
-          <CountIcon icon={MdPeople} count={count4} label="Users" />
+          <CountIcon icon={IoMdHeart} count={count3} label={t("Person Events")} />
+          <CountIcon icon={MdPeople} count={count4} label={t("Users")} />
         </Box>
 
       </Box>

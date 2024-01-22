@@ -13,8 +13,10 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const {t}=useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [checkbox, setCheckbox] = useState<boolean>(false);
 
@@ -39,12 +41,12 @@ export default function Footer() {
           onChange={() => setCheckbox(!checkbox)}
         ></Checkbox>
         <Text fontSize="20px" fontWeight="400" textAlign="center" mb="5px">
-          By registering or logging in, you agree to our{" "}
+          {t("Agreement")}{" "}
           <span
             style={{ color: "#7848f4", cursor: "pointer" }}
             onClick={onOpen}
           >
-            Terms and Privacy Policy
+            {t("Terms Privacy")}
           </span>
         </Text>
       </Box>
@@ -65,7 +67,7 @@ export default function Footer() {
             fontSize="24px"
             p="20px 0 10px 0"
           >
-            EventTeam Terms and Privacy Policy
+            {t("Eventeam Terms")}
           </ModalHeader>
           <ModalCloseButton color="white" />
           <ModalBody

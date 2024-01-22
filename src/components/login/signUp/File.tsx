@@ -11,12 +11,14 @@ import {
 import { base64 } from "../../../hooks/useSignup.ts";
 
 import { Controller, useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 interface FormValues {
   profilePhoto: FileList;
 }
 
 export default function File() {
+  const {t}=useTranslation();
   const [file, setFile] = useState<string>("");
   const methods = useFormContext<FormValues>();
 
@@ -46,7 +48,7 @@ export default function File() {
             h="20px"
             cursor="pointer"
           />
-          <Text>Upload photo</Text>
+          <Text>{t("Upload Photo")}</Text>
         </Box>
       </FormLabel>
 

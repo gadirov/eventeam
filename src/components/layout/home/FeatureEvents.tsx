@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useDetails } from "../../../hooks/useDetails.ts";
 import { IEvent } from "../../../model.ts";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function FeaturedEvents() {
+  const {t}=useTranslation();
   const [datas, setDatas] = useState<IEvent>();
   const { data } = useDetails();
   useEffect(() => {
@@ -43,7 +45,7 @@ export default function FeaturedEvents() {
                   lineHeight="24px"
                   margin={{ base: " 0px 30px", md: "0px" }}
                 >
-                  FEATURED EVENT
+                  {t("FEATURED EVENT")}
                 </Text>
               </Box>
               <Box
@@ -73,8 +75,8 @@ export default function FeaturedEvents() {
                   lineHeight="24px"
                   margin={{ base: " 0px 30px", md: "0px" }}
                 >
-                  `Embarking on a Soulful Journey: Candid Conversations on
-                  Spirituality and Life's True Essence "{datas?.eventName}"`
+                  {t("Embarking on")}
+                  {datas?.eventName}"`
                 </Text>
               </Box>
             </Box>
@@ -93,7 +95,7 @@ export default function FeaturedEvents() {
                   cursor="pointer"
                   margin={{ base: " 0px 30px", md: "0px" }}
                 >
-                  Learn More
+                  {t("Learn More")}
                 </Button>
               </Link>
             </Box>

@@ -3,8 +3,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Box, Text, Image } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 const UsersReviews: React.FC = () => {
+  const {t}=useTranslation();
   const settings = {
     infinite: true,
     speed: 2000,
@@ -50,7 +52,7 @@ const UsersReviews: React.FC = () => {
             fontWeight="600"
             lineHeight="40px"
           >
-            What our clients say
+             {t("Clients Say")}
           </Text>
         </Box>
         <Box width={{ base: "100%", md: "780px" }}>

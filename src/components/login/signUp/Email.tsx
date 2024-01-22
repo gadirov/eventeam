@@ -6,17 +6,19 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 interface FormValues {
   email: string;
 }
 export default function SignupEmail() {
+  const { t } = useTranslation();
   const methods = useFormContext<FormValues>();
 
   return (
     <FormControl isInvalid={!!methods.formState.errors.email}>
       <FormLabel color="#707070" fontSize="18px">
-        Email address
+      { t ("Email address") }
       </FormLabel>
       <Controller
         name="email"

@@ -8,18 +8,20 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 interface FormValues {
   gender: string;
 }
 export default function Gender() {
+  const {t}=useTranslation();
   const methods = useFormContext<FormValues>();
   const [value, setValue] = useState("UNKNOWN");
 
   return (
     <FormControl isInvalid={!!methods.formState.errors.gender} mb="10px">
       <FormLabel mt="15px" color="#707070" fontSize="18px">
-        Gender
+        {t("Gender")}
       </FormLabel>
       <Controller
         name="gender"
@@ -40,10 +42,10 @@ export default function Gender() {
                 N/A
               </Radio>
               <Radio colorScheme="purple" size="md" value="MALE">
-                Male
+              {t("Male")}
               </Radio>
               <Radio colorScheme="purple" size="md" value="FEMALE">
-                Female
+              {t("Female")}
               </Radio>
             </Stack>
           </RadioGroup>

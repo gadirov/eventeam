@@ -43,11 +43,13 @@ import {
 import { fetcher } from "../../config/axiosConfig.ts";
 import useSWR from "swr";
 import { swrOptions } from "../../const.ts";
+import { useTranslation } from "react-i18next";
 
 // interface DetailData {
 //   eventName: string;
 // }
 const DetailView = () => {
+  const {t}=useTranslation();
   const params = useParams();
   const [detailData, setDetailData] = useState<any>(undefined);
   const { data, error, isLoading } = useSWR(
@@ -121,14 +123,14 @@ const DetailView = () => {
                       style={{ color: "#ffffff" }}
                     />
                     <Text color="white" ml="5px">
-                      Going
+                    {t("Going")}
                     </Text>
                   </Box>
                 </MenuButton>
                 <MenuList>
-                  <MenuItem>Going</MenuItem>
-                  <MenuItem>Interested</MenuItem>
-                  <MenuItem>Unset</MenuItem>
+                  <MenuItem>{t("Going")}</MenuItem>
+                  <MenuItem>{t("Interested")}</MenuItem>
+                  <MenuItem>{t("Unset")}</MenuItem>
                 </MenuList>
               </Menu>
               <Button
@@ -140,7 +142,7 @@ const DetailView = () => {
               >
                 <FontAwesomeIcon icon={faStar} style={{ color: "#74C0FC" }} />{" "}
                 <Text ml="5px" color="black">
-                  Interested
+                {t("Interested")}
                 </Text>
               </Button>
             </Box>
@@ -156,7 +158,7 @@ const DetailView = () => {
               </Box>
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faClock} />
-                <Text fontSize="20px">{timeDifferenceInMinutes} minutes</Text>
+                <Text fontSize="20px">{timeDifferenceInMinutes} {t("Minutes")}</Text>
               </Box>
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faLocationDot} />
@@ -176,7 +178,7 @@ const DetailView = () => {
                   </Text>
                   <Text fontSize="20px">
                     {" "}
-                    {detailData?.body?.minAttendees} Attended{" "}
+                    {detailData?.body?.minAttendees} {t("Attended")}{" "}
                   </Text>
                   <Text color="gray" fontSize="20px">
                     {" "}
@@ -184,7 +186,7 @@ const DetailView = () => {
                   </Text>
                   <Text fontSize="20px">
                     {" "}
-                    {detailData?.body?.maxAttendees} Attended
+                    {detailData?.body?.maxAttendees} {t("Attended")}
                   </Text>
                 </Box>
               </Box>
@@ -211,7 +213,7 @@ const DetailView = () => {
               <Box display="flex" alignItems="center" gap="15px">
                 <FontAwesomeIcon fontSize="23px" icon={faCircleUser} />
                 <Text fontSize="20px">
-                  Event hosted by <Link color="blue">eventeam</Link>
+                  {t("Event hosted")} <Link color="blue">eventeam</Link>
                 </Text>
               </Box>
             </Box>
@@ -224,7 +226,7 @@ const DetailView = () => {
           </Box>
 
           <Box margin="0 50px">
-            <Heading m="20px 0px">Description</Heading>
+            <Heading m="20px 0px">{t("Description")}</Heading>
             <Text fontSize="20px">{detailData?.body?.description}</Text>
             <br />
             <Text fontSize="20px">
@@ -247,7 +249,7 @@ const DetailView = () => {
           >
             <Box>
               <Heading textAlign="center" fontSize="40px">
-                Attended
+              {t("Attended")}
               </Heading>
               <Box p="30px 0px" display="flex" gap={{ base: "19px", md: "120px" }}>
                 <Box>
@@ -260,7 +262,7 @@ const DetailView = () => {
                     {detailData?.body?.usersList?.goingCount}
                   </Text>
                   <Text color="gray" fontSize={{base:"20",md:"25px"}}>
-                    GOING
+                  {t("Going")}
                   </Text>
                 </Box>
                 <Box>
@@ -274,7 +276,7 @@ const DetailView = () => {
                     {detailData?.body?.usersList?.interestedCount}
                   </Text>
                   <Text color="gray"  fontSize={{base:"20",md:"25px"}}>
-                    INTERESTED
+                  {t("Interested")}
                   </Text>
                 </Box>
                 <Box>
@@ -288,7 +290,7 @@ const DetailView = () => {
                     0
                   </Text>
                   <Text color="gray" fontSize={{base:"20",md:"25px"}}>
-                    INVITED
+                  {t("Invited")}
                   </Text>
                 </Box>
               </Box>
@@ -304,7 +306,7 @@ const DetailView = () => {
             justifyContent="space-around"
           >
             <Box>
-              <Heading>Friends</Heading>
+              <Heading>{t("Friends")}</Heading>
               <Box p="30px 0px">
                 <Menu>
                   <MenuButton
@@ -322,7 +324,7 @@ const DetailView = () => {
                       />
                     }
                   >
-                    Invite friends
+                    {t("Invite Friends")}
                   </MenuButton>
                   <MenuList>
                     <MenuItem minH="48px">
@@ -351,7 +353,7 @@ const DetailView = () => {
               </Box>
             </Box>
             <Box>
-              <Heading>Contact</Heading>
+              <Heading>{t("Contact")}</Heading>
               <Box p="30px 0px">
                 <Link href={`tel:${detailData?.body?.mobileNumber}`}>
                   <Button
@@ -373,7 +375,7 @@ const DetailView = () => {
               </Box>
             </Box>
             <Box>
-              <Heading>Hosted</Heading>
+              <Heading>{t("Hosted")}</Heading>
               <Box p="30px 0px" display="flex" gap="20px">
                 <Box padding="0">
                   <Text fontSize="20px">eventeam</Text>
